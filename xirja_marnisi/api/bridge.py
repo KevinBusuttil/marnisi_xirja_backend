@@ -1,0 +1,566 @@
+from __future__ import annotations
+
+import json
+from typing import Any
+
+import frappe
+
+from xirja_marnisi.api.security import get_accessible_vineyards, parse_args
+
+_PAYMENT_METHODS = [
+    {"payment_type_id": "1", "payment_type_name": "Cash"},
+    {"payment_type_id": "2", "payment_type_name": "Pay Cheque -  BOV"},
+    {"payment_type_id": "3", "payment_type_name": "Payment Customer Account"},
+    {"payment_type_id": "4", "payment_type_name": "Loyality Redem"},
+    {"payment_type_id": "7", "payment_type_name": "Card BOV"},
+    {"payment_type_id": "8", "payment_type_name": "Pay Other Cheques"},
+    {"payment_type_id": "9", "payment_type_name": "Gift Cards"},
+    {"payment_type_id": "10", "payment_type_name": "Staff Vauchers"},
+    {"payment_type_id": "12", "payment_type_name": "Stripe"},
+    {"payment_type_id": "13", "payment_type_name": "Bank Transfer"},
+]
+
+_PERSONAL_USERS = [
+    {
+        "retail_personnel_id": "11111",
+        "retail_user_group": "Vineyard Admin",
+        "retail_user_first_name": "North",
+        "retail_user_last_name": "Admin",
+        "retail_user_email": "marnisi.admin.north@example.com",
+    },
+    {
+        "retail_personnel_id": "22222",
+        "retail_user_group": "Vineyard Admin",
+        "retail_user_first_name": "South",
+        "retail_user_last_name": "Admin",
+        "retail_user_email": "marnisi.admin.south@example.com",
+    },
+    {
+        "retail_personnel_id": "33333",
+        "retail_user_group": "Vineyard Staff",
+        "retail_user_first_name": "Vineyard",
+        "retail_user_last_name": "Staff",
+        "retail_user_email": "marnisi.staff@example.com",
+    },
+    {
+        "retail_personnel_id": "44444",
+        "retail_user_group": "Viewer",
+        "retail_user_first_name": "Vineyard",
+        "retail_user_last_name": "Viewer",
+        "retail_user_email": "marnisi.viewer@example.com",
+    },
+]
+
+
+def _resolve_vineyards() -> list[dict[str, Any]]:
+    user = getattr(frappe.session, "user", "Guest")
+
+    if user and user != "Guest":
+        rows = get_accessible_vineyards(user)
+        if rows:
+            return rows
+
+    return frappe.db.sql(
+        """
+        SELECT
+            name AS vineyard,
+            'Viewer' AS access_role,
+            0 AS is_default,
+            1 AS is_active
+        FROM `tabVineyard`
+        WHERE IFNULL(is_active, 1) = 1
+        ORDER BY vineyard_name ASC
+        """,
+        as_dict=True,
+    )
+
+
+def _normalize_name(value: str) -> str:
+    text = (value or "").strip()
+    return text if text else "Unnamed Vineyard"
+
+
+def _ensure_sales_tables() -> None:
+    frappe.db.sql(
+        """
+        CREATE TABLE IF NOT EXISTS `tabMarnisi POS Sale` (
+            name VARCHAR(140) PRIMARY KEY,
+            creation DATETIME(6),
+            modified DATETIME(6),
+            modified_by VARCHAR(140),
+            owner VARCHAR(140),
+            docstatus INT DEFAULT 0,
+            sale_num VARCHAR(140) UNIQUE,
+            sales_store VARCHAR(140),
+            sales_register_id VARCHAR(140),
+            sales_date DATE,
+            sales_time VARCHAR(32),
+            sales_cashier VARCHAR(140),
+            sales_total DECIMAL(18,6),
+            loy_cust_card_num VARCHAR(140),
+            sales_payload LONGTEXT
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+        """
+    )
+
+    frappe.db.sql(
+        """
+        CREATE TABLE IF NOT EXISTS `tabMarnisi Loyalty User` (
+            name VARCHAR(140) PRIMARY KEY,
+            creation DATETIME(6),
+            modified DATETIME(6),
+            modified_by VARCHAR(140),
+            owner VARCHAR(140),
+            docstatus INT DEFAULT 0,
+            loy_cust_card_num VARCHAR(140) UNIQUE,
+            loy_cust_first_name VARCHAR(140),
+            loy_cust_last_name VARCHAR(140),
+            loy_cust_email VARCHAR(140),
+            loy_cust_city VARCHAR(140),
+            loy_cust_mobile VARCHAR(140),
+            loy_cust_scheme VARCHAR(80),
+            loy_cust_balance DECIMAL(18,6),
+            loy_cust_points DECIMAL(18,6),
+            loy_cust_frozen INT DEFAULT 0
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+        """
+    )
+
+
+@frappe.whitelist(allow_guest=True)
+def get_all_users() -> dict[str, Any]:
+    return _PERSONAL_USERS
+
+
+@frappe.whitelist(allow_guest=True)
+def get_all_stores() -> dict[str, Any]:
+    vineyards = _resolve_vineyards()
+    out: list[dict[str, Any]] = []
+
+    for row in vineyards:
+        vineyard = (row.get("vineyard") or "").strip()
+        if not vineyard:
+            continue
+        out.append(
+            {
+                "store_id": vineyard,
+                "store_name": _normalize_name(vineyard),
+                "store_address": "",
+                "store_country": "Malta",
+                "store_phone_num": "",
+                "store_registration_num": "",
+                "store_channel_type": "VINEYARD",
+                "store_legal_entity": "marnisi",
+                "store_vat_group": "STANDARD",
+                "store_default_customer": "",
+                "store_contact_address": "",
+                "store_contact": "",
+                "store_invent_location_id": vineyard,
+                "store_bcrs_code": "",
+                "store_opening_hours": "",
+                "store_loyalty_enabled": 1,
+                "store_loyalty_allow_earn": 0,
+                "store_loyalty_allow_redeem": 0,
+                "store_loyalty_show_customer_ui": 0,
+                "store_loyalty_show_points_ui": 0,
+                "store_loyalty_show_receipt_details": 0,
+                "store_py_mthds_ava": [row["payment_type_id"] for row in _PAYMENT_METHODS],
+            }
+        )
+
+    return out
+
+
+@frappe.whitelist(allow_guest=True)
+def get_all_registers() -> dict[str, Any]:
+    vineyards = _resolve_vineyards()
+    out: list[dict[str, Any]] = []
+
+    for row in vineyards:
+        vineyard = (row.get("vineyard") or "").strip()
+        if not vineyard:
+            continue
+
+        out.append(
+            {
+                "register_id": f"{vineyard}-MAIN",
+                "register_name": "Main Register",
+                "store_id": vineyard,
+            }
+        )
+        out.append(
+            {
+                "register_id": f"{vineyard}-TASTING",
+                "register_name": "Tasting Register",
+                "store_id": vineyard,
+            }
+        )
+
+    return out
+
+
+@frappe.whitelist(allow_guest=True)
+def get_pay_mthds() -> dict[str, Any]:
+    return _PAYMENT_METHODS
+
+
+@frappe.whitelist(allow_guest=True)
+def get_all_products() -> dict[str, Any]:
+    rows = frappe.db.sql(
+        """
+        SELECT
+            name,
+            vineyard,
+            item_code,
+            item_name,
+            category,
+            brand,
+            image_path,
+            unit,
+            sell_price,
+            stock_qty
+        FROM `tabVineyard Item`
+        WHERE IFNULL(is_enabled, 1) = 1
+        ORDER BY vineyard ASC, item_name ASC
+        """,
+        as_dict=True,
+    )
+
+    out: list[dict[str, Any]] = []
+    for row in rows:
+        item_code = (row.get("item_code") or "").strip()
+        vineyard = (row.get("vineyard") or "").strip()
+        if not item_code:
+            continue
+        if not vineyard:
+            continue
+
+        scoped_item_id = f"{vineyard}::{item_code}"
+
+        out.append(
+            {
+                "item_id": scoped_item_id,
+                "item_img_path": row.get("image_path") or "assets/items/1.png",
+                "item_store": vineyard,
+                "item_brand": row.get("brand") or "",
+                "item_description": row.get("category") or "",
+                "item_barcode": item_code,
+                "item_name": row.get("item_name") or item_code,
+                "item_qty": float(row.get("stock_qty") or 0),
+                "item_price": float(row.get("sell_price") or 0),
+                "item_category": row.get("category") or "",
+                "item_unit": row.get("unit") or "Bottle",
+                "item_tax_group": "VAT",
+                "item_tax_pct": 18.0,
+                "item_suppItems": [],
+            }
+        )
+
+    return out
+
+
+@frappe.whitelist(allow_guest=True)
+def get_all_products_paola() -> dict[str, Any]:
+    return get_all_products()
+
+
+@frappe.whitelist(allow_guest=True)
+def post_all_sales(args: str = "") -> dict[str, Any]:
+    payload = parse_args(args)
+    sales_rows = payload.get("sales")
+    if not isinstance(sales_rows, list):
+        sales_rows = []
+
+    _ensure_sales_tables()
+
+    confirmations: list[dict[str, Any]] = []
+    now = frappe.utils.now()
+    actor = getattr(frappe.session, "user", "Guest")
+
+    for row in sales_rows:
+        if not isinstance(row, dict):
+            continue
+
+        sale_num = str(row.get("sales_num") or "").strip()
+        if not sale_num:
+            sale_num = f"SALE-{frappe.generate_hash(length=12)}"
+
+        name = f"MPS-{sale_num}"
+        if len(name) > 140:
+            name = name[:140]
+
+        loy_card = str(row.get("loy_cust_card_num") or "").strip()
+        total = float(row.get("sales_total") or 0)
+
+        frappe.db.sql(
+            """
+            INSERT INTO `tabMarnisi POS Sale` (
+                name, creation, modified, modified_by, owner, docstatus,
+                sale_num, sales_store, sales_register_id, sales_date, sales_time,
+                sales_cashier, sales_total, loy_cust_card_num, sales_payload
+            )
+            VALUES (
+                %s, %s, %s, %s, %s, 0,
+                %s, %s, %s, %s, %s, %s, %s, %s, %s
+            )
+            ON DUPLICATE KEY UPDATE
+                modified = VALUES(modified),
+                modified_by = VALUES(modified_by),
+                sales_store = VALUES(sales_store),
+                sales_register_id = VALUES(sales_register_id),
+                sales_date = VALUES(sales_date),
+                sales_time = VALUES(sales_time),
+                sales_cashier = VALUES(sales_cashier),
+                sales_total = VALUES(sales_total),
+                loy_cust_card_num = VALUES(loy_cust_card_num),
+                sales_payload = VALUES(sales_payload)
+            """,
+            (
+                name,
+                now,
+                now,
+                actor,
+                actor,
+                sale_num,
+                row.get("sales_store"),
+                row.get("sales_registerId"),
+                row.get("sales_date"),
+                row.get("sales_time"),
+                row.get("sales_cashier"),
+                total,
+                loy_card,
+                json.dumps(row),
+            ),
+        )
+
+        confirmations.append(
+            {
+                "sale_num": sale_num,
+                "status": "synchronized",
+                "loy_cust_card_num": loy_card,
+            }
+        )
+
+    frappe.db.commit()
+    return {"confirmations": confirmations}
+
+
+@frappe.whitelist(allow_guest=True)
+def get_sales_history(args: str = "") -> dict[str, Any]:
+    payload = parse_args(args)
+    _ensure_sales_tables()
+
+    sale_num = str(payload.get("sale_num") or "").strip()
+    item_code = str(payload.get("item_code") or "").strip().lower()
+    item_name = str(payload.get("item_name") or "").strip().lower()
+    from_date = str(payload.get("from_date") or "").strip()
+    to_date = str(payload.get("to_date") or "").strip()
+    sales_store = str(payload.get("sales_store") or "").strip()
+
+    limit = int(payload.get("limit") or 200)
+    if limit < 1:
+        limit = 200
+    if limit > 2000:
+        limit = 2000
+
+    where = []
+    params: list[Any] = []
+
+    if sale_num:
+        where.append("sale_num LIKE %s")
+        params.append(f"%{sale_num}%")
+
+    if from_date:
+        where.append("sales_date >= %s")
+        params.append(from_date)
+
+    if to_date:
+        where.append("sales_date <= %s")
+        params.append(to_date)
+
+    if sales_store:
+        where.append("sales_store = %s")
+        params.append(sales_store)
+
+    where_clause = f"WHERE {' AND '.join(where)}" if where else ""
+    rows = frappe.db.sql(
+        f"""
+        SELECT
+            sale_num,
+            sales_payload
+        FROM `tabMarnisi POS Sale`
+        {where_clause}
+        ORDER BY sales_date DESC, sales_time DESC, modified DESC
+        LIMIT {limit}
+        """,
+        tuple(params),
+        as_dict=True,
+    )
+
+    sales: list[dict[str, Any]] = []
+    for row in rows:
+        raw_payload = row.get("sales_payload")
+        try:
+            parsed = json.loads(raw_payload) if raw_payload else {}
+        except Exception:
+            parsed = {}
+        if not isinstance(parsed, dict):
+            continue
+
+        items = parsed.get("items")
+        if not isinstance(items, list):
+            items = []
+
+        if item_code:
+            if not any(item_code in str(item.get("si_id") or "").lower() for item in items if isinstance(item, dict)):
+                continue
+
+        if item_name:
+            if not any(item_name in str(item.get("si_name") or "").lower() for item in items if isinstance(item, dict)):
+                continue
+
+        sales.append(parsed)
+
+    return {
+        "status": "success",
+        "sales": sales,
+    }
+
+
+@frappe.whitelist(allow_guest=True)
+def xirja_loy_users() -> dict[str, Any]:
+    _ensure_sales_tables()
+    rows = frappe.db.sql(
+        """
+        SELECT
+            loy_cust_card_num,
+            loy_cust_first_name,
+            loy_cust_last_name,
+            loy_cust_email,
+            loy_cust_city,
+            loy_cust_mobile,
+            loy_cust_scheme,
+            loy_cust_balance,
+            loy_cust_points,
+            loy_cust_frozen
+        FROM `tabMarnisi Loyalty User`
+        ORDER BY modified DESC
+        """,
+        as_dict=True,
+    )
+    return {"status": "success", "users": rows}
+
+
+@frappe.whitelist(allow_guest=True)
+def get_retail_loy_user(args: str = "") -> dict[str, Any]:
+    payload = parse_args(args)
+    card_num = str(payload.get("loy_cust_card_num") or "").strip()
+    if not card_num:
+        return {"status": "error", "message": "Loyalty card number is required"}
+
+    _ensure_sales_tables()
+    rows = frappe.db.sql(
+        """
+        SELECT
+            loy_cust_card_num,
+            loy_cust_first_name,
+            loy_cust_last_name,
+            loy_cust_email,
+            loy_cust_city,
+            loy_cust_mobile,
+            loy_cust_scheme,
+            loy_cust_balance,
+            loy_cust_points,
+            loy_cust_frozen
+        FROM `tabMarnisi Loyalty User`
+        WHERE loy_cust_card_num = %s
+        LIMIT 1
+        """,
+        (card_num,),
+        as_dict=True,
+    )
+
+    if not rows:
+        return {"status": "error", "message": "User not found"}
+
+    user = rows[0]
+    user["loy_cust_primary_address"] = ""
+    return {"status": "success", "user": user}
+
+
+@frappe.whitelist(allow_guest=True)
+def create_retail_loy_user(args: str = "") -> dict[str, Any]:
+    payload = parse_args(args)
+    card_num = str(payload.get("loy_cust_card_num") or "").strip()
+    if not card_num:
+        return {"status": "error", "message": "Loyalty card number is required"}
+
+    first_name = str(payload.get("loy_cust_first_name") or "").strip()
+    last_name = str(payload.get("loy_cust_last_name") or "").strip()
+    email = str(payload.get("loy_cust_email") or "").strip()
+    city = str(payload.get("loy_cust_city") or "").strip()
+    mobile = str(payload.get("loy_cust_mobile") or "").strip()
+    scheme = str(payload.get("loy_cust_scheme") or "SILVER").strip() or "SILVER"
+
+    _ensure_sales_tables()
+    now = frappe.utils.now()
+    actor = getattr(frappe.session, "user", "Guest")
+    name = f"MLU-{card_num}"
+    if len(name) > 140:
+        name = name[:140]
+
+    frappe.db.sql(
+        """
+        INSERT INTO `tabMarnisi Loyalty User` (
+            name, creation, modified, modified_by, owner, docstatus,
+            loy_cust_card_num, loy_cust_first_name, loy_cust_last_name,
+            loy_cust_email, loy_cust_city, loy_cust_mobile, loy_cust_scheme,
+            loy_cust_balance, loy_cust_points, loy_cust_frozen
+        )
+        VALUES (
+            %s, %s, %s, %s, %s, 0,
+            %s, %s, %s, %s, %s, %s, %s,
+            0, 0, 0
+        )
+        ON DUPLICATE KEY UPDATE
+            modified = VALUES(modified),
+            modified_by = VALUES(modified_by),
+            loy_cust_first_name = VALUES(loy_cust_first_name),
+            loy_cust_last_name = VALUES(loy_cust_last_name),
+            loy_cust_email = VALUES(loy_cust_email),
+            loy_cust_city = VALUES(loy_cust_city),
+            loy_cust_mobile = VALUES(loy_cust_mobile),
+            loy_cust_scheme = VALUES(loy_cust_scheme)
+        """,
+        (
+            name,
+            now,
+            now,
+            actor,
+            actor,
+            card_num,
+            first_name,
+            last_name,
+            email,
+            city,
+            mobile,
+            scheme,
+        ),
+    )
+
+    frappe.db.commit()
+    return {
+        "status": "success",
+        "user": {
+            "loy_cust_card_num": card_num,
+            "loy_cust_first_name": first_name,
+            "loy_cust_last_name": last_name,
+            "loy_cust_email": email,
+            "loy_cust_city": city,
+            "loy_cust_mobile": mobile,
+            "loy_cust_scheme": scheme,
+            "loy_cust_balance": 0,
+            "loy_cust_points": 0,
+            "loy_cust_frozen": 0,
+        },
+    }

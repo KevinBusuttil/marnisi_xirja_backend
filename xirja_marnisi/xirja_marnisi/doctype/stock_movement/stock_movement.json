@@ -1,0 +1,114 @@
+{
+ "actions": [],
+ "autoname": "hash",
+ "creation": "2026-05-03 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "vineyard",
+  "vineyard_item",
+  "tour_booking",
+  "movement_type",
+  "qty_before",
+  "qty_delta",
+  "qty_after",
+  "reason",
+  "actor_user",
+  "reference_note"
+ ],
+ "fields": [
+  {
+   "fieldname": "vineyard",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Vineyard",
+   "options": "Vineyard",
+   "reqd": 1
+  },
+  {
+   "fieldname": "vineyard_item",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Vineyard Item",
+   "options": "Vineyard Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "tour_booking",
+   "fieldtype": "Link",
+   "label": "Tour Booking",
+   "options": "Tour Booking"
+  },
+  {
+   "fieldname": "movement_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Movement Type",
+   "options": "ADJUST_SET\nADJUST_DELTA\nAUTO_DEDUCT\nAUTO_RESTORE\nENABLE_DISABLE",
+   "reqd": 1
+  },
+  {
+   "fieldname": "qty_before",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Qty Before",
+   "reqd": 1
+  },
+  {
+   "fieldname": "qty_delta",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Qty Delta",
+   "reqd": 1
+  },
+  {
+   "fieldname": "qty_after",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Qty After",
+   "reqd": 1
+  },
+  {
+   "fieldname": "reason",
+   "fieldtype": "Small Text",
+   "label": "Reason"
+  },
+  {
+   "fieldname": "actor_user",
+   "fieldtype": "Link",
+   "label": "Actor User",
+   "options": "User"
+  },
+  {
+   "fieldname": "reference_note",
+   "fieldtype": "Data",
+   "label": "Reference Note"
+  }
+ ],
+ "hide_toolbar": 0,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-05-03 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "XIRJA Marnisi",
+ "name": "Stock Movement",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

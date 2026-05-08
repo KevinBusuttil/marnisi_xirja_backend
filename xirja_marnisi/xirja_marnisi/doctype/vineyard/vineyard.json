@@ -1,0 +1,81 @@
+{
+ "actions": [],
+ "autoname": "field:vineyard_code",
+ "creation": "2026-05-03 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "vineyard_code",
+  "vineyard_name",
+  "is_active",
+  "timezone",
+  "contact_email",
+  "contact_phone"
+ ],
+ "fields": [
+  {
+   "fieldname": "vineyard_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Vineyard Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "vineyard_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Vineyard Name",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Is Active"
+  },
+  {
+   "default": "Europe/Malta",
+   "fieldname": "timezone",
+   "fieldtype": "Data",
+   "label": "Timezone"
+  },
+  {
+   "fieldname": "contact_email",
+   "fieldtype": "Data",
+   "label": "Contact Email"
+  },
+  {
+   "fieldname": "contact_phone",
+   "fieldtype": "Data",
+   "label": "Contact Phone"
+  }
+ ],
+ "hide_toolbar": 0,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-05-03 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "XIRJA Marnisi",
+ "name": "Vineyard",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,84 @@
+from __future__ import annotations
+
+from typing import Any
+
+import frappe
+
+from xirja_marnisi.api.security import (
+    get_accessible_vineyards,
+    get_roles,
+    parse_args,
+    require_authenticated_user,
+)
+
+
+_PERSONAL_LOGIN_MAP = {
+    "11111": "marnisi.admin.north@example.com",
+    "22222": "marnisi.admin.south@example.com",
+    "33333": "marnisi.staff@example.com",
+    "44444": "marnisi.viewer@example.com",
+}
+
+_DEFAULT_SEED_PASSWORD = "Marnisi@2026#Seed!"
+
+
+@frappe.whitelist()
+def get_context() -> dict[str, Any]:
+    """Return authenticated session context with roles and vineyard assignments."""
+    user = require_authenticated_user()
+    roles = sorted(get_roles(user))
+    access_rows = get_accessible_vineyards(user)
+
+    vineyards: list[dict[str, Any]] = []
+    default_vineyard = ""
+
+    for row in access_rows:
+        vineyard_name = row.get("vineyard")
+        if not vineyard_name:
+            continue
+
+        entry = {
+            "vineyard": vineyard_name,
+            "access_role": row.get("access_role") or "Super Admin",
+            "is_default": int(row.get("is_default") or 0) == 1,
+        }
+        vineyards.append(entry)
+
+        if entry["is_default"] and not default_vineyard:
+            default_vineyard = vineyard_name
+
+    if not default_vineyard and vineyards:
+        default_vineyard = vineyards[0]["vineyard"]
+
+    return {
+        "status": "success",
+        "user": user,
+        "roles": roles,
+        "vineyards": vineyards,
+        "default_vineyard": default_vineyard,
+    }
+
+
+@frappe.whitelist(allow_guest=True)
+def login_with_personal_id(args: str = "") -> dict[str, Any]:
+    """Create a Frappe session using a personal number used by POS login."""
+    payload = parse_args(args)
+    personal_id = str(payload.get("personal_id") or "").strip()
+    if not personal_id:
+        frappe.throw("Personal ID is required")
+
+    user = _PERSONAL_LOGIN_MAP.get(personal_id)
+    if not user:
+        frappe.throw("Unknown Personal ID")
+
+    login_manager = getattr(frappe.local, "login_manager", None)
+    if not login_manager:
+        frappe.throw("Login manager unavailable")
+
+    login_manager.authenticate(user=user, pwd=_DEFAULT_SEED_PASSWORD)
+    login_manager.post_login()
+
+    return {
+        "status": "success",
+        "user": user,
+    }

@@ -1,0 +1,108 @@
+{
+ "actions": [],
+ "autoname": "hash",
+ "creation": "2026-05-03 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "vineyard",
+  "package_code",
+  "package_name",
+  "package_tier",
+  "description",
+  "price_per_person",
+  "max_group_size",
+  "is_active",
+  "wines"
+ ],
+ "fields": [
+  {
+   "fieldname": "vineyard",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Vineyard",
+   "options": "Vineyard",
+   "reqd": 1
+  },
+  {
+   "fieldname": "package_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Package Code",
+   "reqd": 1
+  },
+  {
+   "fieldname": "package_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Package Name",
+   "reqd": 1
+  },
+  {
+   "default": "Custom",
+   "fieldname": "package_tier",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Package Tier",
+   "options": "Silver\nGold\nPlatinum\nCustom",
+   "reqd": 1
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  },
+  {
+   "default": "0",
+   "fieldname": "price_per_person",
+   "fieldtype": "Float",
+   "label": "Price Per Person"
+  },
+  {
+   "default": "0",
+   "fieldname": "max_group_size",
+   "fieldtype": "Int",
+   "label": "Max Group Size"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Is Active"
+  },
+  {
+   "fieldname": "wines",
+   "fieldtype": "Table",
+   "label": "Package Wines",
+   "options": "Tour Package Wine",
+   "reqd": 1
+  }
+ ],
+ "hide_toolbar": 0,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-05-03 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "XIRJA Marnisi",
+ "name": "Tour Package",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

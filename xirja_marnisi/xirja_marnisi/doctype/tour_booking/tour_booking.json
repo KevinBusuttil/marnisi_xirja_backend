@@ -1,0 +1,151 @@
+{
+ "actions": [],
+ "autoname": "hash",
+ "creation": "2026-05-03 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "booking_no",
+  "vineyard",
+  "tour_package",
+  "tour_type",
+  "participants_count",
+  "scheduled_at",
+  "guest_name",
+  "guest_phone",
+  "guest_email",
+  "status",
+  "stock_deducted",
+  "checkin_at",
+  "completed_at",
+  "cancel_reason",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "booking_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Booking No",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "vineyard",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Vineyard",
+   "options": "Vineyard",
+   "reqd": 1
+  },
+  {
+   "fieldname": "tour_package",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Tour Package",
+   "options": "Tour Package",
+   "reqd": 1
+  },
+  {
+   "default": "INDIVIDUAL",
+   "fieldname": "tour_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Tour Type",
+   "options": "INDIVIDUAL\nGROUP",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "participants_count",
+   "fieldtype": "Int",
+   "label": "Participants Count",
+   "reqd": 1
+  },
+  {
+   "fieldname": "scheduled_at",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Scheduled At",
+   "reqd": 1
+  },
+  {
+   "fieldname": "guest_name",
+   "fieldtype": "Data",
+   "label": "Guest Name"
+  },
+  {
+   "fieldname": "guest_phone",
+   "fieldtype": "Data",
+   "label": "Guest Phone"
+  },
+  {
+   "fieldname": "guest_email",
+   "fieldtype": "Data",
+   "label": "Guest Email"
+  },
+  {
+   "default": "DRAFT",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "DRAFT\nCONFIRMED\nCHECKED_IN\nCOMPLETED\nCANCELLED",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "stock_deducted",
+   "fieldtype": "Check",
+   "label": "Stock Deducted"
+  },
+  {
+   "fieldname": "checkin_at",
+   "fieldtype": "Datetime",
+   "label": "Check-in At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "completed_at",
+   "fieldtype": "Datetime",
+   "label": "Completed At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cancel_reason",
+   "fieldtype": "Small Text",
+   "label": "Cancel Reason"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  }
+ ],
+ "hide_toolbar": 0,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-05-03 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "XIRJA Marnisi",
+ "name": "Tour Booking",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,49 @@
+{
+ "actions": [],
+ "creation": "2026-05-03 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "vineyard_item",
+  "tasting_qty_per_guest",
+  "serving_uom"
+ ],
+ "fields": [
+  {
+   "fieldname": "vineyard_item",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Vineyard Item",
+   "options": "Vineyard Item",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "tasting_qty_per_guest",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Tasting Qty Per Guest"
+  },
+  {
+   "default": "Glass",
+   "fieldname": "serving_uom",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Serving UOM"
+  }
+ ],
+ "hide_toolbar": 1,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-05-03 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "XIRJA Marnisi",
+ "name": "Tour Package Wine",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
