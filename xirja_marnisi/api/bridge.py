@@ -51,6 +51,9 @@ _PERSONAL_USERS = [
     },
 ]
 
+_SALE_TABLE = "tabMarnisi POS Sale"
+_LOYALTY_TABLE = "tabMarnisi Loyalty User"
+
 
 def _resolve_vineyards() -> list[dict[str, Any]]:
     user = getattr(frappe.session, "user", "Guest")
@@ -80,16 +83,42 @@ def _normalize_name(value: str) -> str:
     return text if text else "Unnamed Vineyard"
 
 
+def _column_exists(table_name: str, column_name: str) -> bool:
+    rows = frappe.db.sql(
+        """
+        SELECT 1
+        FROM information_schema.COLUMNS
+        WHERE TABLE_SCHEMA = DATABASE()
+          AND TABLE_NAME = %s
+          AND COLUMN_NAME = %s
+        LIMIT 1
+        """,
+        (table_name, column_name),
+    )
+    return bool(rows)
+
+
+def _add_column_if_missing(table_name: str, column_name: str, column_sql: str) -> None:
+    if _column_exists(table_name, column_name):
+        return
+    frappe.db.sql(f"ALTER TABLE `{table_name}` ADD COLUMN {column_sql}")
+
+
 def _ensure_sales_tables() -> None:
     frappe.db.sql(
-        """
-        CREATE TABLE IF NOT EXISTS `tabMarnisi POS Sale` (
+        f"""
+        CREATE TABLE IF NOT EXISTS `{_SALE_TABLE}` (
             name VARCHAR(140) PRIMARY KEY,
             creation DATETIME(6),
             modified DATETIME(6),
             modified_by VARCHAR(140),
             owner VARCHAR(140),
             docstatus INT DEFAULT 0,
+            idx INT NOT NULL DEFAULT 0,
+            _user_tags LONGTEXT,
+            _comments LONGTEXT,
+            _assign LONGTEXT,
+            _liked_by LONGTEXT,
             sale_num VARCHAR(140) UNIQUE,
             sales_store VARCHAR(140),
             sales_register_id VARCHAR(140),
@@ -103,9 +132,17 @@ def _ensure_sales_tables() -> None:
         """
     )
 
+    # Keep legacy deployments compatible with Desk List views by backfilling
+    # standard Frappe system columns that were missing in early raw SQL schema.
+    _add_column_if_missing(_SALE_TABLE, "idx", "idx INT NOT NULL DEFAULT 0")
+    _add_column_if_missing(_SALE_TABLE, "_user_tags", "_user_tags LONGTEXT")
+    _add_column_if_missing(_SALE_TABLE, "_comments", "_comments LONGTEXT")
+    _add_column_if_missing(_SALE_TABLE, "_assign", "_assign LONGTEXT")
+    _add_column_if_missing(_SALE_TABLE, "_liked_by", "_liked_by LONGTEXT")
+
     frappe.db.sql(
-        """
-        CREATE TABLE IF NOT EXISTS `tabMarnisi Loyalty User` (
+        f"""
+        CREATE TABLE IF NOT EXISTS `{_LOYALTY_TABLE}` (
             name VARCHAR(140) PRIMARY KEY,
             creation DATETIME(6),
             modified DATETIME(6),

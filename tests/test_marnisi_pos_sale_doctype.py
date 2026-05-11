@@ -69,6 +69,25 @@ class _FakeFrappe:
         return "A" * length
 
 
+def test_ensure_sales_tables_backfills_standard_frappe_columns(monkeypatch):
+    fake_frappe = _FakeFrappe()
+    monkeypatch.setattr(bridge, "frappe", fake_frappe)
+
+    bridge._ensure_sales_tables()
+
+    alter_statements = [
+        query
+        for query, _params in fake_frappe.db.calls
+        if query.startswith("ALTER TABLE `tabMarnisi POS Sale` ADD COLUMN")
+    ]
+
+    assert any("ADD COLUMN idx INT NOT NULL DEFAULT 0" in query for query in alter_statements)
+    assert any("ADD COLUMN _user_tags LONGTEXT" in query for query in alter_statements)
+    assert any("ADD COLUMN _comments LONGTEXT" in query for query in alter_statements)
+    assert any("ADD COLUMN _assign LONGTEXT" in query for query in alter_statements)
+    assert any("ADD COLUMN _liked_by LONGTEXT" in query for query in alter_statements)
+
+
 def test_post_all_sales_inserts_into_marnisi_pos_sale_table(monkeypatch):
     fake_frappe = _FakeFrappe()
     monkeypatch.setattr(bridge, "frappe", fake_frappe)
