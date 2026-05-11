@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import pytest
 
+from xirja_marnisi.api import bridge
 from xirja_marnisi.api import auth
 
 
@@ -52,3 +53,11 @@ def test_login_with_personal_id_unknown_id(monkeypatch):
 
     with pytest.raises(Exception, match="Unknown Personal ID"):
         auth.login_with_personal_id()
+
+
+def test_login_map_includes_all_seed_personal_ids():
+    seed_ids = {
+        row["retail_personnel_id"] for row in bridge.get_all_users()
+    }
+    mapped_ids = set(auth._PERSONAL_LOGIN_MAP.keys())
+    assert seed_ids.issubset(mapped_ids)

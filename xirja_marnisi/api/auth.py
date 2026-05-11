@@ -4,6 +4,7 @@ from typing import Any
 
 import frappe
 
+from xirja_marnisi.api.bridge import get_all_users
 from xirja_marnisi.api.security import (
     get_accessible_vineyards,
     get_roles,
@@ -12,12 +13,21 @@ from xirja_marnisi.api.security import (
 )
 
 
-_PERSONAL_LOGIN_MAP = {
-    "11111": "marnisi.admin.north@example.com",
-    "22222": "marnisi.admin.south@example.com",
-    "33333": "marnisi.staff@example.com",
-    "44444": "marnisi.viewer@example.com",
-}
+def _build_personal_login_map() -> dict[str, str]:
+    users = get_all_users()
+    login_map: dict[str, str] = {}
+
+    for row in users:
+        personal_id = str(row.get("retail_personnel_id") or "").strip()
+        email = str(row.get("retail_user_email") or "").strip()
+        if not personal_id or not email:
+            continue
+        login_map[personal_id] = email
+
+    return login_map
+
+
+_PERSONAL_LOGIN_MAP = _build_personal_login_map()
 
 _DEFAULT_SEED_PASSWORD = "Marnisi@2026#Seed!"
 
