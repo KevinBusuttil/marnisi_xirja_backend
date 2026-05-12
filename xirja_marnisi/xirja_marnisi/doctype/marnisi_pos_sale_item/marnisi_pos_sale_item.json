@@ -1,0 +1,133 @@
+{
+ "actions": [],
+ "creation": "2026-05-12 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "si_sale_num",
+  "si_id",
+  "si_name",
+  "si_qty",
+  "si_unit",
+  "si_price",
+  "si_subtotal",
+  "si_tax_pct",
+  "si_tax",
+  "si_total",
+  "si_discount_amount",
+  "si_discount_percent",
+  "si_barcode",
+  "si_category",
+  "item_payload"
+ ],
+ "fields": [
+  {
+   "fieldname": "si_sale_num",
+   "fieldtype": "Data",
+   "label": "Sale Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "si_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Item ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "si_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Item Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "si_qty",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Qty",
+   "read_only": 1
+  },
+  {
+   "fieldname": "si_unit",
+   "fieldtype": "Data",
+   "label": "Unit",
+   "read_only": 1
+  },
+  {
+   "fieldname": "si_price",
+   "fieldtype": "Currency",
+   "label": "Unit Price",
+   "read_only": 1
+  },
+  {
+   "fieldname": "si_subtotal",
+   "fieldtype": "Currency",
+   "label": "Subtotal",
+   "read_only": 1
+  },
+  {
+   "fieldname": "si_tax_pct",
+   "fieldtype": "Percent",
+   "label": "Tax %",
+   "read_only": 1
+  },
+  {
+   "fieldname": "si_tax",
+   "fieldtype": "Currency",
+   "label": "Tax",
+   "read_only": 1
+  },
+  {
+   "fieldname": "si_total",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total",
+   "read_only": 1
+  },
+  {
+   "fieldname": "si_discount_amount",
+   "fieldtype": "Currency",
+   "label": "Discount Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "si_discount_percent",
+   "fieldtype": "Percent",
+   "label": "Discount %",
+   "read_only": 1
+  },
+  {
+   "fieldname": "si_barcode",
+   "fieldtype": "Data",
+   "label": "Barcode",
+   "read_only": 1
+  },
+  {
+   "fieldname": "si_category",
+   "fieldtype": "Data",
+   "label": "Category",
+   "read_only": 1
+  },
+  {
+   "fieldname": "item_payload",
+   "fieldtype": "Long Text",
+   "label": "Item Payload (JSON)",
+   "read_only": 1
+  }
+ ],
+ "hide_toolbar": 1,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-05-12 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "XIRJA Marnisi",
+ "name": "Marnisi POS Sale Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

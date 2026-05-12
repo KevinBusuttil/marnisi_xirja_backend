@@ -60,6 +60,33 @@ _FALLBACK_WINES = [
     },
 ]
 
+_TOUR_CATALOG_ITEMS = [
+    {
+        "item_code": "TOUR-SILVER",
+        "item_name": "Tour Silver",
+        "category": "Tour Packages",
+        "brand": "Marnisi Tours",
+        "price": 25.0,
+        "stock": 9999,
+    },
+    {
+        "item_code": "TOUR-GOLD",
+        "item_name": "Tour Gold",
+        "category": "Tour Packages",
+        "brand": "Marnisi Tours",
+        "price": 45.0,
+        "stock": 9999,
+    },
+    {
+        "item_code": "TOUR-PLATINUM",
+        "item_name": "Tour Platinum",
+        "category": "Tour Packages",
+        "brand": "Marnisi Tours",
+        "price": 75.0,
+        "stock": 9999,
+    },
+]
+
 
 def _table_exists(table_name: str) -> bool:
     rows = frappe.db.sql("SHOW TABLES LIKE %s", (table_name,), as_dict=False)
@@ -120,6 +147,10 @@ def _load_source_items_from_payload(payload: dict[str, Any]) -> list[dict[str, A
                 return [row for row in parsed if isinstance(row, dict)]
 
     return []
+
+
+def _get_tour_catalog_items() -> list[dict[str, Any]]:
+    return [dict(item) for item in _TOUR_CATALOG_ITEMS]
 
 
 def _ensure_role(role_name: str) -> None:
@@ -311,7 +342,7 @@ def _ensure_package(vineyard: str, package_tier: str, item_ids: list[str], qty: 
 
     doc.vineyard = vineyard
     doc.package_code = package_code[:140]
-    doc.package_name = package_tier.title()
+    doc.package_name = f"Tour {package_tier.title()}"
     doc.package_tier = package_tier.title()
     doc.description = f"{package_tier.title()} tasting package"
     doc.price_per_person = {"Silver": 25.0, "Gold": 45.0, "Platinum": 75.0}.get(package_tier.title(), 30.0)
@@ -398,7 +429,10 @@ def seed_demo_data(args: str = "") -> dict[str, Any]:
             is_default=1 if index == 0 else 0,
         )
 
-        vineyard_items = _seed_items_for_vineyard(vineyard_id, item_source[:18])
+        vineyard_items = _seed_items_for_vineyard(
+            vineyard_id,
+            [*item_source[:18], *_get_tour_catalog_items()],
+        )
 
         silver_items = vineyard_items[:2]
         gold_items = vineyard_items[:3]

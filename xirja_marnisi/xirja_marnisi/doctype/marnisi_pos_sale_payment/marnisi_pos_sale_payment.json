@@ -1,0 +1,62 @@
+{
+ "actions": [],
+ "creation": "2026-05-12 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "pay_txn_sale_num",
+  "tender_type_id",
+  "payment_name",
+  "amount_tendered",
+  "payment_payload"
+ ],
+ "fields": [
+  {
+   "fieldname": "pay_txn_sale_num",
+   "fieldtype": "Data",
+   "label": "Sale Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "tender_type_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Tender Type ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "payment_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Payment Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amount_tendered",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Amount Tendered",
+   "read_only": 1
+  },
+  {
+   "fieldname": "payment_payload",
+   "fieldtype": "Long Text",
+   "label": "Payment Payload (JSON)",
+   "read_only": 1
+  }
+ ],
+ "hide_toolbar": 1,
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-05-12 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "XIRJA Marnisi",
+ "name": "Marnisi POS Sale Payment",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -10,7 +10,9 @@
   "is_active",
   "timezone",
   "contact_email",
-  "contact_phone"
+  "contact_phone",
+  "pos_login_background_image",
+  "pos_app_background_image"
  ],
  "fields": [
   {
@@ -50,6 +52,16 @@
    "fieldname": "contact_phone",
    "fieldtype": "Data",
    "label": "Contact Phone"
+  },
+  {
+   "fieldname": "pos_login_background_image",
+   "fieldtype": "Attach Image",
+   "label": "POS Login Background Image"
+  },
+  {
+   "fieldname": "pos_app_background_image",
+   "fieldtype": "Attach Image",
+   "label": "POS App Background Image"
   }
  ],
  "hide_toolbar": 0,

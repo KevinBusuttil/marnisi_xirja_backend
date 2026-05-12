@@ -52,7 +52,12 @@ _PERSONAL_USERS = [
 ]
 
 _SALE_TABLE = "tabMarnisi POS Sale"
+_SALE_ITEM_TABLE = "tabMarnisi POS Sale Item"
+_SALE_PAYMENT_TABLE = "tabMarnisi POS Sale Payment"
 _LOYALTY_TABLE = "tabMarnisi Loyalty User"
+_SINGLE_STORE_MODE = True
+_LOCKED_STORE_ID = "Marnisi M'Xlokk"
+_SINGLE_REGISTER_MODE = True
 
 
 def _resolve_vineyards() -> list[dict[str, Any]]:
@@ -83,6 +88,21 @@ def _normalize_name(value: str) -> str:
     return text if text else "Unnamed Vineyard"
 
 
+def _restrict_vineyards_for_pos(vineyards: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    if not _SINGLE_STORE_MODE:
+        return vineyards
+
+    normalized = [row for row in vineyards if (row.get("vineyard") or "").strip()]
+    if not normalized:
+        return normalized
+
+    for row in normalized:
+        if (row.get("vineyard") or "").strip() == _LOCKED_STORE_ID:
+            return [row]
+
+    return [normalized[0]]
+
+
 def _column_exists(table_name: str, column_name: str) -> bool:
     rows = frappe.db.sql(
         """
@@ -102,6 +122,20 @@ def _add_column_if_missing(table_name: str, column_name: str, column_sql: str) -
     if _column_exists(table_name, column_name):
         return
     frappe.db.sql(f"ALTER TABLE `{table_name}` ADD COLUMN {column_sql}")
+
+
+def _as_float(value: Any) -> float:
+    try:
+        return float(value or 0)
+    except Exception:
+        return 0.0
+
+
+def _build_child_row_name(prefix: str, sale_num: str, row_index: int) -> str:
+    suffix = f"-{row_index:04d}"
+    max_sale_len = max(1, 140 - len(prefix) - len(suffix))
+    compact_sale_num = (sale_num or "")[:max_sale_len]
+    return f"{prefix}{compact_sale_num}{suffix}"
 
 
 def _ensure_sales_tables() -> None:
@@ -142,6 +176,64 @@ def _ensure_sales_tables() -> None:
 
     frappe.db.sql(
         f"""
+        CREATE TABLE IF NOT EXISTS `{_SALE_ITEM_TABLE}` (
+            name VARCHAR(140) PRIMARY KEY,
+            creation DATETIME(6),
+            modified DATETIME(6),
+            modified_by VARCHAR(140),
+            owner VARCHAR(140),
+            docstatus INT DEFAULT 0,
+            parent VARCHAR(140),
+            parentfield VARCHAR(140),
+            parenttype VARCHAR(140),
+            idx INT NOT NULL DEFAULT 0,
+            si_sale_num VARCHAR(140),
+            si_id VARCHAR(140),
+            si_name VARCHAR(255),
+            si_unit VARCHAR(80),
+            si_barcode VARCHAR(140),
+            si_category VARCHAR(140),
+            si_qty DECIMAL(18,6),
+            si_price DECIMAL(18,6),
+            si_tax_pct DECIMAL(18,6),
+            si_subtotal DECIMAL(18,6),
+            si_tax DECIMAL(18,6),
+            si_total DECIMAL(18,6),
+            si_discount_amount DECIMAL(18,6),
+            si_discount_percent DECIMAL(18,6),
+            item_payload LONGTEXT,
+            INDEX idx_parent (parent),
+            INDEX idx_si_sale_num (si_sale_num)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+        """
+    )
+
+    frappe.db.sql(
+        f"""
+        CREATE TABLE IF NOT EXISTS `{_SALE_PAYMENT_TABLE}` (
+            name VARCHAR(140) PRIMARY KEY,
+            creation DATETIME(6),
+            modified DATETIME(6),
+            modified_by VARCHAR(140),
+            owner VARCHAR(140),
+            docstatus INT DEFAULT 0,
+            parent VARCHAR(140),
+            parentfield VARCHAR(140),
+            parenttype VARCHAR(140),
+            idx INT NOT NULL DEFAULT 0,
+            pay_txn_sale_num VARCHAR(140),
+            tender_type_id VARCHAR(40),
+            payment_name VARCHAR(140),
+            amount_tendered DECIMAL(18,6),
+            payment_payload LONGTEXT,
+            INDEX idx_parent (parent),
+            INDEX idx_pay_txn_sale_num (pay_txn_sale_num)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+        """
+    )
+
+    frappe.db.sql(
+        f"""
         CREATE TABLE IF NOT EXISTS `{_LOYALTY_TABLE}` (
             name VARCHAR(140) PRIMARY KEY,
             creation DATETIME(6),
@@ -171,7 +263,7 @@ def get_all_users() -> dict[str, Any]:
 
 @frappe.whitelist(allow_guest=True)
 def get_all_stores() -> dict[str, Any]:
-    vineyards = _resolve_vineyards()
+    vineyards = _restrict_vineyards_for_pos(_resolve_vineyards())
     out: list[dict[str, Any]] = []
 
     for row in vineyards:
@@ -210,7 +302,7 @@ def get_all_stores() -> dict[str, Any]:
 
 @frappe.whitelist(allow_guest=True)
 def get_all_registers() -> dict[str, Any]:
-    vineyards = _resolve_vineyards()
+    vineyards = _restrict_vineyards_for_pos(_resolve_vineyards())
     out: list[dict[str, Any]] = []
 
     for row in vineyards:
@@ -225,13 +317,14 @@ def get_all_registers() -> dict[str, Any]:
                 "store_id": vineyard,
             }
         )
-        out.append(
-            {
-                "register_id": f"{vineyard}-TASTING",
-                "register_name": "Tasting Register",
-                "store_id": vineyard,
-            }
-        )
+        if not _SINGLE_REGISTER_MODE:
+            out.append(
+                {
+                    "register_id": f"{vineyard}-TASTING",
+                    "register_name": "Tasting Register",
+                    "store_id": vineyard,
+                }
+            )
 
     return out
 
@@ -327,7 +420,13 @@ def post_all_sales(args: str = "") -> dict[str, Any]:
             name = name[:140]
 
         loy_card = str(row.get("loy_cust_card_num") or "").strip()
-        total = float(row.get("sales_total") or 0)
+        total = _as_float(row.get("sales_total"))
+        items = row.get("items") if isinstance(row.get("items"), list) else []
+        payments = (
+            row.get("sale_pay_methods")
+            if isinstance(row.get("sale_pay_methods"), list)
+            else []
+        )
 
         frappe.db.sql(
             """
@@ -369,6 +468,97 @@ def post_all_sales(args: str = "") -> dict[str, Any]:
                 json.dumps(row),
             ),
         )
+
+        # Keep child rows deterministic and idempotent for repeated sync of same sale.
+        frappe.db.sql(f"DELETE FROM `{_SALE_ITEM_TABLE}` WHERE parent = %s", (name,))
+        frappe.db.sql(f"DELETE FROM `{_SALE_PAYMENT_TABLE}` WHERE parent = %s", (name,))
+
+        for item_idx, item_row in enumerate(items, start=1):
+            if not isinstance(item_row, dict):
+                continue
+
+            item_row_name = _build_child_row_name("MPSI-", sale_num, item_idx)
+            frappe.db.sql(
+                f"""
+                INSERT INTO `{_SALE_ITEM_TABLE}` (
+                    name, creation, modified, modified_by, owner, docstatus,
+                    parent, parentfield, parenttype, idx,
+                    si_sale_num, si_id, si_name, si_unit, si_barcode, si_category,
+                    si_qty, si_price, si_tax_pct, si_subtotal, si_tax, si_total,
+                    si_discount_amount, si_discount_percent, item_payload
+                )
+                VALUES (
+                    %s, %s, %s, %s, %s, 0,
+                    %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s, %s,
+                    %s, %s, %s
+                )
+                """,
+                (
+                    item_row_name,
+                    now,
+                    now,
+                    actor,
+                    actor,
+                    name,
+                    "sales_items",
+                    "Marnisi POS Sale",
+                    item_idx,
+                    str(item_row.get("si_sale_num") or sale_num),
+                    str(item_row.get("si_id") or ""),
+                    str(item_row.get("si_name") or ""),
+                    str(item_row.get("si_unit") or ""),
+                    str(item_row.get("si_barcode") or ""),
+                    str(item_row.get("si_category") or ""),
+                    _as_float(item_row.get("si_qty")),
+                    _as_float(item_row.get("si_price")),
+                    _as_float(item_row.get("si_tax_pct")),
+                    _as_float(item_row.get("si_subtotal")),
+                    _as_float(item_row.get("si_tax")),
+                    _as_float(item_row.get("si_total")),
+                    _as_float(item_row.get("si_discount_amount")),
+                    _as_float(item_row.get("si_discount_percent")),
+                    json.dumps(item_row),
+                ),
+            )
+
+        for pay_idx, pay_row in enumerate(payments, start=1):
+            if not isinstance(pay_row, dict):
+                continue
+
+            payment_row_name = _build_child_row_name("MPSP-", sale_num, pay_idx)
+            frappe.db.sql(
+                f"""
+                INSERT INTO `{_SALE_PAYMENT_TABLE}` (
+                    name, creation, modified, modified_by, owner, docstatus,
+                    parent, parentfield, parenttype, idx,
+                    pay_txn_sale_num, tender_type_id, payment_name, amount_tendered,
+                    payment_payload
+                )
+                VALUES (
+                    %s, %s, %s, %s, %s, 0,
+                    %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s
+                )
+                """,
+                (
+                    payment_row_name,
+                    now,
+                    now,
+                    actor,
+                    actor,
+                    name,
+                    "sales_payments",
+                    "Marnisi POS Sale",
+                    pay_idx,
+                    sale_num,
+                    str(pay_row.get("tender_type_id") or ""),
+                    str(pay_row.get("payment_name") or ""),
+                    _as_float(pay_row.get("amount_tendered")),
+                    json.dumps(pay_row),
+                ),
+            )
 
         confirmations.append(
             {

@@ -10,11 +10,20 @@
 
 ## First Search
 - Demo seed APIs: `xirja_marnisi/api/seed.py`
+  - Includes POS tour catalog item seed (`Tour Silver`, `Tour Gold`, `Tour Platinum`) as `Vineyard Item` records.
 - Auth/session/context APIs: `xirja_marnisi/api/auth.py`, `xirja_marnisi/api/security.py`
+  - `auth.get_context` also returns `ui_assets` (`login_background_image`, `app_background_image`) sourced from `Vineyard` image fields when present.
 - Item APIs + stock movement logic: `xirja_marnisi/api/item.py`
 - Tour package APIs: `xirja_marnisi/api/package.py`
 - Tour booking/check-in status flow: `xirja_marnisi/api/booking.py`
 - Frontend-compat bridge APIs: `xirja_marnisi/api/bridge.py`
+  - Single-store and single-register enforcement for POS store/register feed lives in `bridge.py` (`_SINGLE_STORE_MODE`, `_LOCKED_STORE_ID`, `_SINGLE_REGISTER_MODE`).
+  - POS sync stores parent sale + child lines in raw SQL tables: `tabMarnisi POS Sale`, `tabMarnisi POS Sale Item`, `tabMarnisi POS Sale Payment`.
+
+## Backend UI Fields
+- Vineyard background image fields for POS:
+  - `xirja_marnisi/xirja_marnisi/doctype/vineyard/vineyard.json`
+  - Fields: `pos_login_background_image`, `pos_app_background_image`
 
 ## Demo Data Commands
 - Seed built-in/fallback demo data:

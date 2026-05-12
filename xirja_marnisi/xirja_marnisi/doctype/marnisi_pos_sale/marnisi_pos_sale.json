@@ -13,6 +13,8 @@
   "sales_cashier",
   "sales_total",
   "loy_cust_card_num",
+  "sales_items",
+  "sales_payments",
   "sales_payload"
  ],
  "fields": [
@@ -64,6 +66,20 @@
    "fieldname": "loy_cust_card_num",
    "fieldtype": "Data",
    "label": "Loyalty Card Number"
+  },
+  {
+   "fieldname": "sales_items",
+   "fieldtype": "Table",
+   "label": "Ordered Items",
+   "options": "Marnisi POS Sale Item",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sales_payments",
+   "fieldtype": "Table",
+   "label": "Payments",
+   "options": "Marnisi POS Sale Payment",
+   "read_only": 1
   },
   {
    "fieldname": "sales_payload",

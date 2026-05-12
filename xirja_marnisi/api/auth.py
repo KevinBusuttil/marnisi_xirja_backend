@@ -32,6 +32,59 @@ _PERSONAL_LOGIN_MAP = _build_personal_login_map()
 _DEFAULT_SEED_PASSWORD = "Marnisi@2026#Seed!"
 
 
+def _column_exists(table_name: str, column_name: str) -> bool:
+    rows = frappe.db.sql(
+        """
+        SELECT 1
+        FROM information_schema.COLUMNS
+        WHERE TABLE_SCHEMA = DATABASE()
+          AND TABLE_NAME = %s
+          AND COLUMN_NAME = %s
+        LIMIT 1
+        """,
+        (table_name, column_name),
+    )
+    return bool(rows)
+
+
+def _get_vineyard_ui_assets(vineyard_name: str) -> dict[str, str]:
+    out = {
+        "login_background_image": "",
+        "app_background_image": "",
+    }
+    if not vineyard_name:
+        return out
+
+    select_parts = []
+    if _column_exists("tabVineyard", "pos_login_background_image"):
+        select_parts.append("pos_login_background_image AS login_background_image")
+    else:
+        select_parts.append("'' AS login_background_image")
+
+    if _column_exists("tabVineyard", "pos_app_background_image"):
+        select_parts.append("pos_app_background_image AS app_background_image")
+    else:
+        select_parts.append("'' AS app_background_image")
+
+    row = frappe.db.sql(
+        f"""
+        SELECT {", ".join(select_parts)}
+        FROM `tabVineyard`
+        WHERE name = %s
+        LIMIT 1
+        """,
+        (vineyard_name,),
+        as_dict=True,
+    )
+    if not row:
+        return out
+
+    first = row[0]
+    out["login_background_image"] = str(first.get("login_background_image") or "").strip()
+    out["app_background_image"] = str(first.get("app_background_image") or "").strip()
+    return out
+
+
 @frappe.whitelist()
 def get_context() -> dict[str, Any]:
     """Return authenticated session context with roles and vineyard assignments."""
@@ -60,12 +113,15 @@ def get_context() -> dict[str, Any]:
     if not default_vineyard and vineyards:
         default_vineyard = vineyards[0]["vineyard"]
 
+    ui_assets = _get_vineyard_ui_assets(default_vineyard)
+
     return {
         "status": "success",
         "user": user,
         "roles": roles,
         "vineyards": vineyards,
         "default_vineyard": default_vineyard,
+        "ui_assets": ui_assets,
     }
 
 
