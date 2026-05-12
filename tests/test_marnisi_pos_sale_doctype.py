@@ -86,6 +86,45 @@ class _FakeDB:
         self.commit_calls += 1
 
 
+class _BackfillDB(_FakeDB):
+    def sql(self, query, params=None, as_dict=False):
+        normalized = " ".join(str(query).split())
+        self.calls.append((normalized, params))
+        if "FROM `tabMarnisi POS Sale`" in normalized and as_dict:
+            return [
+                {
+                    "name": "MPS-OLD-001",
+                    "sale_num": "OLD-001",
+                    "sales_payload": json.dumps(
+                        {
+                            "sales_num": "OLD-001",
+                            "items": [
+                                {
+                                    "si_sale_num": "OLD-001",
+                                    "si_id": "ITEM-OLD",
+                                    "si_name": "Legacy Item",
+                                    "si_qty": 1,
+                                    "si_price": 10,
+                                    "si_tax_pct": 18,
+                                    "si_subtotal": 10,
+                                    "si_tax": 1.8,
+                                    "si_total": 11.8,
+                                }
+                            ],
+                            "sale_pay_methods": [
+                                {
+                                    "tender_type_id": "1",
+                                    "payment_name": "Cash",
+                                    "amount_tendered": 11.8,
+                                }
+                            ],
+                        }
+                    ),
+                }
+            ]
+        return []
+
+
 class _FakeUtils:
     @staticmethod
     def now():
@@ -101,6 +140,13 @@ class _FakeFrappe:
     @staticmethod
     def generate_hash(length=12):
         return "A" * length
+
+
+class _FakeBackfillFrappe(_FakeFrappe):
+    def __init__(self):
+        self.db = _BackfillDB()
+        self.utils = _FakeUtils()
+        self.session = type("Session", (), {"user": "marnisi.admin.north@example.com"})()
 
 
 def test_ensure_sales_tables_backfills_standard_frappe_columns(monkeypatch):
@@ -234,3 +280,29 @@ def test_post_all_sales_inserts_into_marnisi_pos_sale_table(monkeypatch):
     assert len(delete_payment_calls) == 1
 
     assert fake_frappe.db.commit_calls == 1
+
+
+def test_backfill_sales_children_populates_child_tables(monkeypatch):
+    fake_frappe = _FakeBackfillFrappe()
+    monkeypatch.setattr(bridge, "frappe", fake_frappe)
+    monkeypatch.setattr(bridge, "require_authenticated_user", lambda: "admin@example.com")
+    monkeypatch.setattr(bridge, "parse_args", lambda _args: {"limit": 0})
+
+    result = bridge.backfill_sales_children(args="{}")
+
+    assert result["status"] == "success"
+    assert result["processed"] == 1
+    assert result["scanned"] == 1
+
+    sale_item_calls = [
+        call
+        for call in fake_frappe.db.calls
+        if "INSERT INTO `tabMarnisi POS Sale Item`" in call[0]
+    ]
+    sale_payment_calls = [
+        call
+        for call in fake_frappe.db.calls
+        if "INSERT INTO `tabMarnisi POS Sale Payment`" in call[0]
+    ]
+    assert len(sale_item_calls) == 1
+    assert len(sale_payment_calls) == 1

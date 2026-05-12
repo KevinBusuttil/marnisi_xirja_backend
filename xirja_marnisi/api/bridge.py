@@ -5,7 +5,11 @@ from typing import Any
 
 import frappe
 
-from xirja_marnisi.api.security import get_accessible_vineyards, parse_args
+from xirja_marnisi.api.security import (
+    get_accessible_vineyards,
+    parse_args,
+    require_authenticated_user,
+)
 
 _PAYMENT_METHODS = [
     {"payment_type_id": "1", "payment_type_name": "Cash"},
@@ -136,6 +140,169 @@ def _build_child_row_name(prefix: str, sale_num: str, row_index: int) -> str:
     max_sale_len = max(1, 140 - len(prefix) - len(suffix))
     compact_sale_num = (sale_num or "")[:max_sale_len]
     return f"{prefix}{compact_sale_num}{suffix}"
+
+
+def _replace_sale_children(
+    *,
+    parent_name: str,
+    sale_num: str,
+    items: list[dict[str, Any]],
+    payments: list[dict[str, Any]],
+    now: str,
+    actor: str,
+) -> None:
+    # Keep child rows deterministic and idempotent for repeated sync of same sale.
+    frappe.db.sql(f"DELETE FROM `{_SALE_ITEM_TABLE}` WHERE parent = %s", (parent_name,))
+    frappe.db.sql(f"DELETE FROM `{_SALE_PAYMENT_TABLE}` WHERE parent = %s", (parent_name,))
+
+    for item_idx, item_row in enumerate(items, start=1):
+        if not isinstance(item_row, dict):
+            continue
+
+        item_row_name = _build_child_row_name("MPSI-", sale_num, item_idx)
+        frappe.db.sql(
+            f"""
+            INSERT INTO `{_SALE_ITEM_TABLE}` (
+                name, creation, modified, modified_by, owner, docstatus,
+                parent, parentfield, parenttype, idx,
+                si_sale_num, si_id, si_name, si_unit, si_barcode, si_category,
+                si_qty, si_price, si_tax_pct, si_subtotal, si_tax, si_total,
+                si_discount_amount, si_discount_percent, item_payload
+            )
+            VALUES (
+                %s, %s, %s, %s, %s, 0,
+                %s, %s, %s, %s,
+                %s, %s, %s, %s, %s, %s,
+                %s, %s, %s, %s, %s, %s,
+                %s, %s, %s
+            )
+            """,
+            (
+                item_row_name,
+                now,
+                now,
+                actor,
+                actor,
+                parent_name,
+                "sales_items",
+                "Marnisi POS Sale",
+                item_idx,
+                str(item_row.get("si_sale_num") or sale_num),
+                str(item_row.get("si_id") or ""),
+                str(item_row.get("si_name") or ""),
+                str(item_row.get("si_unit") or ""),
+                str(item_row.get("si_barcode") or ""),
+                str(item_row.get("si_category") or ""),
+                _as_float(item_row.get("si_qty")),
+                _as_float(item_row.get("si_price")),
+                _as_float(item_row.get("si_tax_pct")),
+                _as_float(item_row.get("si_subtotal")),
+                _as_float(item_row.get("si_tax")),
+                _as_float(item_row.get("si_total")),
+                _as_float(item_row.get("si_discount_amount")),
+                _as_float(item_row.get("si_discount_percent")),
+                json.dumps(item_row),
+            ),
+        )
+
+    for pay_idx, pay_row in enumerate(payments, start=1):
+        if not isinstance(pay_row, dict):
+            continue
+
+        payment_row_name = _build_child_row_name("MPSP-", sale_num, pay_idx)
+        frappe.db.sql(
+            f"""
+            INSERT INTO `{_SALE_PAYMENT_TABLE}` (
+                name, creation, modified, modified_by, owner, docstatus,
+                parent, parentfield, parenttype, idx,
+                pay_txn_sale_num, tender_type_id, payment_name, amount_tendered,
+                payment_payload
+            )
+            VALUES (
+                %s, %s, %s, %s, %s, 0,
+                %s, %s, %s, %s,
+                %s, %s, %s, %s, %s
+            )
+            """,
+            (
+                payment_row_name,
+                now,
+                now,
+                actor,
+                actor,
+                parent_name,
+                "sales_payments",
+                "Marnisi POS Sale",
+                pay_idx,
+                sale_num,
+                str(pay_row.get("tender_type_id") or ""),
+                str(pay_row.get("payment_name") or ""),
+                _as_float(pay_row.get("amount_tendered")),
+                json.dumps(pay_row),
+            ),
+        )
+
+
+def _backfill_sales_children_from_payload(limit: int = 0) -> dict[str, int]:
+    _ensure_sales_tables()
+
+    query_limit = ""
+    if limit > 0:
+        query_limit = f"LIMIT {int(limit)}"
+
+    rows = frappe.db.sql(
+        f"""
+        SELECT
+            name,
+            sale_num,
+            sales_payload
+        FROM `{_SALE_TABLE}`
+        ORDER BY modified DESC
+        {query_limit}
+        """,
+        as_dict=True,
+    )
+
+    actor = getattr(frappe.session, "user", "Guest")
+    now = frappe.utils.now()
+    processed = 0
+
+    for row in rows:
+        sale_num = str(row.get("sale_num") or "").strip()
+        parent_name = str(row.get("name") or "").strip()
+        if not sale_num or not parent_name:
+            continue
+
+        raw_payload = row.get("sales_payload")
+        try:
+            parsed = json.loads(raw_payload) if raw_payload else {}
+        except Exception:
+            parsed = {}
+        if not isinstance(parsed, dict):
+            continue
+
+        items = parsed.get("items")
+        if not isinstance(items, list):
+            items = []
+
+        payments = parsed.get("sale_pay_methods")
+        if not isinstance(payments, list):
+            payments = []
+
+        _replace_sale_children(
+            parent_name=parent_name,
+            sale_num=sale_num,
+            items=items,
+            payments=payments,
+            now=now,
+            actor=actor,
+        )
+        processed += 1
+
+    return {
+        "scanned": len(rows),
+        "processed": processed,
+    }
 
 
 def _ensure_sales_tables() -> None:
@@ -469,96 +636,14 @@ def post_all_sales(args: str = "") -> dict[str, Any]:
             ),
         )
 
-        # Keep child rows deterministic and idempotent for repeated sync of same sale.
-        frappe.db.sql(f"DELETE FROM `{_SALE_ITEM_TABLE}` WHERE parent = %s", (name,))
-        frappe.db.sql(f"DELETE FROM `{_SALE_PAYMENT_TABLE}` WHERE parent = %s", (name,))
-
-        for item_idx, item_row in enumerate(items, start=1):
-            if not isinstance(item_row, dict):
-                continue
-
-            item_row_name = _build_child_row_name("MPSI-", sale_num, item_idx)
-            frappe.db.sql(
-                f"""
-                INSERT INTO `{_SALE_ITEM_TABLE}` (
-                    name, creation, modified, modified_by, owner, docstatus,
-                    parent, parentfield, parenttype, idx,
-                    si_sale_num, si_id, si_name, si_unit, si_barcode, si_category,
-                    si_qty, si_price, si_tax_pct, si_subtotal, si_tax, si_total,
-                    si_discount_amount, si_discount_percent, item_payload
-                )
-                VALUES (
-                    %s, %s, %s, %s, %s, 0,
-                    %s, %s, %s, %s,
-                    %s, %s, %s, %s, %s, %s,
-                    %s, %s, %s, %s, %s, %s,
-                    %s, %s, %s
-                )
-                """,
-                (
-                    item_row_name,
-                    now,
-                    now,
-                    actor,
-                    actor,
-                    name,
-                    "sales_items",
-                    "Marnisi POS Sale",
-                    item_idx,
-                    str(item_row.get("si_sale_num") or sale_num),
-                    str(item_row.get("si_id") or ""),
-                    str(item_row.get("si_name") or ""),
-                    str(item_row.get("si_unit") or ""),
-                    str(item_row.get("si_barcode") or ""),
-                    str(item_row.get("si_category") or ""),
-                    _as_float(item_row.get("si_qty")),
-                    _as_float(item_row.get("si_price")),
-                    _as_float(item_row.get("si_tax_pct")),
-                    _as_float(item_row.get("si_subtotal")),
-                    _as_float(item_row.get("si_tax")),
-                    _as_float(item_row.get("si_total")),
-                    _as_float(item_row.get("si_discount_amount")),
-                    _as_float(item_row.get("si_discount_percent")),
-                    json.dumps(item_row),
-                ),
-            )
-
-        for pay_idx, pay_row in enumerate(payments, start=1):
-            if not isinstance(pay_row, dict):
-                continue
-
-            payment_row_name = _build_child_row_name("MPSP-", sale_num, pay_idx)
-            frappe.db.sql(
-                f"""
-                INSERT INTO `{_SALE_PAYMENT_TABLE}` (
-                    name, creation, modified, modified_by, owner, docstatus,
-                    parent, parentfield, parenttype, idx,
-                    pay_txn_sale_num, tender_type_id, payment_name, amount_tendered,
-                    payment_payload
-                )
-                VALUES (
-                    %s, %s, %s, %s, %s, 0,
-                    %s, %s, %s, %s,
-                    %s, %s, %s, %s, %s
-                )
-                """,
-                (
-                    payment_row_name,
-                    now,
-                    now,
-                    actor,
-                    actor,
-                    name,
-                    "sales_payments",
-                    "Marnisi POS Sale",
-                    pay_idx,
-                    sale_num,
-                    str(pay_row.get("tender_type_id") or ""),
-                    str(pay_row.get("payment_name") or ""),
-                    _as_float(pay_row.get("amount_tendered")),
-                    json.dumps(pay_row),
-                ),
-            )
+        _replace_sale_children(
+            parent_name=name,
+            sale_num=sale_num,
+            items=items,
+            payments=payments,
+            now=now,
+            actor=actor,
+        )
 
         confirmations.append(
             {
@@ -570,6 +655,21 @@ def post_all_sales(args: str = "") -> dict[str, Any]:
 
     frappe.db.commit()
     return {"confirmations": confirmations}
+
+
+@frappe.whitelist()
+def backfill_sales_children(args: str = "") -> dict[str, Any]:
+    require_authenticated_user()
+    payload = parse_args(args)
+    limit = int(payload.get("limit") or 0)
+    if limit < 0:
+        limit = 0
+    summary = _backfill_sales_children_from_payload(limit=limit)
+    frappe.db.commit()
+    return {
+        "status": "success",
+        **summary,
+    }
 
 
 @frappe.whitelist(allow_guest=True)

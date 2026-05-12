@@ -19,6 +19,7 @@
 - Frontend-compat bridge APIs: `xirja_marnisi/api/bridge.py`
   - Single-store and single-register enforcement for POS store/register feed lives in `bridge.py` (`_SINGLE_STORE_MODE`, `_LOCKED_STORE_ID`, `_SINGLE_REGISTER_MODE`).
   - POS sync stores parent sale + child lines in raw SQL tables: `tabMarnisi POS Sale`, `tabMarnisi POS Sale Item`, `tabMarnisi POS Sale Payment`.
+  - Existing sales rows can be backfilled into child tables through `bridge.backfill_sales_children`.
 
 ## Backend UI Fields
 - Vineyard background image fields for POS:
@@ -34,3 +35,7 @@
 ## Test Trigger
 - From bench root:
   - `./run_all_tests.sh`
+
+## Migration Patch
+- Child-table backfill patch for legacy POS sales:
+  - `xirja_marnisi/patches/v0_0_1/backfill_marnisi_pos_sale_children.py`
