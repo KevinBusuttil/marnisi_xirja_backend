@@ -142,6 +142,18 @@ def _build_child_row_name(prefix: str, sale_num: str, row_index: int) -> str:
     return f"{prefix}{compact_sale_num}{suffix}"
 
 
+def _effective_item_image_path_from_row(row: dict[str, Any]) -> str:
+    image_path = str(row.get("image_path") or "").strip()
+    if image_path:
+        return image_path
+
+    image_file_url = str(row.get("image_file_url") or "").strip()
+    if image_file_url:
+        return image_file_url
+
+    return "assets/items/1.png"
+
+
 def _replace_sale_children(
     *,
     parent_name: str,
@@ -503,25 +515,53 @@ def get_pay_mthds() -> dict[str, Any]:
 
 @frappe.whitelist(allow_guest=True)
 def get_all_products() -> dict[str, Any]:
-    rows = frappe.db.sql(
-        """
-        SELECT
-            name,
-            vineyard,
-            item_code,
-            item_name,
-            category,
-            brand,
-            image_path,
-            unit,
-            sell_price,
-            stock_qty
-        FROM `tabVineyard Item`
-        WHERE IFNULL(is_enabled, 1) = 1
-        ORDER BY vineyard ASC, item_name ASC
-        """,
-        as_dict=True,
-    )
+    if _column_exists("tabVineyard Item", "image_file"):
+        rows = frappe.db.sql(
+            """
+            SELECT
+                name,
+                vineyard,
+                item_code,
+                item_name,
+                category,
+                brand,
+                image_path,
+                (
+                    SELECT file_url
+                    FROM `tabFile`
+                    WHERE name = image_file
+                    LIMIT 1
+                ) AS image_file_url,
+                unit,
+                sell_price,
+                stock_qty
+            FROM `tabVineyard Item`
+            WHERE IFNULL(is_enabled, 1) = 1
+            ORDER BY vineyard ASC, item_name ASC
+            """,
+            as_dict=True,
+        )
+    else:
+        rows = frappe.db.sql(
+            """
+            SELECT
+                name,
+                vineyard,
+                item_code,
+                item_name,
+                category,
+                brand,
+                image_path,
+                '' AS image_file_url,
+                unit,
+                sell_price,
+                stock_qty
+            FROM `tabVineyard Item`
+            WHERE IFNULL(is_enabled, 1) = 1
+            ORDER BY vineyard ASC, item_name ASC
+            """,
+            as_dict=True,
+        )
 
     out: list[dict[str, Any]] = []
     for row in rows:
@@ -537,7 +577,7 @@ def get_all_products() -> dict[str, Any]:
         out.append(
             {
                 "item_id": scoped_item_id,
-                "item_img_path": row.get("image_path") or "assets/items/1.png",
+                "item_img_path": _effective_item_image_path_from_row(row),
                 "item_store": vineyard,
                 "item_brand": row.get("brand") or "",
                 "item_description": row.get("category") or "",

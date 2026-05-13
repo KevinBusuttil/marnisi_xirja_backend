@@ -12,9 +12,103 @@ from xirja_marnisi.api.security import (
     to_bool,
 )
 
+_DEFAULT_ITEM_IMAGE = "assets/items/1.png"
+_IMAGE_FILE_COLUMN_EXISTS: bool | None = None
+
 
 def _item_key(vineyard: str, item_code: str) -> str:
     return f"{vineyard.strip().lower()}::{item_code.strip().lower()}"
+
+
+def _column_exists(table_name: str, column_name: str) -> bool:
+    rows = frappe.db.sql(
+        """
+        SELECT 1
+        FROM information_schema.COLUMNS
+        WHERE TABLE_SCHEMA = DATABASE()
+          AND TABLE_NAME = %s
+          AND COLUMN_NAME = %s
+        LIMIT 1
+        """,
+        (table_name, column_name),
+    )
+    return bool(rows)
+
+
+def _has_image_file_column() -> bool:
+    global _IMAGE_FILE_COLUMN_EXISTS
+    if _IMAGE_FILE_COLUMN_EXISTS is None:
+        _IMAGE_FILE_COLUMN_EXISTS = _column_exists("tabVineyard Item", "image_file")
+    return _IMAGE_FILE_COLUMN_EXISTS
+
+
+def _file_url_from_name(file_name: str) -> str:
+    value = str(file_name or "").strip()
+    if not value:
+        return ""
+    rows = frappe.db.sql(
+        """
+        SELECT file_url
+        FROM `tabFile`
+        WHERE name = %s
+        LIMIT 1
+        """,
+        (value,),
+        as_dict=True,
+    )
+    if not rows:
+        return ""
+    return str(rows[0].get("file_url") or "").strip()
+
+
+def _file_name_from_url(file_url: str) -> str:
+    value = str(file_url or "").strip()
+    if not value:
+        return ""
+    rows = frappe.db.sql(
+        """
+        SELECT name
+        FROM `tabFile`
+        WHERE file_url = %s
+        ORDER BY modified DESC
+        LIMIT 1
+        """,
+        (value,),
+        as_dict=True,
+    )
+    if not rows:
+        return ""
+    return str(rows[0].get("name") or "").strip()
+
+
+def _effective_image_path(image_path: Any, image_file_url: Any) -> str:
+    resolved_path = str(image_path or "").strip()
+    if resolved_path:
+        return resolved_path
+    resolved_file_url = str(image_file_url or "").strip()
+    if resolved_file_url:
+        return resolved_file_url
+    return _DEFAULT_ITEM_IMAGE
+
+
+def _resolve_payload_image_fields(
+    payload: dict[str, Any],
+    *,
+    fallback_to_default: bool,
+) -> tuple[str, str]:
+    image_path = str(payload.get("image_path") or "").strip()
+    image_file = (
+        str(payload.get("image_file") or "").strip() if _has_image_file_column() else ""
+    )
+
+    if image_file and not image_path:
+        image_path = _file_url_from_name(image_file)
+    if image_path and not image_file and _has_image_file_column():
+        image_file = _file_name_from_url(image_path)
+    if fallback_to_default and not image_path:
+        image_path = _DEFAULT_ITEM_IMAGE
+
+    return image_path, image_file
 
 
 def _insert_stock_movement(
@@ -95,30 +189,71 @@ def list(args: str = "") -> dict[str, Any]:
 
     where_clause = " AND ".join(conditions)
 
-    rows = frappe.db.sql(
-        f"""
-        SELECT
-            name,
-            vineyard,
-            item_code,
-            item_name,
-            category,
-            brand,
-            image_path,
-            unit,
-            IFNULL(sell_price, 0) AS sell_price,
-            IFNULL(stock_qty, 0) AS stock_qty,
-            IFNULL(low_stock_threshold, 0) AS low_stock_threshold,
-            IFNULL(is_enabled, 1) AS is_enabled,
-            notes,
-            modified
-        FROM `tabVineyard Item`
-        WHERE {where_clause}
-        ORDER BY item_name ASC
-        """,
-        tuple(values),
-        as_dict=True,
-    )
+    if _has_image_file_column():
+        rows = frappe.db.sql(
+            f"""
+            SELECT
+                name,
+                vineyard,
+                item_code,
+                item_name,
+                category,
+                brand,
+                image_path,
+                image_file,
+                (
+                    SELECT file_url
+                    FROM `tabFile`
+                    WHERE name = image_file
+                    LIMIT 1
+                ) AS image_file_url,
+                unit,
+                IFNULL(sell_price, 0) AS sell_price,
+                IFNULL(stock_qty, 0) AS stock_qty,
+                IFNULL(low_stock_threshold, 0) AS low_stock_threshold,
+                IFNULL(is_enabled, 1) AS is_enabled,
+                notes,
+                modified
+            FROM `tabVineyard Item`
+            WHERE {where_clause}
+            ORDER BY item_name ASC
+            """,
+            tuple(values),
+            as_dict=True,
+        )
+    else:
+        rows = frappe.db.sql(
+            f"""
+            SELECT
+                name,
+                vineyard,
+                item_code,
+                item_name,
+                category,
+                brand,
+                image_path,
+                '' AS image_file,
+                '' AS image_file_url,
+                unit,
+                IFNULL(sell_price, 0) AS sell_price,
+                IFNULL(stock_qty, 0) AS stock_qty,
+                IFNULL(low_stock_threshold, 0) AS low_stock_threshold,
+                IFNULL(is_enabled, 1) AS is_enabled,
+                notes,
+                modified
+            FROM `tabVineyard Item`
+            WHERE {where_clause}
+            ORDER BY item_name ASC
+            """,
+            tuple(values),
+            as_dict=True,
+        )
+
+    for row in rows:
+        row["image_path"] = _effective_image_path(
+            row.get("image_path"),
+            row.get("image_file_url"),
+        )
 
     return {
         "status": "success",
@@ -150,24 +285,32 @@ def create(args: str = "") -> dict[str, Any]:
     if exists:
         frappe.throw("Item already exists for this vineyard")
 
+    image_path, image_file = _resolve_payload_image_fields(
+        payload,
+        fallback_to_default=True,
+    )
     initial_stock = float(payload.get("stock_qty") or 0)
+    item_payload: dict[str, Any] = {
+        "doctype": "Vineyard Item",
+        "vineyard": vineyard,
+        "item_key": key,
+        "item_code": item_code,
+        "item_name": item_name,
+        "category": str(payload.get("category") or "").strip(),
+        "brand": str(payload.get("brand") or "").strip(),
+        "image_path": image_path,
+        "unit": str(payload.get("unit") or "Bottle").strip(),
+        "sell_price": float(payload.get("sell_price") or 0),
+        "stock_qty": initial_stock,
+        "low_stock_threshold": float(payload.get("low_stock_threshold") or 0),
+        "is_enabled": 1 if to_bool(payload.get("is_enabled", True)) else 0,
+        "notes": str(payload.get("notes") or "").strip(),
+    }
+    if _has_image_file_column():
+        item_payload["image_file"] = image_file
+
     item_doc = frappe.get_doc(
-        {
-            "doctype": "Vineyard Item",
-            "vineyard": vineyard,
-            "item_key": key,
-            "item_code": item_code,
-            "item_name": item_name,
-            "category": str(payload.get("category") or "").strip(),
-            "brand": str(payload.get("brand") or "").strip(),
-            "image_path": str(payload.get("image_path") or "assets/items/1.png").strip(),
-            "unit": str(payload.get("unit") or "Bottle").strip(),
-            "sell_price": float(payload.get("sell_price") or 0),
-            "stock_qty": initial_stock,
-            "low_stock_threshold": float(payload.get("low_stock_threshold") or 0),
-            "is_enabled": 1 if to_bool(payload.get("is_enabled", True)) else 0,
-            "notes": str(payload.get("notes") or "").strip(),
-        }
+        item_payload
     )
     item_doc.insert(ignore_permissions=True)
 
@@ -232,10 +375,21 @@ def update(args: str = "") -> dict[str, Any]:
         "low_stock_threshold",
         "notes",
     ]
+    if _has_image_file_column():
+        allowed_fields.append("image_file")
 
     for field in allowed_fields:
         if field in payload:
             updates[field] = payload.get(field)
+
+    if "image_path" in payload or ("image_file" in payload and _has_image_file_column()):
+        effective_image_path, effective_image_file = _resolve_payload_image_fields(
+            payload,
+            fallback_to_default=False,
+        )
+        updates["image_path"] = effective_image_path
+        if _has_image_file_column():
+            updates["image_file"] = effective_image_file
 
     if "item_code" in payload:
         new_code = str(payload.get("item_code") or "").strip()

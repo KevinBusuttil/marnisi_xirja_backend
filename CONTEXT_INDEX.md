@@ -25,6 +25,10 @@
 - Vineyard background image fields for POS:
   - `xirja_marnisi/xirja_marnisi/doctype/vineyard/vineyard.json`
   - Fields: `pos_login_background_image`, `pos_app_background_image`
+- Vineyard Item image fields:
+  - `xirja_marnisi/xirja_marnisi/doctype/vineyard_item/vineyard_item.json`
+  - `image_path` is `Attach Image` (upload picker).
+  - `image_file` is `Link -> File` (dropdown/search picker), and backend resolves it to `image_path` when needed.
 
 ## Demo Data Commands
 - Seed built-in/fallback demo data:

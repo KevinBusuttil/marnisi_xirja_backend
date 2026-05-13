@@ -12,6 +12,7 @@
   "category",
   "brand",
   "image_path",
+  "image_file",
   "unit",
   "sell_price",
   "stock_qty",
@@ -63,8 +64,14 @@
   },
   {
    "fieldname": "image_path",
-   "fieldtype": "Data",
-   "label": "Image Path"
+   "fieldtype": "Attach Image",
+   "label": "Item Image"
+  },
+  {
+   "fieldname": "image_file",
+   "fieldtype": "Link",
+   "label": "Item Image (Dropdown)",
+   "options": "File"
   },
   {
    "default": "Bottle",

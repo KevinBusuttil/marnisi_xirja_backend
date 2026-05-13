@@ -50,3 +50,41 @@ def test_get_all_products_returns_vineyard_scoped_item_ids(monkeypatch):
     assert "VYD-NORTH::FMW100001" in ids
     assert "VYD-SOUTH::FMW100001" in ids
     assert len(ids) == 2
+
+
+class _FakeDBImageFile:
+    @staticmethod
+    def sql(query, params=None, as_dict=False):
+        normalized = " ".join(str(query).split())
+        if "FROM `tabVineyard Item`" in normalized:
+            return [
+                {
+                    "name": "ITEM-N-2",
+                    "vineyard": "VYD-NORTH",
+                    "item_code": "FMW100002",
+                    "item_name": "North Wine Alt",
+                    "category": "Maltese Wines",
+                    "brand": "Marsovin",
+                    "image_path": "",
+                    "image_file_url": "/files/north-alt.jpg",
+                    "unit": "Bottle",
+                    "sell_price": 15,
+                    "stock_qty": 8,
+                }
+            ]
+        return []
+
+
+class _FakeFrappeImageFile:
+    db = _FakeDBImageFile()
+
+
+def test_get_all_products_falls_back_to_image_file_url_when_image_path_empty(monkeypatch):
+    monkeypatch.setattr(bridge, "frappe", _FakeFrappeImageFile())
+    monkeypatch.setattr(bridge, "_column_exists", lambda _table, _column: True)
+
+    result = bridge.get_all_products()
+
+    assert len(result) == 1
+    assert result[0]["item_id"] == "VYD-NORTH::FMW100002"
+    assert result[0]["item_img_path"] == "/files/north-alt.jpg"
