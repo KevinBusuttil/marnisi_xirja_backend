@@ -97,14 +97,26 @@ def _restrict_vineyards_for_pos(vineyards: list[dict[str, Any]]) -> list[dict[st
         return vineyards
 
     normalized = [row for row in vineyards if (row.get("vineyard") or "").strip()]
-    if not normalized:
-        return normalized
 
     for row in normalized:
         if (row.get("vineyard") or "").strip() == _LOCKED_STORE_ID:
             return [row]
 
-    return [normalized[0]]
+    if normalized:
+        fallback = dict(normalized[0])
+        fallback["vineyard"] = _LOCKED_STORE_ID
+        fallback["is_default"] = 1
+        fallback["is_active"] = 1
+        return [fallback]
+
+    return [
+        {
+            "vineyard": _LOCKED_STORE_ID,
+            "access_role": "Viewer",
+            "is_default": 1,
+            "is_active": 1,
+        }
+    ]
 
 
 def _column_exists(table_name: str, column_name: str) -> bool:
@@ -572,13 +584,15 @@ def get_all_products() -> dict[str, Any]:
         if not vineyard:
             continue
 
+        effective_vineyard = _LOCKED_STORE_ID if _SINGLE_STORE_MODE else vineyard
+
         scoped_item_id = f"{vineyard}::{item_code}"
 
         out.append(
             {
                 "item_id": scoped_item_id,
                 "item_img_path": _effective_item_image_path_from_row(row),
-                "item_store": vineyard,
+                "item_store": effective_vineyard,
                 "item_brand": row.get("brand") or "",
                 "item_description": row.get("category") or "",
                 "item_barcode": item_code,

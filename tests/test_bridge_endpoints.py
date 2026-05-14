@@ -26,7 +26,7 @@ def test_get_all_registers_respects_single_store_and_register_modes(monkeypatch)
 
     expected_vineyards = {"VYD-NORTH", "VYD-SOUTH"}
     if bridge._SINGLE_STORE_MODE:
-        expected_vineyards = {"VYD-NORTH"}
+        expected_vineyards = {bridge._LOCKED_STORE_ID}
 
     for vineyard in expected_vineyards:
         assert f"{vineyard}-MAIN" in register_ids
@@ -56,3 +56,22 @@ def test_get_all_stores_prefers_locked_store_when_available(monkeypatch):
         assert store_ids == [bridge._LOCKED_STORE_ID]
     else:
         assert bridge._LOCKED_STORE_ID in store_ids
+
+
+def test_get_all_stores_falls_back_to_locked_store_when_not_present(monkeypatch):
+    monkeypatch.setattr(
+        bridge,
+        "_resolve_vineyards",
+        lambda: [
+            {"vineyard": "VYD-NORTH"},
+            {"vineyard": "VYD-SOUTH"},
+        ],
+    )
+
+    stores = bridge.get_all_stores()
+    store_ids = [row["store_id"] for row in stores]
+
+    if bridge._SINGLE_STORE_MODE:
+        assert store_ids == [bridge._LOCKED_STORE_ID]
+    else:
+        assert store_ids == ["VYD-NORTH", "VYD-SOUTH"]

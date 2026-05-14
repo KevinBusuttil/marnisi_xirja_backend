@@ -46,10 +46,15 @@ def test_get_all_products_returns_vineyard_scoped_item_ids(monkeypatch):
 
     result = bridge.get_all_products()
     ids = {row["item_id"] for row in result}
+    stores = {row["item_store"] for row in result}
 
     assert "VYD-NORTH::FMW100001" in ids
     assert "VYD-SOUTH::FMW100001" in ids
     assert len(ids) == 2
+    if bridge._SINGLE_STORE_MODE:
+        assert stores == {bridge._LOCKED_STORE_ID}
+    else:
+        assert stores == {"VYD-NORTH", "VYD-SOUTH"}
 
 
 class _FakeDBImageFile:
@@ -88,3 +93,7 @@ def test_get_all_products_falls_back_to_image_file_url_when_image_path_empty(mon
     assert len(result) == 1
     assert result[0]["item_id"] == "VYD-NORTH::FMW100002"
     assert result[0]["item_img_path"] == "/files/north-alt.jpg"
+    if bridge._SINGLE_STORE_MODE:
+        assert result[0]["item_store"] == bridge._LOCKED_STORE_ID
+    else:
+        assert result[0]["item_store"] == "VYD-NORTH"
