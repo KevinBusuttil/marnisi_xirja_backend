@@ -8,6 +8,9 @@ import frappe
 
 from xirja_marnisi.api.security import parse_args, require_authenticated_user
 
+_SINGLE_STORE_VINEYARD_ID = "Marnisi M'Xlokk"
+_SINGLE_STORE_REGISTER_ID = f"{_SINGLE_STORE_VINEYARD_ID}-MAIN"
+
 
 _FALLBACK_WINES = [
     {
@@ -271,6 +274,122 @@ def _ensure_access(user: str, vineyard: str, access_role: str, is_default: int) 
         }
     )
     doc.insert(ignore_permissions=True)
+
+
+def _list_access_users() -> list[str]:
+    rows = frappe.db.sql(
+        """
+        SELECT DISTINCT `user`
+        FROM `tabVineyard User Access`
+        WHERE IFNULL(`user`, '') != ''
+        ORDER BY `user` ASC
+        """,
+        as_dict=True,
+    )
+    users: list[str] = []
+    for row in rows:
+        user = str(row.get("user") or "").strip()
+        if user:
+            users.append(user)
+    return users
+
+
+def _resolve_access_role(user: str) -> str:
+    rows = frappe.db.sql(
+        """
+        SELECT access_role
+        FROM `tabVineyard User Access`
+        WHERE `user` = %s
+        ORDER BY IFNULL(is_active, 1) DESC, is_default DESC, modified DESC
+        LIMIT 1
+        """,
+        (user,),
+        as_dict=True,
+    )
+    if not rows:
+        return "Viewer"
+
+    role = str(rows[0].get("access_role") or "").strip()
+    return role or "Viewer"
+
+
+def _enforce_single_store_setup(deactivate_other_vineyards: bool = True) -> dict[str, Any]:
+    now = frappe.utils.now()
+    actor = str(getattr(frappe.session, "user", "Administrator") or "Administrator")
+    vineyard_id = _ensure_vineyard(
+        _SINGLE_STORE_VINEYARD_ID,
+        _SINGLE_STORE_VINEYARD_ID,
+        "Europe/Malta",
+    )
+
+    frappe.db.sql(
+        """
+        UPDATE `tabVineyard`
+        SET vineyard_name = %s,
+            timezone = %s,
+            is_active = 1,
+            modified = %s,
+            modified_by = %s
+        WHERE name = %s
+        """,
+        (_SINGLE_STORE_VINEYARD_ID, "Europe/Malta", now, actor, vineyard_id),
+    )
+
+    if deactivate_other_vineyards:
+        frappe.db.sql(
+            """
+            UPDATE `tabVineyard`
+            SET is_active = 0,
+                modified = %s,
+                modified_by = %s
+            WHERE name != %s
+            """,
+            (now, actor, vineyard_id),
+        )
+
+    users = _list_access_users()
+    for user in users:
+        _ensure_access(
+            user=user,
+            vineyard=vineyard_id,
+            access_role=_resolve_access_role(user),
+            is_default=1,
+        )
+        frappe.db.sql(
+            """
+            UPDATE `tabVineyard User Access`
+            SET is_default = 0,
+                is_active = 0,
+                modified = %s,
+                modified_by = %s
+            WHERE `user` = %s
+              AND vineyard != %s
+            """,
+            (now, actor, user, vineyard_id),
+        )
+
+    return {
+        "status": "success",
+        "vineyard": vineyard_id,
+        "register_id": _SINGLE_STORE_REGISTER_ID,
+        "deactivated_other_vineyards": deactivate_other_vineyards,
+        "access_users_updated": len(users),
+    }
+
+
+@frappe.whitelist()
+def enforce_single_store_setup(args: str = "") -> dict[str, Any]:
+    payload = parse_args(args)
+    require_authenticated_user()
+
+    deactivate_raw = str(payload.get("deactivate_other_vineyards") or "1").strip().lower()
+    deactivate_other_vineyards = deactivate_raw not in {"0", "false", "no", "off"}
+
+    result = _enforce_single_store_setup(
+        deactivate_other_vineyards=deactivate_other_vineyards
+    )
+    frappe.db.commit()
+    return result
 
 
 def _seed_items_for_vineyard(vineyard: str, items: list[dict[str, Any]]) -> list[str]:

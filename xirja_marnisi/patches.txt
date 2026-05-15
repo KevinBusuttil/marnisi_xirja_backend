@@ -6,3 +6,4 @@
 # Patches added in this section will be executed after doctypes are migrated
 xirja_marnisi.patches.v0_0_1.ensure_marnisi_pos_sale_system_columns
 xirja_marnisi.patches.v0_0_1.backfill_marnisi_pos_sale_children
+xirja_marnisi.patches.v0_0_1.enforce_single_marnisi_store

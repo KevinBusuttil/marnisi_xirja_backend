@@ -11,6 +11,7 @@
 ## First Search
 - Demo seed APIs: `xirja_marnisi/api/seed.py`
   - Includes POS tour catalog item seed (`Tour Silver`, `Tour Gold`, `Tour Platinum`) as `Vineyard Item` records.
+  - Includes `enforce_single_store_setup` to enforce a single active vineyard (`Marnisi M'Xlokk`) and one register id (`Marnisi M'Xlokk-MAIN`) for POS behavior.
 - Auth/session/context APIs: `xirja_marnisi/api/auth.py`, `xirja_marnisi/api/security.py`
   - `auth.get_context` also returns `ui_assets` (`login_background_image`, `app_background_image`) sourced from `Vineyard` image fields when present.
 - Item APIs + stock movement logic: `xirja_marnisi/api/item.py`
@@ -44,3 +45,5 @@
 ## Migration Patch
 - Child-table backfill patch for legacy POS sales:
   - `xirja_marnisi/patches/v0_0_1/backfill_marnisi_pos_sale_children.py`
+- Single-store enforcement patch:
+  - `xirja_marnisi/patches/v0_0_1/enforce_single_marnisi_store.py`
