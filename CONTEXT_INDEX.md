@@ -14,6 +14,7 @@
   - Includes `enforce_single_store_setup` to enforce a single active vineyard (`Marnisi M'Xlokk`) and one register id (`Marnisi M'Xlokk-MAIN`) for POS behavior.
 - Auth/session/context APIs: `xirja_marnisi/api/auth.py`, `xirja_marnisi/api/security.py`
   - `auth.get_context` also returns `ui_assets` (`login_background_image`, `app_background_image`) sourced from `Vineyard` image fields when present.
+  - Receipt print constants for POS are backend-driven via `xirja_marnisi/api/settings.py` (`get_receipt_settings`) and included in `auth.get_context` as `receipt_settings`.
 - Item APIs + stock movement logic: `xirja_marnisi/api/item.py`
 - Tour package APIs: `xirja_marnisi/api/package.py`
 - Tour booking/check-in status flow: `xirja_marnisi/api/booking.py`
@@ -27,6 +28,9 @@
 - Vineyard background image fields for POS:
   - `xirja_marnisi/xirja_marnisi/doctype/vineyard/vineyard.json`
   - Fields: `pos_login_background_image`, `pos_app_background_image`
+- Receipt print settings (single DocType):
+  - `xirja_marnisi/xirja_marnisi/doctype/marnisi_settings/marnisi_settings.json`
+  - Backend API reads values from `tabSingles` for `Marnisi Settings`.
 - Vineyard Item image fields:
   - `xirja_marnisi/xirja_marnisi/doctype/vineyard_item/vineyard_item.json`
   - `image_path` is `Attach Image` (upload picker).

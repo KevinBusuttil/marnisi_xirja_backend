@@ -57,11 +57,17 @@ def test_get_context_returns_ui_assets_when_columns_exist(monkeypatch):
         "get_accessible_vineyards",
         lambda _user: [{"vineyard": "Marnisi M'Xlokk", "is_default": 1}],
     )
+    monkeypatch.setattr(
+        auth,
+        "_load_receipt_settings",
+        lambda: {"receipt_currency_label": "EUR"},
+    )
 
     result = auth.get_context()
 
     assert result["ui_assets"]["login_background_image"] == "/files/marnisi-login.jpg"
     assert result["ui_assets"]["app_background_image"] == "/files/marnisi-app.jpg"
+    assert result["receipt_settings"]["receipt_currency_label"] == "EUR"
 
 
 def test_get_context_ui_assets_fallback_to_empty_when_columns_missing(monkeypatch):
@@ -77,6 +83,11 @@ def test_get_context_ui_assets_fallback_to_empty_when_columns_missing(monkeypatc
         "get_accessible_vineyards",
         lambda _user: [{"vineyard": "Marnisi M'Xlokk", "is_default": 1}],
     )
+    monkeypatch.setattr(
+        auth,
+        "_load_receipt_settings",
+        lambda: {"receipt_currency_label": "EUR"},
+    )
 
     result = auth.get_context()
 
@@ -84,3 +95,4 @@ def test_get_context_ui_assets_fallback_to_empty_when_columns_missing(monkeypatc
         "login_background_image": "",
         "app_background_image": "",
     }
+    assert result["receipt_settings"]["receipt_currency_label"] == "EUR"

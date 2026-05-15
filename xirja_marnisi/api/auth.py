@@ -5,6 +5,7 @@ from typing import Any
 import frappe
 
 from xirja_marnisi.api.bridge import get_all_users
+from xirja_marnisi.api.settings import _load_receipt_settings
 from xirja_marnisi.api.security import (
     get_accessible_vineyards,
     get_roles,
@@ -114,6 +115,7 @@ def get_context() -> dict[str, Any]:
         default_vineyard = vineyards[0]["vineyard"]
 
     ui_assets = _get_vineyard_ui_assets(default_vineyard)
+    receipt_settings = _load_receipt_settings()
 
     return {
         "status": "success",
@@ -122,6 +124,7 @@ def get_context() -> dict[str, Any]:
         "vineyards": vineyards,
         "default_vineyard": default_vineyard,
         "ui_assets": ui_assets,
+        "receipt_settings": receipt_settings,
     }
 
 

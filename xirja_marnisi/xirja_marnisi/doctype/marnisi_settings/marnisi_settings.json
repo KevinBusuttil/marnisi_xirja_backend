@@ -1,0 +1,137 @@
+{
+ "actions": [],
+ "creation": "2026-05-15 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "receipt_line_width",
+  "receipt_currency_label",
+  "show_store_header",
+  "show_client_details",
+  "show_cash_summary",
+  "show_vat_analysis",
+  "show_opening_hours",
+  "show_loyalty_section",
+  "vat_message_line",
+  "fiscal_message_line",
+  "thank_you_line",
+  "gift_receipt_title",
+  "gift_receipt_footer"
+ ],
+ "fields": [
+  {
+   "default": "48",
+   "fieldname": "receipt_line_width",
+   "fieldtype": "Int",
+   "label": "Receipt Line Width"
+  },
+  {
+   "default": "EUR",
+   "fieldname": "receipt_currency_label",
+   "fieldtype": "Data",
+   "label": "Currency Label",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "show_store_header",
+   "fieldtype": "Check",
+   "label": "Show Store Header"
+  },
+  {
+   "default": "1",
+   "fieldname": "show_client_details",
+   "fieldtype": "Check",
+   "label": "Show Client Details"
+  },
+  {
+   "default": "1",
+   "fieldname": "show_cash_summary",
+   "fieldtype": "Check",
+   "label": "Show Cash Summary"
+  },
+  {
+   "default": "1",
+   "fieldname": "show_vat_analysis",
+   "fieldtype": "Check",
+   "label": "Show VAT Analysis"
+  },
+  {
+   "default": "1",
+   "fieldname": "show_opening_hours",
+   "fieldtype": "Check",
+   "label": "Show Opening Hours"
+  },
+  {
+   "default": "1",
+   "fieldname": "show_loyalty_section",
+   "fieldtype": "Check",
+   "label": "Show Loyalty Section"
+  },
+  {
+   "default": "All items Include VAT.",
+   "fieldname": "vat_message_line",
+   "fieldtype": "Data",
+   "label": "VAT Footer Line"
+  },
+  {
+   "default": "This is a Fiscal Receipt.",
+   "fieldname": "fiscal_message_line",
+   "fieldtype": "Data",
+   "label": "Fiscal Footer Line"
+  },
+  {
+   "default": "Thanks for your custom.",
+   "fieldname": "thank_you_line",
+   "fieldtype": "Data",
+   "label": "Thank You Line"
+  },
+  {
+   "default": "Gift Receipt",
+   "fieldname": "gift_receipt_title",
+   "fieldtype": "Data",
+   "label": "Gift Receipt Title"
+  },
+  {
+   "default": "Enjoy your custom",
+   "fieldname": "gift_receipt_footer",
+   "fieldtype": "Data",
+   "label": "Gift Receipt Footer"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-05-15 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "XIRJA Marnisi",
+ "name": "Marnisi Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Vineyard Admin",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
