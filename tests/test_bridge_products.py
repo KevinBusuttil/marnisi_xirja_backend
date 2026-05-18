@@ -8,7 +8,7 @@ class _FakeDB:
     def sql(query, params=None, as_dict=False):
         normalized = " ".join(str(query).split())
         if "FROM `tabVineyard Item`" in normalized:
-            return [
+            rows = [
                 {
                     "name": "ITEM-N-1",
                     "vineyard": "VYD-NORTH",
@@ -33,7 +33,25 @@ class _FakeDB:
                     "sell_price": 11,
                     "stock_qty": 6,
                 },
+                {
+                    "name": "ITEM-M-1",
+                    "vineyard": bridge._LOCKED_STORE_ID,
+                    "item_code": "TOUR-GOLD",
+                    "item_name": "Tour Gold",
+                    "category": "Tour",
+                    "brand": "Marsovin",
+                    "image_path": "assets/items/3.png",
+                    "unit": "Bottle",
+                    "sell_price": 20,
+                    "stock_qty": 10,
+                },
             ]
+            if params:
+                vineyard_filter = str(params[0] or "")
+                return [
+                    row for row in rows if str(row.get("vineyard") or "") == vineyard_filter
+                ]
+            return rows
         return []
 
 
@@ -48,13 +66,17 @@ def test_get_all_products_returns_vineyard_scoped_item_ids(monkeypatch):
     ids = {row["item_id"] for row in result}
     stores = {row["item_store"] for row in result}
 
-    assert "VYD-NORTH::FMW100001" in ids
-    assert "VYD-SOUTH::FMW100001" in ids
-    assert len(ids) == 2
+    assert f"{bridge._LOCKED_STORE_ID}::TOUR-GOLD" in ids
     if bridge._SINGLE_STORE_MODE:
+        assert "VYD-NORTH::FMW100001" not in ids
+        assert "VYD-SOUTH::FMW100001" not in ids
+        assert len(ids) == 1
         assert stores == {bridge._LOCKED_STORE_ID}
     else:
-        assert stores == {"VYD-NORTH", "VYD-SOUTH"}
+        assert "VYD-NORTH::FMW100001" in ids
+        assert "VYD-SOUTH::FMW100001" in ids
+        assert len(ids) == 3
+        assert stores == {"VYD-NORTH", "VYD-SOUTH", bridge._LOCKED_STORE_ID}
 
 
 class _FakeDBImageFile:
@@ -62,10 +84,10 @@ class _FakeDBImageFile:
     def sql(query, params=None, as_dict=False):
         normalized = " ".join(str(query).split())
         if "FROM `tabVineyard Item`" in normalized:
-            return [
+            rows = [
                 {
                     "name": "ITEM-N-2",
-                    "vineyard": "VYD-NORTH",
+                    "vineyard": bridge._LOCKED_STORE_ID,
                     "item_code": "FMW100002",
                     "item_name": "North Wine Alt",
                     "category": "Maltese Wines",
@@ -77,6 +99,12 @@ class _FakeDBImageFile:
                     "stock_qty": 8,
                 }
             ]
+            if params:
+                vineyard_filter = str(params[0] or "")
+                return [
+                    row for row in rows if str(row.get("vineyard") or "") == vineyard_filter
+                ]
+            return rows
         return []
 
 
@@ -91,9 +119,9 @@ def test_get_all_products_falls_back_to_image_file_url_when_image_path_empty(mon
     result = bridge.get_all_products()
 
     assert len(result) == 1
-    assert result[0]["item_id"] == "VYD-NORTH::FMW100002"
+    assert result[0]["item_id"] == f"{bridge._LOCKED_STORE_ID}::FMW100002"
     assert result[0]["item_img_path"] == "/files/north-alt.jpg"
     if bridge._SINGLE_STORE_MODE:
         assert result[0]["item_store"] == bridge._LOCKED_STORE_ID
     else:
-        assert result[0]["item_store"] == "VYD-NORTH"
+        assert result[0]["item_store"] == bridge._LOCKED_STORE_ID

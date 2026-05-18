@@ -527,9 +527,15 @@ def get_pay_mthds() -> dict[str, Any]:
 
 @frappe.whitelist(allow_guest=True)
 def get_all_products() -> dict[str, Any]:
+    where_clause = "IFNULL(is_enabled, 1) = 1"
+    query_values: tuple[Any, ...] = ()
+    if _SINGLE_STORE_MODE:
+        where_clause += " AND vineyard = %s"
+        query_values = (_LOCKED_STORE_ID,)
+
     if _column_exists("tabVineyard Item", "image_file"):
         rows = frappe.db.sql(
-            """
+            f"""
             SELECT
                 name,
                 vineyard,
@@ -548,14 +554,15 @@ def get_all_products() -> dict[str, Any]:
                 sell_price,
                 stock_qty
             FROM `tabVineyard Item`
-            WHERE IFNULL(is_enabled, 1) = 1
+            WHERE {where_clause}
             ORDER BY vineyard ASC, item_name ASC
             """,
+            query_values,
             as_dict=True,
         )
     else:
         rows = frappe.db.sql(
-            """
+            f"""
             SELECT
                 name,
                 vineyard,
@@ -569,9 +576,10 @@ def get_all_products() -> dict[str, Any]:
                 sell_price,
                 stock_qty
             FROM `tabVineyard Item`
-            WHERE IFNULL(is_enabled, 1) = 1
+            WHERE {where_clause}
             ORDER BY vineyard ASC, item_name ASC
             """,
+            query_values,
             as_dict=True,
         )
 

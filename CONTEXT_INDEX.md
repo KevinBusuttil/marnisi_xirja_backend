@@ -20,7 +20,7 @@
 - Tour booking/check-in status flow: `xirja_marnisi/api/booking.py`
 - Frontend-compat bridge APIs: `xirja_marnisi/api/bridge.py`
   - Single-store and single-register enforcement for POS store/register feed lives in `bridge.py` (`_SINGLE_STORE_MODE`, `_LOCKED_STORE_ID`, `_SINGLE_REGISTER_MODE`) and always resolves one locked store (`Marnisi M'Xlokk`) with one main register.
-  - In single-store mode, product payload keeps vineyard-scoped `item_id` but normalizes `item_store` to the locked store so POS always sees items under that single store.
+  - In single-store mode, product payload is now hard-filtered to locked vineyard items only (`vineyard = Marnisi M'Xlokk`) and keeps vineyard-scoped `item_id` while normalizing `item_store` to the locked store, so POS and Item Management match for that vineyard.
   - POS sync stores parent sale + child lines in raw SQL tables: `tabMarnisi POS Sale`, `tabMarnisi POS Sale Item`, `tabMarnisi POS Sale Payment`.
   - Existing sales rows can be backfilled into child tables through `bridge.backfill_sales_children`.
 
