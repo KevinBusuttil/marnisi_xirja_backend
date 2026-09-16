@@ -1,6 +1,5 @@
-from frappe.model.document import Document
+from xirja_marnisi.fiscal.documents import ImmutableEvidence
 
 
-class MarnisiPOSSale(Document):
+class MarnisiPOSSale(ImmutableEvidence):
     pass
-

@@ -74,3 +74,42 @@ def test_resolve_vineyard_rejects_unassigned_request(monkeypatch):
 
     with pytest.raises(_ThrowingFrappe.PermissionError):
         security.resolve_vineyard({"vineyard": "VYD-SOUTH"}, "viewer@example.com")
+
+
+@pytest.mark.parametrize("user,enabled,allowed", [("Guest",1,False), ("staff@example.com",0,False), ("staff@example.com",1,True)])
+def test_enabled_session_required(monkeypatch,user,enabled,allowed):
+    from types import SimpleNamespace
+    fake = _ThrowingFrappe()
+    fake.AuthenticationError = fake.PermissionError
+    fake.session = SimpleNamespace(user=user)
+    fake.db = SimpleNamespace(sql=lambda query,values: [(enabled,)])
+    monkeypatch.setattr(security, "frappe", fake)
+    if allowed:
+        assert security.require_authenticated_user() == user
+    else:
+        with pytest.raises(fake.AuthenticationError):
+            security.require_authenticated_user()
+
+
+@pytest.mark.parametrize("role,staff_allowed,allowed", [
+    ("Viewer",True,False), ("Vineyard Staff",True,True),
+    ("Vineyard Staff",False,False), ("Vineyard Admin",False,True),
+    ("Vineyard Manager",False,True),
+])
+def test_vineyard_role_controls_mutation(monkeypatch,role,staff_allowed,allowed):
+    monkeypatch.setattr(security, "frappe", _ThrowingFrappe())
+    monkeypatch.setattr(security, "require_authenticated_user", lambda: "staff@example.com")
+    monkeypatch.setattr(security, "is_global_admin", lambda user: False)
+    monkeypatch.setattr(security, "get_access_rows", lambda user: [{"vineyard":security.LOCKED_STORE_ID,"access_role":role}])
+    if allowed:
+        assert security.require_pos_access(mutate=True, staff_allowed=staff_allowed)["role"] == role
+    else:
+        with pytest.raises(_ThrowingFrappe.PermissionError):
+            security.require_pos_access(mutate=True, staff_allowed=staff_allowed)
+
+
+@pytest.mark.parametrize("kwargs", [{"store":"other"},{"register":"other"}])
+def test_pos_rejects_wrong_store_and_register(monkeypatch,kwargs):
+    monkeypatch.setattr(security, "frappe", _ThrowingFrappe())
+    with pytest.raises(_ThrowingFrappe.PermissionError):
+        security.require_pos_access(**kwargs)

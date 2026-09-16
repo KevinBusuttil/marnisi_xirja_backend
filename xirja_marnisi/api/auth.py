@@ -4,33 +4,26 @@ from typing import Any
 
 import frappe
 
-from xirja_marnisi.api.bridge import get_all_users
 from xirja_marnisi.api.settings import _load_receipt_settings
 from xirja_marnisi.api.security import (
     get_accessible_vineyards,
     get_roles,
     parse_args,
     require_authenticated_user,
+    LOCKED_STORE_ID,
 )
 
 
-def _build_personal_login_map() -> dict[str, str]:
-    users = get_all_users()
-    login_map: dict[str, str] = {}
+def _csrf_token() -> str:
+    from frappe.sessions import get_csrf_token
 
-    for row in users:
-        personal_id = str(row.get("retail_personnel_id") or "").strip()
-        email = str(row.get("retail_user_email") or "").strip()
-        if not personal_id or not email:
-            continue
-        login_map[personal_id] = email
-
-    return login_map
+    return get_csrf_token()
 
 
-_PERSONAL_LOGIN_MAP = _build_personal_login_map()
+def _public_fiscal_context(vineyard: str) -> dict[str, Any]:
+    from xirja_marnisi.fiscal.service import get_public_context
 
-_DEFAULT_SEED_PASSWORD = "Marnisi@2026#Seed!"
+    return get_public_context(vineyard) if vineyard else {"mode": "Disabled"}
 
 
 def _column_exists(table_name: str, column_name: str) -> bool:
@@ -111,8 +104,11 @@ def get_context() -> dict[str, Any]:
         if entry["is_default"] and not default_vineyard:
             default_vineyard = vineyard_name
 
-    if not default_vineyard and vineyards:
-        default_vineyard = vineyards[0]["vineyard"]
+    # The tablet is a single-vineyard register even when an operator has other assignments.
+    if any(row["vineyard"] == LOCKED_STORE_ID for row in vineyards):
+        default_vineyard = LOCKED_STORE_ID
+    else:
+        frappe.throw("No access to the locked POS vineyard", frappe.PermissionError)
 
     ui_assets = _get_vineyard_ui_assets(default_vineyard)
     receipt_settings = _load_receipt_settings()
@@ -125,29 +121,76 @@ def get_context() -> dict[str, Any]:
         "default_vineyard": default_vineyard,
         "ui_assets": ui_assets,
         "receipt_settings": receipt_settings,
+        "csrf_token": _csrf_token(),
+        "fiscal_context": _public_fiscal_context(default_vineyard),
     }
 
 
-@frappe.whitelist(allow_guest=True)
+@frappe.whitelist(allow_guest=True, methods=["POST"])
 def login_with_personal_id(args: str = "") -> dict[str, Any]:
-    """Create a Frappe session using a personal number used by POS login."""
-    payload = parse_args(args)
+    """Keep unexpected login failures out of contextual credential tracebacks.
+
+    Frappe deliberately excludes AuthenticationError from Error Log snapshots.
+    Serialized arguments and framework kwargs may still contain credentials even
+    after form_dict is cleared, so unexpected parsing/database failures must cross
+    this fail-closed boundary as a sanitized authentication error.
+    """
+    try:
+        return _login_with_personal_id(args)
+    except frappe.AuthenticationError:
+        raise
+    except Exception:
+        raise frappe.AuthenticationError("Unable to complete POS login; please try again") from None
+
+
+def _login_with_personal_id(args: str = "") -> dict[str, Any]:
+    """Resolve an administrator-maintained ID, then use Frappe's full login flow.
+
+    Never cache passwords or authenticate with demo credentials. Frappe owns
+    throttling, disabled checks, password expiry, 2FA and session creation.
+    """
+    try:
+        payload = parse_args(args)
+    finally:
+        # Frappe sanitizes named credential fields, but a serialized args wrapper
+        # can otherwise expose the password in error metadata before login runs.
+        for key in ("args", "password", "pwd"):
+            frappe.form_dict.pop(key, None)
+
+    from frappe.auth import get_login_attempt_tracker
+
     personal_id = str(payload.get("personal_id") or "").strip()
-    if not personal_id:
-        frappe.throw("Personal ID is required")
+    password = payload.pop("password", None)
+    tracker = get_login_attempt_tracker(frappe.local.request_ip)
+    if not personal_id or not isinstance(password, str) or not password:
+        tracker and tracker.add_failure_attempt()
+        frappe.throw("Invalid login credentials", frappe.AuthenticationError)
 
-    user = _PERSONAL_LOGIN_MAP.get(personal_id)
-    if not user:
-        frappe.throw("Unknown Personal ID")
+    rows = frappe.db.sql(
+        """SELECT m.`user` FROM `tabMarnisi Personal ID` m
+           INNER JOIN `tabUser` u ON u.name = m.`user`
+           WHERE m.personal_id = %s AND m.is_active = 1 AND u.enabled = 1
+           LIMIT 2""",
+        (personal_id,), as_dict=True,
+    )
+    if len(rows) != 1:
+        tracker and tracker.add_failure_attempt()
+        frappe.throw("Invalid login credentials", frappe.AuthenticationError)
 
-    login_manager = getattr(frappe.local, "login_manager", None)
-    if not login_manager:
-        frappe.throw("Login manager unavailable")
-
-    login_manager.authenticate(user=user, pwd=_DEFAULT_SEED_PASSWORD)
-    login_manager.post_login()
+    user = rows[0]["user"]
+    login_manager = frappe.local.login_manager
+    frappe.form_dict["usr"] = user
+    frappe.form_dict["pwd"] = password
+    try:
+        completed = login_manager.login()
+    finally:
+        frappe.form_dict.pop("pwd", None)
+        frappe.form_dict.pop("args", None)
+    if completed is False or getattr(frappe.session, "user", "Guest") != user:
+        frappe.throw("Complete the required account verification before POS login", frappe.AuthenticationError)
 
     return {
         "status": "success",
         "user": user,
+        "csrf_token": _csrf_token(),
     }

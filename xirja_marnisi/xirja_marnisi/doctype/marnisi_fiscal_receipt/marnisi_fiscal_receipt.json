@@ -1,0 +1,159 @@
+{
+ "doctype": "DocType",
+ "name": "Marnisi Fiscal Receipt",
+ "module": "XIRJA Marnisi",
+ "autoname": "hash",
+ "engine": "InnoDB",
+ "track_changes": 1,
+ "field_order": [
+  "source_sale",
+  "sale_number",
+  "source_payment",
+  "payment_uid",
+  "vineyard",
+  "register_id",
+  "cashier",
+  "payment_method",
+  "record_status",
+  "direction",
+  "mode",
+  "currency",
+  "settings_revision",
+  "payload_hash",
+  "payment_amount",
+  "sequence_year",
+  "sequence_number",
+  "review_reason",
+  "snapshot"
+ ],
+ "fields": [
+  {
+   "fieldname": "source_sale",
+   "fieldtype": "Data",
+   "label": "Source Sale",
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "sale_number",
+   "fieldtype": "Data",
+   "label": "Sale Number",
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "source_payment",
+   "fieldtype": "Data",
+   "label": "Source Payment",
+   "read_only": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "payment_uid",
+   "fieldtype": "Data",
+   "label": "Payment Uid",
+   "read_only": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "vineyard",
+   "fieldtype": "Data",
+   "label": "Vineyard",
+   "read_only": 1
+  },
+  {
+   "fieldname": "register_id",
+   "fieldtype": "Data",
+   "label": "Register Id",
+   "read_only": 1
+  },
+  {
+   "fieldname": "cashier",
+   "fieldtype": "Data",
+   "label": "Cashier",
+   "read_only": 1
+  },
+  {
+   "fieldname": "payment_method",
+   "fieldtype": "Data",
+   "label": "Payment Method",
+   "read_only": 1
+  },
+  {
+   "fieldname": "record_status",
+   "fieldtype": "Data",
+   "label": "Record Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "direction",
+   "fieldtype": "Data",
+   "label": "Direction",
+   "read_only": 1
+  },
+  {
+   "fieldname": "mode",
+   "fieldtype": "Data",
+   "label": "Mode",
+   "read_only": 1
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Data",
+   "label": "Currency",
+   "read_only": 1
+  },
+  {
+   "fieldname": "settings_revision",
+   "fieldtype": "Data",
+   "label": "Settings Revision",
+   "read_only": 1
+  },
+  {
+   "fieldname": "payload_hash",
+   "fieldtype": "Data",
+   "label": "Payload Hash",
+   "read_only": 1
+  },
+  {
+   "fieldname": "payment_amount",
+   "fieldtype": "Currency",
+   "label": "Payment Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sequence_year",
+   "fieldtype": "Int",
+   "label": "Sequence Year",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sequence_number",
+   "fieldtype": "Int",
+   "label": "Sequence Number",
+   "read_only": 1
+  },
+  {
+   "fieldname": "review_reason",
+   "fieldtype": "Small Text",
+   "label": "Review Reason",
+   "read_only": 1
+  },
+  {
+   "fieldname": "snapshot",
+   "fieldtype": "Long Text",
+   "label": "Snapshot",
+   "read_only": 1
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "report": 1,
+   "export": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC"
+}

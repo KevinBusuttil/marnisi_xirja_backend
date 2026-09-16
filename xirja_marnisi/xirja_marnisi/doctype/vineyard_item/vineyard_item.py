@@ -41,6 +41,10 @@ def _file_name_from_url(file_url: str) -> str:
 
 class VineyardItem(Document):
     def validate(self) -> None:
+        from xirja_marnisi.fiscal.core import number
+        rate = number(getattr(self, "vat_rate", 18))
+        if not 0 <= rate <= 100:
+            frappe.throw("VAT rate must be between 0 and 100")
         image_path = str(self.image_path or "").strip()
         image_file = str(getattr(self, "image_file", "") or "").strip()
 

@@ -1,0 +1,74 @@
+{
+ "doctype": "DocType",
+ "name": "Marnisi Manual Receipt Link",
+ "module": "XIRJA Marnisi",
+ "autoname": "hash",
+ "engine": "InnoDB",
+ "track_changes": 1,
+ "field_order": [
+  "vineyard",
+  "source_sale",
+  "manual_reference",
+  "reason",
+  "payload_hash",
+  "reserved_payload",
+  "is_reservation"
+ ],
+ "fields": [
+  {
+   "fieldname": "vineyard",
+   "fieldtype": "Data",
+   "label": "Vineyard",
+   "read_only": 1
+  },
+  {
+   "fieldname": "source_sale",
+   "fieldtype": "Data",
+   "label": "Source Sale",
+   "unique": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "manual_reference",
+   "fieldtype": "Data",
+   "label": "Manual Reference",
+   "unique": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "reason",
+   "fieldtype": "Small Text",
+   "label": "Reason",
+   "read_only": 1
+  },
+  {
+   "fieldname": "payload_hash",
+   "fieldtype": "Data",
+   "label": "Frozen Payload Hash",
+   "read_only": 1
+  },
+  {
+   "fieldname": "reserved_payload",
+   "fieldtype": "Long Text",
+   "label": "Original Frozen Payload",
+   "read_only": 1
+  },
+  {
+   "fieldname": "is_reservation",
+   "fieldtype": "Check",
+   "label": "Reserved Before Upload",
+   "read_only": 1,
+   "default": "0"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "report": 1,
+   "export": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC"
+}

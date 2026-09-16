@@ -19,7 +19,9 @@
   "si_discount_percent",
   "si_barcode",
   "si_category",
-  "item_payload"
+  "item_payload",
+  "line_uid",
+  "return_source_line_uid"
  ],
  "fields": [
   {
@@ -115,6 +117,20 @@
    "fieldtype": "Long Text",
    "label": "Item Payload (JSON)",
    "read_only": 1
+  },
+  {
+   "fieldname": "line_uid",
+   "fieldtype": "Data",
+   "label": "Line Uid",
+   "read_only": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "return_source_line_uid",
+   "fieldtype": "Data",
+   "label": "Return Source Line Uid",
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "hide_toolbar": 1,

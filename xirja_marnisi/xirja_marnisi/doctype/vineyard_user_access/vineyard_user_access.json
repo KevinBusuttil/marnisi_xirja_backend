@@ -34,7 +34,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Access Role",
-   "options": "Super Admin\nVineyard Admin\nVineyard Staff\nViewer",
+   "options": "Super Admin\nVineyard Admin\nVineyard Manager\nVineyard Staff\nViewer",
    "reqd": 1
   },
   {

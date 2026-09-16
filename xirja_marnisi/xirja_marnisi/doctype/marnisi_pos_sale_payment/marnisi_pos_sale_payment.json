@@ -9,7 +9,9 @@
   "tender_type_id",
   "payment_name",
   "amount_tendered",
-  "payment_payload"
+  "payment_payload",
+  "payment_uid",
+  "return_source_payment_uid"
  ],
  "fields": [
   {
@@ -44,6 +46,20 @@
    "fieldtype": "Long Text",
    "label": "Payment Payload (JSON)",
    "read_only": 1
+  },
+  {
+   "fieldname": "payment_uid",
+   "fieldtype": "Data",
+   "label": "Payment Uid",
+   "read_only": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "return_source_payment_uid",
+   "fieldtype": "Data",
+   "label": "Return Source Payment Uid",
+   "read_only": 1,
+   "search_index": 1
   }
  ],
  "hide_toolbar": 1,

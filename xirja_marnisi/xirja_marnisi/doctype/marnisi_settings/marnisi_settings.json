@@ -75,7 +75,7 @@
    "label": "VAT Footer Line"
   },
   {
-   "default": "This is a Fiscal Receipt.",
+   "default": "Status is determined by saved fiscal evidence.",
    "fieldname": "fiscal_message_line",
    "fieldtype": "Data",
    "label": "Fiscal Footer Line"

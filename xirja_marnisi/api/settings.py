@@ -17,7 +17,7 @@ _DEFAULT_RECEIPT_SETTINGS: dict[str, Any] = {
     "show_opening_hours": True,
     "show_loyalty_section": True,
     "vat_message_line": "All items Include VAT.",
-    "fiscal_message_line": "This is a Fiscal Receipt.",
+    "fiscal_message_line": "Status is determined by saved fiscal evidence.",
     "thank_you_line": "Thanks for your custom.",
     "gift_receipt_title": "Gift Receipt",
     "gift_receipt_footer": "Enjoy your custom",

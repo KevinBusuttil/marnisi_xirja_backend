@@ -15,7 +15,15 @@
   "loy_cust_card_num",
   "sales_items",
   "sales_payments",
-  "sales_payload"
+  "sales_payload",
+  "fiscal_protocol",
+  "fiscal_final_total",
+  "fiscal_payload_hash",
+  "receipt_snapshot",
+  "acknowledgement",
+  "fiscal_status",
+  "return_source_sale_num",
+  "manual_receipt_reference"
  ],
  "fields": [
   {
@@ -85,6 +93,55 @@
    "fieldname": "sales_payload",
    "fieldtype": "Long Text",
    "label": "Sales Payload (JSON)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fiscal_protocol",
+   "fieldtype": "Int",
+   "label": "Fiscal Protocol",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fiscal_final_total",
+   "fieldtype": "Currency",
+   "label": "Fiscal Final Total",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fiscal_payload_hash",
+   "fieldtype": "Data",
+   "label": "Fiscal Payload Hash",
+   "read_only": 1
+  },
+  {
+   "fieldname": "receipt_snapshot",
+   "fieldtype": "Long Text",
+   "label": "Receipt Snapshot",
+   "read_only": 1
+  },
+  {
+   "fieldname": "acknowledgement",
+   "fieldtype": "Long Text",
+   "label": "Acknowledgement",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fiscal_status",
+   "fieldtype": "Data",
+   "label": "Fiscal Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "return_source_sale_num",
+   "fieldtype": "Data",
+   "label": "Return Source Sale Num",
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "manual_receipt_reference",
+   "fieldtype": "Data",
+   "label": "Manual Receipt Reference",
    "read_only": 1
   }
  ],

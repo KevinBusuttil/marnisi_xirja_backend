@@ -63,6 +63,8 @@ def test_get_context_returns_ui_assets_when_columns_exist(monkeypatch):
         lambda: {"receipt_currency_label": "EUR"},
     )
 
+    monkeypatch.setattr(auth, "_csrf_token", lambda: "csrf")
+    monkeypatch.setattr(auth, "_public_fiscal_context", lambda vineyard: {"mode": "Disabled"})
     result = auth.get_context()
 
     assert result["ui_assets"]["login_background_image"] == "/files/marnisi-login.jpg"
@@ -89,6 +91,8 @@ def test_get_context_ui_assets_fallback_to_empty_when_columns_missing(monkeypatc
         lambda: {"receipt_currency_label": "EUR"},
     )
 
+    monkeypatch.setattr(auth, "_csrf_token", lambda: "csrf")
+    monkeypatch.setattr(auth, "_public_fiscal_context", lambda vineyard: {"mode": "Disabled"})
     result = auth.get_context()
 
     assert result["ui_assets"] == {

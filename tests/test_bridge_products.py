@@ -1,6 +1,12 @@
 from __future__ import annotations
 
 from xirja_marnisi.api import bridge
+import pytest
+
+
+@pytest.fixture(autouse=True)
+def bridge_access(monkeypatch):
+    monkeypatch.setattr(bridge, "require_pos_access", lambda *a, **k: {"user":"cashier@example.invalid"})
 
 
 class _FakeDB:

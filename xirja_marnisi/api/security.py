@@ -5,7 +5,7 @@ from typing import Any
 
 import frappe
 
-ADMIN_MUTATION_ROLES = {"Super Admin", "System Manager", "Vineyard Admin"}
+ADMIN_MUTATION_ROLES = {"Super Admin", "System Manager", "Vineyard Admin", "Vineyard Manager"}
 STAFF_MUTATION_ROLES = ADMIN_MUTATION_ROLES | {"Vineyard Staff"}
 
 
@@ -44,6 +44,9 @@ def require_authenticated_user() -> str:
     user = getattr(frappe.session, "user", "Guest")
     if not user or user == "Guest":
         frappe.throw("Authentication required", frappe.AuthenticationError)
+    enabled = frappe.db.sql("SELECT enabled FROM `tabUser` WHERE name = %s", (user,))
+    if not enabled or not int(enabled[0][0] or 0):
+        frappe.throw("Authentication required", frappe.AuthenticationError)
     return user
 
 
@@ -71,6 +74,7 @@ def get_access_rows(user: str) -> list[dict[str, Any]]:
         FROM `tabVineyard User Access`
         WHERE `user` = %s
           AND IFNULL(is_active, 1) = 1
+          AND vineyard IN (SELECT name FROM `tabVineyard` WHERE is_active = 1)
         ORDER BY is_default DESC, modified DESC
         """,
         (user,),
@@ -172,3 +176,18 @@ def to_bool(value: Any) -> bool:
     if isinstance(value, str):
         return value.strip().lower() in {"1", "true", "yes", "y", "on"}
     return False
+
+
+LOCKED_STORE_ID = "Marnisi M'Xlokk"
+LOCKED_REGISTER_ID = f"{LOCKED_STORE_ID}-MAIN"
+
+
+def require_pos_access(store=None, register=None, mutate=False, staff_allowed=False):
+    """Authorize the real session against the deployed single POS register."""
+    if store is not None and str(store) != LOCKED_STORE_ID:
+        frappe.throw("Invalid POS vineyard", frappe.PermissionError)
+    if register is not None and str(register) != LOCKED_REGISTER_ID:
+        frappe.throw("Invalid POS register", frappe.PermissionError)
+    return require_vineyard_permission(
+        LOCKED_STORE_ID, mutate=mutate, staff_allowed=staff_allowed
+    )

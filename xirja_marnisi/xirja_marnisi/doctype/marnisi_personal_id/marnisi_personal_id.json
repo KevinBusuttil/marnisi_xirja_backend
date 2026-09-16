@@ -1,0 +1,47 @@
+{
+  "doctype": "DocType",
+  "name": "Marnisi Personal ID",
+  "module": "XIRJA Marnisi",
+  "autoname": "hash",
+  "engine": "InnoDB",
+  "field_order": [
+    "personal_id",
+    "user",
+    "is_active"
+  ],
+  "fields": [
+    {
+      "fieldname": "personal_id",
+      "label": "Personal ID",
+      "fieldtype": "Data",
+      "reqd": 1,
+      "unique": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "user",
+      "label": "User",
+      "fieldtype": "Link",
+      "options": "User",
+      "reqd": 1,
+      "unique": 1,
+      "in_list_view": 1
+    },
+    {
+      "fieldname": "is_active",
+      "label": "Active",
+      "fieldtype": "Check",
+      "default": "1"
+    }
+  ],
+  "permissions": [
+    {
+      "role": "System Manager",
+      "read": 1,
+      "write": 1,
+      "create": 1,
+      "delete": 1
+    }
+  ],
+  "track_changes": 1
+}

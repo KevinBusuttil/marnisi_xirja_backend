@@ -57,7 +57,7 @@ def test_load_receipt_settings_uses_defaults_when_singles_are_missing(monkeypatc
         "show_opening_hours": True,
         "show_loyalty_section": True,
         "vat_message_line": "All items Include VAT.",
-        "fiscal_message_line": "This is a Fiscal Receipt.",
+        "fiscal_message_line": "Status is determined by saved fiscal evidence.",
         "thank_you_line": "Thanks for your custom.",
         "gift_receipt_title": "Gift Receipt",
         "gift_receipt_footer": "Enjoy your custom",

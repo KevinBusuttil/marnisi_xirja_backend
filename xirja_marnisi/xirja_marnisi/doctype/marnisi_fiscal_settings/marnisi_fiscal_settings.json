@@ -1,0 +1,151 @@
+{
+ "doctype": "DocType",
+ "name": "Marnisi Fiscal Settings",
+ "module": "XIRJA Marnisi",
+ "autoname": "hash",
+ "engine": "InnoDB",
+ "track_changes": 1,
+ "field_order": [
+  "vineyard",
+  "mode",
+  "legal_name",
+  "vat_number",
+  "address",
+  "exo_number",
+  "currency",
+  "approval_reference",
+  "approval_confirmed",
+  "catalogue_reviewed",
+  "all_terminals_upgraded",
+  "legacy_queue_cleared",
+  "backup_restore_verified",
+  "physical_acceptance_confirmed",
+  "outage_procedure_confirmed",
+  "issuance_suspended",
+  "recovery_reference"
+ ],
+ "fields": [
+  {
+   "fieldname": "vineyard",
+   "fieldtype": "Link",
+   "label": "Vineyard",
+   "options": "Vineyard",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "mode",
+   "fieldtype": "Select",
+   "label": "Mode",
+   "options": "Disabled\nTest\nLive",
+   "default": "Disabled",
+   "reqd": 1
+  },
+  {
+   "fieldname": "legal_name",
+   "fieldtype": "Data",
+   "label": "Legal Name"
+  },
+  {
+   "fieldname": "vat_number",
+   "fieldtype": "Data",
+   "label": "Vat Number"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
+  },
+  {
+   "fieldname": "exo_number",
+   "fieldtype": "Data",
+   "label": "Exo Number"
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Select",
+   "label": "Currency",
+   "options": "EUR",
+   "default": "EUR",
+   "reqd": 1
+  },
+  {
+   "fieldname": "approval_reference",
+   "fieldtype": "Small Text",
+   "label": "Approval Reference"
+  },
+  {
+   "fieldname": "approval_confirmed",
+   "fieldtype": "Check",
+   "label": "Approval Confirmed",
+   "default": "0"
+  },
+  {
+   "fieldname": "catalogue_reviewed",
+   "fieldtype": "Check",
+   "label": "Catalogue Reviewed",
+   "default": "0"
+  },
+  {
+   "fieldname": "all_terminals_upgraded",
+   "fieldtype": "Check",
+   "label": "All Terminals Upgraded",
+   "default": "0"
+  },
+  {
+   "fieldname": "legacy_queue_cleared",
+   "fieldtype": "Check",
+   "label": "Legacy Queue Cleared",
+   "default": "0"
+  },
+  {
+   "fieldname": "backup_restore_verified",
+   "fieldtype": "Check",
+   "label": "Backup Restore Verified",
+   "default": "0"
+  },
+  {
+   "fieldname": "physical_acceptance_confirmed",
+   "fieldtype": "Check",
+   "label": "Physical Acceptance Confirmed",
+   "default": "0"
+  },
+  {
+   "fieldname": "outage_procedure_confirmed",
+   "fieldtype": "Check",
+   "label": "Outage Procedure Confirmed",
+   "default": "0"
+  },
+  {
+   "fieldname": "issuance_suspended",
+   "fieldtype": "Check",
+   "label": "Issuance Suspended",
+   "default": "0"
+  },
+  {
+   "fieldname": "recovery_reference",
+   "fieldtype": "Small Text",
+   "label": "Recovery Reference"
+  }
+ ],
+ "permissions": [
+  {
+   "role": "System Manager",
+   "read": 1,
+   "write": 1,
+   "create": 1
+  },
+  {
+   "role": "Vineyard Admin",
+   "read": 1,
+   "write": 1
+  },
+  {
+   "role": "Vineyard Manager",
+   "read": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "creation",
+ "sort_order": "DESC"
+}

@@ -1,0 +1,6302 @@
+[
+  {
+    "catalogue_net": 2.966,
+    "payload": {
+      "sales_num": "contract-1",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 2.97,
+      "sales_tax": 0.53,
+      "sales_total": 3.5,
+      "fiscal_final_total": 3.5,
+      "items": [
+        {
+          "si_sale_num": "contract-1",
+          "si_id": "Marnisi M'Xlokk::Reference wine",
+          "si_name": "Reference wine",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Reference wine",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 2.96610169,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 2.97,
+          "si_tax": 0.53,
+          "si_total": 3.5,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-1"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-1",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 3.5
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-1",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-1",
+            "si_id": "Marnisi M'Xlokk::Reference wine",
+            "si_name": "Reference wine",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Reference wine",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 2.96610169,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 2.97,
+            "si_tax": 0.53,
+            "si_total": 3.5,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-1"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-1",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 3.5
+          }
+        ],
+        "subtotal": 2.97,
+        "tax": 0.53,
+        "total": 3.5,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 2.97,
+            "tax": 0.53,
+            "gross": 3.5
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "420b7d88fceb9656ade6320228af3c3f60b84d3772be10d92b4396d3ba28658c"
+  },
+  {
+    "catalogue_net": 2.966,
+    "payload": {
+      "sales_num": "contract-2",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 2.12,
+      "sales_tax": 0.38,
+      "sales_total": 2.5,
+      "fiscal_final_total": 2.5,
+      "items": [
+        {
+          "si_sale_num": "contract-2",
+          "si_id": "Marnisi M'Xlokk::Reference wine",
+          "si_name": "Reference wine",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Reference wine",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 2.96610169,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 2.12,
+          "si_tax": 0.38,
+          "si_total": 2.5,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-2"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-2",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 2.5
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-2",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-2",
+            "si_id": "Marnisi M'Xlokk::Reference wine",
+            "si_name": "Reference wine",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Reference wine",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 2.96610169,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 2.12,
+            "si_tax": 0.38,
+            "si_total": 2.5,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-2"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-2",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 2.5
+          }
+        ],
+        "subtotal": 2.12,
+        "tax": 0.38,
+        "total": 2.5,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 2.12,
+            "tax": 0.38,
+            "gross": 2.5
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "6671326a42f426118e8ba71c8a840c4323a6aa3d176df8c119cd0a09d66fb6b4"
+  },
+  {
+    "catalogue_net": 2.966,
+    "payload": {
+      "sales_num": "contract-3",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 5.93,
+      "sales_tax": 1.07,
+      "sales_total": 7.0,
+      "fiscal_final_total": 7.0,
+      "items": [
+        {
+          "si_sale_num": "contract-3",
+          "si_id": "Marnisi M'Xlokk::Reference wine",
+          "si_name": "Reference wine",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Reference wine",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 2,
+          "si_price": 2.96610169,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 5.93,
+          "si_tax": 1.07,
+          "si_total": 7.0,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-3"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-3",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 7.0
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-3",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-3",
+            "si_id": "Marnisi M'Xlokk::Reference wine",
+            "si_name": "Reference wine",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Reference wine",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 2,
+            "si_price": 2.96610169,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 5.93,
+            "si_tax": 1.07,
+            "si_total": 7.0,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-3"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-3",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 7.0
+          }
+        ],
+        "subtotal": 5.93,
+        "tax": 1.07,
+        "total": 7.0,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 5.93,
+            "tax": 1.07,
+            "gross": 7.0
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "56dc2b38504099d8ff710df5ab14a546ccf30cdd5483ad7e49b15271976ce024"
+  },
+  {
+    "catalogue_net": 2.966,
+    "payload": {
+      "sales_num": "contract-4",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 5.08,
+      "sales_tax": 0.92,
+      "sales_total": 6.0,
+      "fiscal_final_total": 6.0,
+      "items": [
+        {
+          "si_sale_num": "contract-4",
+          "si_id": "Marnisi M'Xlokk::Reference wine",
+          "si_name": "Reference wine",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Reference wine",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 2,
+          "si_price": 2.96610169,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 5.08,
+          "si_tax": 0.92,
+          "si_total": 6.0,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-4"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-4",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 6.0
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-4",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-4",
+            "si_id": "Marnisi M'Xlokk::Reference wine",
+            "si_name": "Reference wine",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Reference wine",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 2,
+            "si_price": 2.96610169,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 5.08,
+            "si_tax": 0.92,
+            "si_total": 6.0,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-4"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-4",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 6.0
+          }
+        ],
+        "subtotal": 5.08,
+        "tax": 0.92,
+        "total": 6.0,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 5.08,
+            "tax": 0.92,
+            "gross": 6.0
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "551346c9259f56aa44ee8b402b83cddad8ae356ca94277fbf971432f33870f75"
+  },
+  {
+    "catalogue_net": 2.966,
+    "payload": {
+      "sales_num": "contract-5",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 74.15,
+      "sales_tax": 13.35,
+      "sales_total": 87.5,
+      "fiscal_final_total": 87.5,
+      "items": [
+        {
+          "si_sale_num": "contract-5",
+          "si_id": "Marnisi M'Xlokk::Reference wine",
+          "si_name": "Reference wine",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Reference wine",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 25,
+          "si_price": 2.96610169,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 74.15,
+          "si_tax": 13.35,
+          "si_total": 87.5,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-5"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-5",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 87.5
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-5",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-5",
+            "si_id": "Marnisi M'Xlokk::Reference wine",
+            "si_name": "Reference wine",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Reference wine",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 25,
+            "si_price": 2.96610169,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 74.15,
+            "si_tax": 13.35,
+            "si_total": 87.5,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-5"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-5",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 87.5
+          }
+        ],
+        "subtotal": 74.15,
+        "tax": 13.35,
+        "total": 87.5,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 74.15,
+            "tax": 13.35,
+            "gross": 87.5
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "980511e63aa795f7296b94ed8b3518591ffa375757bd68d72004ffe2bfa4b8c6"
+  },
+  {
+    "catalogue_net": 2.966,
+    "payload": {
+      "sales_num": "contract-6",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 73.31,
+      "sales_tax": 13.19,
+      "sales_total": 86.5,
+      "fiscal_final_total": 86.5,
+      "items": [
+        {
+          "si_sale_num": "contract-6",
+          "si_id": "Marnisi M'Xlokk::Reference wine",
+          "si_name": "Reference wine",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Reference wine",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 25,
+          "si_price": 2.96610169,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 73.31,
+          "si_tax": 13.19,
+          "si_total": 86.5,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-6"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-6",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 86.5
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-6",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-6",
+            "si_id": "Marnisi M'Xlokk::Reference wine",
+            "si_name": "Reference wine",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Reference wine",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 25,
+            "si_price": 2.96610169,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 73.31,
+            "si_tax": 13.19,
+            "si_total": 86.5,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-6"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-6",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 86.5
+          }
+        ],
+        "subtotal": 73.31,
+        "tax": 13.19,
+        "total": 86.5,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 73.31,
+            "tax": 13.19,
+            "gross": 86.5
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "d677faa2d09a9be28c8637b43b252767cf233ff39d6bb3340276e8494a455028"
+  },
+  {
+    "catalogue_net": 72.034,
+    "payload": {
+      "sales_num": "contract-7",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 72.03,
+      "sales_tax": 12.97,
+      "sales_total": 85.0,
+      "fiscal_final_total": 85.0,
+      "items": [
+        {
+          "si_sale_num": "contract-7",
+          "si_id": "Marnisi M'Xlokk::Antonin Experience",
+          "si_name": "Antonin Experience",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Experience",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 72.03389831,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 72.03,
+          "si_tax": 12.97,
+          "si_total": 85.0,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-7"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-7",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 85.0
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-7",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-7",
+            "si_id": "Marnisi M'Xlokk::Antonin Experience",
+            "si_name": "Antonin Experience",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Experience",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 72.03389831,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 72.03,
+            "si_tax": 12.97,
+            "si_total": 85.0,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-7"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-7",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 85.0
+          }
+        ],
+        "subtotal": 72.03,
+        "tax": 12.97,
+        "total": 85.0,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 72.03,
+            "tax": 12.97,
+            "gross": 85.0
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "0ea15cd185288d779c02628f17f353f10c0a5a341f24f066c9aa096e36fcc798"
+  },
+  {
+    "catalogue_net": 72.034,
+    "payload": {
+      "sales_num": "contract-8",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 71.19,
+      "sales_tax": 12.81,
+      "sales_total": 84.0,
+      "fiscal_final_total": 84.0,
+      "items": [
+        {
+          "si_sale_num": "contract-8",
+          "si_id": "Marnisi M'Xlokk::Antonin Experience",
+          "si_name": "Antonin Experience",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Experience",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 72.03389831,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 71.19,
+          "si_tax": 12.81,
+          "si_total": 84.0,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-8"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-8",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 84.0
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-8",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-8",
+            "si_id": "Marnisi M'Xlokk::Antonin Experience",
+            "si_name": "Antonin Experience",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Experience",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 72.03389831,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 71.19,
+            "si_tax": 12.81,
+            "si_total": 84.0,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-8"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-8",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 84.0
+          }
+        ],
+        "subtotal": 71.19,
+        "tax": 12.81,
+        "total": 84.0,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 71.19,
+            "tax": 12.81,
+            "gross": 84.0
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "d9a3530e63a6e39799b87bd6b01d75a7b89d0c6b46ca13ffd2d1e48775177b23"
+  },
+  {
+    "catalogue_net": 72.034,
+    "payload": {
+      "sales_num": "contract-9",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 144.07,
+      "sales_tax": 25.93,
+      "sales_total": 170.0,
+      "fiscal_final_total": 170.0,
+      "items": [
+        {
+          "si_sale_num": "contract-9",
+          "si_id": "Marnisi M'Xlokk::Antonin Experience",
+          "si_name": "Antonin Experience",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Experience",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 2,
+          "si_price": 72.03389831,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 144.07,
+          "si_tax": 25.93,
+          "si_total": 170.0,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-9"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-9",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 170.0
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-9",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-9",
+            "si_id": "Marnisi M'Xlokk::Antonin Experience",
+            "si_name": "Antonin Experience",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Experience",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 2,
+            "si_price": 72.03389831,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 144.07,
+            "si_tax": 25.93,
+            "si_total": 170.0,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-9"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-9",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 170.0
+          }
+        ],
+        "subtotal": 144.07,
+        "tax": 25.93,
+        "total": 170.0,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 144.07,
+            "tax": 25.93,
+            "gross": 170.0
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "04d41a992f255aca69a9a2758d956793846a8508af87340803d1e15f644f6bf7"
+  },
+  {
+    "catalogue_net": 72.034,
+    "payload": {
+      "sales_num": "contract-10",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 143.22,
+      "sales_tax": 25.78,
+      "sales_total": 169.0,
+      "fiscal_final_total": 169.0,
+      "items": [
+        {
+          "si_sale_num": "contract-10",
+          "si_id": "Marnisi M'Xlokk::Antonin Experience",
+          "si_name": "Antonin Experience",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Experience",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 2,
+          "si_price": 72.03389831,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 143.22,
+          "si_tax": 25.78,
+          "si_total": 169.0,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-10"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-10",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 169.0
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-10",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-10",
+            "si_id": "Marnisi M'Xlokk::Antonin Experience",
+            "si_name": "Antonin Experience",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Experience",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 2,
+            "si_price": 72.03389831,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 143.22,
+            "si_tax": 25.78,
+            "si_total": 169.0,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-10"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-10",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 169.0
+          }
+        ],
+        "subtotal": 143.22,
+        "tax": 25.78,
+        "total": 169.0,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 143.22,
+            "tax": 25.78,
+            "gross": 169.0
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "b08364f2d2ca0cd2dbd6dd6d6a52b839a437aae1a0e3ed4e651a29876db422f3"
+  },
+  {
+    "catalogue_net": 72.034,
+    "payload": {
+      "sales_num": "contract-11",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 1800.85,
+      "sales_tax": 324.15,
+      "sales_total": 2125.0,
+      "fiscal_final_total": 2125.0,
+      "items": [
+        {
+          "si_sale_num": "contract-11",
+          "si_id": "Marnisi M'Xlokk::Antonin Experience",
+          "si_name": "Antonin Experience",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Experience",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 25,
+          "si_price": 72.03389831,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 1800.85,
+          "si_tax": 324.15,
+          "si_total": 2125.0,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-11"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-11",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 2125.0
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-11",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-11",
+            "si_id": "Marnisi M'Xlokk::Antonin Experience",
+            "si_name": "Antonin Experience",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Experience",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 25,
+            "si_price": 72.03389831,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 1800.85,
+            "si_tax": 324.15,
+            "si_total": 2125.0,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-11"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-11",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 2125.0
+          }
+        ],
+        "subtotal": 1800.85,
+        "tax": 324.15,
+        "total": 2125.0,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 1800.85,
+            "tax": 324.15,
+            "gross": 2125.0
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "0a06d9d97b983274e4a3015f6c6165eac7f1d0d405dcc7952088dbacdccad9f2"
+  },
+  {
+    "catalogue_net": 72.034,
+    "payload": {
+      "sales_num": "contract-12",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 1800.0,
+      "sales_tax": 324.0,
+      "sales_total": 2124.0,
+      "fiscal_final_total": 2124.0,
+      "items": [
+        {
+          "si_sale_num": "contract-12",
+          "si_id": "Marnisi M'Xlokk::Antonin Experience",
+          "si_name": "Antonin Experience",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Experience",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 25,
+          "si_price": 72.03389831,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 1800.0,
+          "si_tax": 324.0,
+          "si_total": 2124.0,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-12"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-12",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 2124.0
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-12",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-12",
+            "si_id": "Marnisi M'Xlokk::Antonin Experience",
+            "si_name": "Antonin Experience",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Experience",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 25,
+            "si_price": 72.03389831,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 1800.0,
+            "si_tax": 324.0,
+            "si_total": 2124.0,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-12"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-12",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 2124.0
+          }
+        ],
+        "subtotal": 1800.0,
+        "tax": 324.0,
+        "total": 2124.0,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 1800.0,
+            "tax": 324.0,
+            "gross": 2124.0
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "b00c0b537e71364e983b35b16fe05b0a48c74c97c7bc7e6cd7d70c2b01c23799"
+  },
+  {
+    "catalogue_net": 84.746,
+    "payload": {
+      "sales_num": "contract-13",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 84.75,
+      "sales_tax": 15.25,
+      "sales_total": 100.0,
+      "fiscal_final_total": 100.0,
+      "items": [
+        {
+          "si_sale_num": "contract-13",
+          "si_id": "Marnisi M'Xlokk::Terrarosa Experience",
+          "si_name": "Terrarosa Experience",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Terrarosa Experience",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 84.74576271,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 84.75,
+          "si_tax": 15.25,
+          "si_total": 100.0,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-13"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-13",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 100.0
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-13",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-13",
+            "si_id": "Marnisi M'Xlokk::Terrarosa Experience",
+            "si_name": "Terrarosa Experience",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Terrarosa Experience",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 84.74576271,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 84.75,
+            "si_tax": 15.25,
+            "si_total": 100.0,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-13"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-13",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 100.0
+          }
+        ],
+        "subtotal": 84.75,
+        "tax": 15.25,
+        "total": 100.0,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 84.75,
+            "tax": 15.25,
+            "gross": 100.0
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "15670811b1df37ee3e19ce8cda6a336511ce05f3d65a9bcf136794f016e3b6d0"
+  },
+  {
+    "catalogue_net": 84.746,
+    "payload": {
+      "sales_num": "contract-14",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 83.9,
+      "sales_tax": 15.1,
+      "sales_total": 99.0,
+      "fiscal_final_total": 99.0,
+      "items": [
+        {
+          "si_sale_num": "contract-14",
+          "si_id": "Marnisi M'Xlokk::Terrarosa Experience",
+          "si_name": "Terrarosa Experience",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Terrarosa Experience",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 84.74576271,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 83.9,
+          "si_tax": 15.1,
+          "si_total": 99.0,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-14"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-14",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 99.0
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-14",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-14",
+            "si_id": "Marnisi M'Xlokk::Terrarosa Experience",
+            "si_name": "Terrarosa Experience",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Terrarosa Experience",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 84.74576271,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 83.9,
+            "si_tax": 15.1,
+            "si_total": 99.0,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-14"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-14",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 99.0
+          }
+        ],
+        "subtotal": 83.9,
+        "tax": 15.1,
+        "total": 99.0,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 83.9,
+            "tax": 15.1,
+            "gross": 99.0
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "4fa962c0dc798b6e4f26b6e5cdba5239b7fc58d3ae67776c52fd7af4af69c712"
+  },
+  {
+    "catalogue_net": 84.746,
+    "payload": {
+      "sales_num": "contract-15",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 169.49,
+      "sales_tax": 30.51,
+      "sales_total": 200.0,
+      "fiscal_final_total": 200.0,
+      "items": [
+        {
+          "si_sale_num": "contract-15",
+          "si_id": "Marnisi M'Xlokk::Terrarosa Experience",
+          "si_name": "Terrarosa Experience",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Terrarosa Experience",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 2,
+          "si_price": 84.74576271,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 169.49,
+          "si_tax": 30.51,
+          "si_total": 200.0,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-15"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-15",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 200.0
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-15",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-15",
+            "si_id": "Marnisi M'Xlokk::Terrarosa Experience",
+            "si_name": "Terrarosa Experience",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Terrarosa Experience",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 2,
+            "si_price": 84.74576271,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 169.49,
+            "si_tax": 30.51,
+            "si_total": 200.0,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-15"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-15",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 200.0
+          }
+        ],
+        "subtotal": 169.49,
+        "tax": 30.51,
+        "total": 200.0,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 169.49,
+            "tax": 30.51,
+            "gross": 200.0
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "ed6ed2880b97206fe2336688b7716110698afdf01b78080f1282f4e10c2529d7"
+  },
+  {
+    "catalogue_net": 84.746,
+    "payload": {
+      "sales_num": "contract-16",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 168.64,
+      "sales_tax": 30.36,
+      "sales_total": 199.0,
+      "fiscal_final_total": 199.0,
+      "items": [
+        {
+          "si_sale_num": "contract-16",
+          "si_id": "Marnisi M'Xlokk::Terrarosa Experience",
+          "si_name": "Terrarosa Experience",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Terrarosa Experience",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 2,
+          "si_price": 84.74576271,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 168.64,
+          "si_tax": 30.36,
+          "si_total": 199.0,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-16"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-16",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 199.0
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-16",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-16",
+            "si_id": "Marnisi M'Xlokk::Terrarosa Experience",
+            "si_name": "Terrarosa Experience",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Terrarosa Experience",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 2,
+            "si_price": 84.74576271,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 168.64,
+            "si_tax": 30.36,
+            "si_total": 199.0,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-16"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-16",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 199.0
+          }
+        ],
+        "subtotal": 168.64,
+        "tax": 30.36,
+        "total": 199.0,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 168.64,
+            "tax": 30.36,
+            "gross": 199.0
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "a689a18f393b80672c0b4a380a93978a313e0fadb5fe1e2f049efb487979faa8"
+  },
+  {
+    "catalogue_net": 84.746,
+    "payload": {
+      "sales_num": "contract-17",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 2118.64,
+      "sales_tax": 381.36,
+      "sales_total": 2500.0,
+      "fiscal_final_total": 2500.0,
+      "items": [
+        {
+          "si_sale_num": "contract-17",
+          "si_id": "Marnisi M'Xlokk::Terrarosa Experience",
+          "si_name": "Terrarosa Experience",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Terrarosa Experience",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 25,
+          "si_price": 84.74576271,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 2118.64,
+          "si_tax": 381.36,
+          "si_total": 2500.0,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-17"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-17",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 2500.0
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-17",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-17",
+            "si_id": "Marnisi M'Xlokk::Terrarosa Experience",
+            "si_name": "Terrarosa Experience",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Terrarosa Experience",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 25,
+            "si_price": 84.74576271,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 2118.64,
+            "si_tax": 381.36,
+            "si_total": 2500.0,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-17"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-17",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 2500.0
+          }
+        ],
+        "subtotal": 2118.64,
+        "tax": 381.36,
+        "total": 2500.0,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 2118.64,
+            "tax": 381.36,
+            "gross": 2500.0
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "2a5a14ce99a66cfb11be3feeaed0804eeab12ecbfaea6e42624a5c8c4332a52f"
+  },
+  {
+    "catalogue_net": 84.746,
+    "payload": {
+      "sales_num": "contract-18",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 2117.8,
+      "sales_tax": 381.2,
+      "sales_total": 2499.0,
+      "fiscal_final_total": 2499.0,
+      "items": [
+        {
+          "si_sale_num": "contract-18",
+          "si_id": "Marnisi M'Xlokk::Terrarosa Experience",
+          "si_name": "Terrarosa Experience",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Terrarosa Experience",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 25,
+          "si_price": 84.74576271,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 2117.8,
+          "si_tax": 381.2,
+          "si_total": 2499.0,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-18"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-18",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 2499.0
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-18",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-18",
+            "si_id": "Marnisi M'Xlokk::Terrarosa Experience",
+            "si_name": "Terrarosa Experience",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Terrarosa Experience",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 25,
+            "si_price": 84.74576271,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 2117.8,
+            "si_tax": 381.2,
+            "si_total": 2499.0,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-18"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-18",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 2499.0
+          }
+        ],
+        "subtotal": 2117.8,
+        "tax": 381.2,
+        "total": 2499.0,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 2117.8,
+            "tax": 381.2,
+            "gross": 2499.0
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "5138d0cb43af05eb19d3d73fe4587af1d7ea5cf43c6d4aff1f7bad082d96845f"
+  },
+  {
+    "catalogue_net": 97.458,
+    "payload": {
+      "sales_num": "contract-19",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 97.46,
+      "sales_tax": 17.54,
+      "sales_total": 115.0,
+      "fiscal_final_total": 115.0,
+      "items": [
+        {
+          "si_sale_num": "contract-19",
+          "si_id": "Marnisi M'Xlokk::Marnisi Wine Estate Experience",
+          "si_name": "Marnisi Wine Estate Experience",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Marnisi Wine Estate Experience",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 97.45762712,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 97.46,
+          "si_tax": 17.54,
+          "si_total": 115.0,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-19"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-19",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 115.0
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-19",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-19",
+            "si_id": "Marnisi M'Xlokk::Marnisi Wine Estate Experience",
+            "si_name": "Marnisi Wine Estate Experience",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Marnisi Wine Estate Experience",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 97.45762712,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 97.46,
+            "si_tax": 17.54,
+            "si_total": 115.0,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-19"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-19",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 115.0
+          }
+        ],
+        "subtotal": 97.46,
+        "tax": 17.54,
+        "total": 115.0,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 97.46,
+            "tax": 17.54,
+            "gross": 115.0
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "40822fdf9257db8f4c80b474d8fb5dfc4b424eb40864cba81339103648529ef9"
+  },
+  {
+    "catalogue_net": 97.458,
+    "payload": {
+      "sales_num": "contract-20",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 96.61,
+      "sales_tax": 17.39,
+      "sales_total": 114.0,
+      "fiscal_final_total": 114.0,
+      "items": [
+        {
+          "si_sale_num": "contract-20",
+          "si_id": "Marnisi M'Xlokk::Marnisi Wine Estate Experience",
+          "si_name": "Marnisi Wine Estate Experience",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Marnisi Wine Estate Experience",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 97.45762712,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 96.61,
+          "si_tax": 17.39,
+          "si_total": 114.0,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-20"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-20",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 114.0
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-20",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-20",
+            "si_id": "Marnisi M'Xlokk::Marnisi Wine Estate Experience",
+            "si_name": "Marnisi Wine Estate Experience",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Marnisi Wine Estate Experience",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 97.45762712,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 96.61,
+            "si_tax": 17.39,
+            "si_total": 114.0,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-20"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-20",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 114.0
+          }
+        ],
+        "subtotal": 96.61,
+        "tax": 17.39,
+        "total": 114.0,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 96.61,
+            "tax": 17.39,
+            "gross": 114.0
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "9a01d84d2fcf91c44da3144bdef9e4e547fa98c71584971d2aef777ae11efba4"
+  },
+  {
+    "catalogue_net": 97.458,
+    "payload": {
+      "sales_num": "contract-21",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 194.92,
+      "sales_tax": 35.08,
+      "sales_total": 230.0,
+      "fiscal_final_total": 230.0,
+      "items": [
+        {
+          "si_sale_num": "contract-21",
+          "si_id": "Marnisi M'Xlokk::Marnisi Wine Estate Experience",
+          "si_name": "Marnisi Wine Estate Experience",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Marnisi Wine Estate Experience",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 2,
+          "si_price": 97.45762712,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 194.92,
+          "si_tax": 35.08,
+          "si_total": 230.0,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-21"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-21",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 230.0
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-21",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-21",
+            "si_id": "Marnisi M'Xlokk::Marnisi Wine Estate Experience",
+            "si_name": "Marnisi Wine Estate Experience",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Marnisi Wine Estate Experience",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 2,
+            "si_price": 97.45762712,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 194.92,
+            "si_tax": 35.08,
+            "si_total": 230.0,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-21"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-21",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 230.0
+          }
+        ],
+        "subtotal": 194.92,
+        "tax": 35.08,
+        "total": 230.0,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 194.92,
+            "tax": 35.08,
+            "gross": 230.0
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "6765e3e273e18a8f6a2dc252bcf9b3c880891fa17c4c39c5ab9179e5c8a68d7f"
+  },
+  {
+    "catalogue_net": 97.458,
+    "payload": {
+      "sales_num": "contract-22",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 194.07,
+      "sales_tax": 34.93,
+      "sales_total": 229.0,
+      "fiscal_final_total": 229.0,
+      "items": [
+        {
+          "si_sale_num": "contract-22",
+          "si_id": "Marnisi M'Xlokk::Marnisi Wine Estate Experience",
+          "si_name": "Marnisi Wine Estate Experience",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Marnisi Wine Estate Experience",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 2,
+          "si_price": 97.45762712,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 194.07,
+          "si_tax": 34.93,
+          "si_total": 229.0,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-22"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-22",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 229.0
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-22",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-22",
+            "si_id": "Marnisi M'Xlokk::Marnisi Wine Estate Experience",
+            "si_name": "Marnisi Wine Estate Experience",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Marnisi Wine Estate Experience",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 2,
+            "si_price": 97.45762712,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 194.07,
+            "si_tax": 34.93,
+            "si_total": 229.0,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-22"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-22",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 229.0
+          }
+        ],
+        "subtotal": 194.07,
+        "tax": 34.93,
+        "total": 229.0,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 194.07,
+            "tax": 34.93,
+            "gross": 229.0
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "4ab45aa131f4fc46614c871795e903ec601a3084825dc21c3ec015b390e0182e"
+  },
+  {
+    "catalogue_net": 97.458,
+    "payload": {
+      "sales_num": "contract-23",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 2436.44,
+      "sales_tax": 438.56,
+      "sales_total": 2875.0,
+      "fiscal_final_total": 2875.0,
+      "items": [
+        {
+          "si_sale_num": "contract-23",
+          "si_id": "Marnisi M'Xlokk::Marnisi Wine Estate Experience",
+          "si_name": "Marnisi Wine Estate Experience",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Marnisi Wine Estate Experience",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 25,
+          "si_price": 97.45762712,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 2436.44,
+          "si_tax": 438.56,
+          "si_total": 2875.0,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-23"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-23",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 2875.0
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-23",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-23",
+            "si_id": "Marnisi M'Xlokk::Marnisi Wine Estate Experience",
+            "si_name": "Marnisi Wine Estate Experience",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Marnisi Wine Estate Experience",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 25,
+            "si_price": 97.45762712,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 2436.44,
+            "si_tax": 438.56,
+            "si_total": 2875.0,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-23"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-23",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 2875.0
+          }
+        ],
+        "subtotal": 2436.44,
+        "tax": 438.56,
+        "total": 2875.0,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 2436.44,
+            "tax": 438.56,
+            "gross": 2875.0
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "c091ba181bf0f05b37ae76d8ac9fe8ebcb75b11ee2668498a3e95dd99c327355"
+  },
+  {
+    "catalogue_net": 97.458,
+    "payload": {
+      "sales_num": "contract-24",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 2435.59,
+      "sales_tax": 438.41,
+      "sales_total": 2874.0,
+      "fiscal_final_total": 2874.0,
+      "items": [
+        {
+          "si_sale_num": "contract-24",
+          "si_id": "Marnisi M'Xlokk::Marnisi Wine Estate Experience",
+          "si_name": "Marnisi Wine Estate Experience",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Marnisi Wine Estate Experience",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 25,
+          "si_price": 97.45762712,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 2435.59,
+          "si_tax": 438.41,
+          "si_total": 2874.0,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-24"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-24",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 2874.0
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-24",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-24",
+            "si_id": "Marnisi M'Xlokk::Marnisi Wine Estate Experience",
+            "si_name": "Marnisi Wine Estate Experience",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Marnisi Wine Estate Experience",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 25,
+            "si_price": 97.45762712,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 2435.59,
+            "si_tax": 438.41,
+            "si_total": 2874.0,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-24"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-24",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 2874.0
+          }
+        ],
+        "subtotal": 2435.59,
+        "tax": 438.41,
+        "total": 2874.0,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 2435.59,
+            "tax": 438.41,
+            "gross": 2874.0
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "a014fec30b6c23da57fc73391538d8c05571257b271ae702a16ec8a10a2a1d13"
+  },
+  {
+    "catalogue_net": 17.585,
+    "payload": {
+      "sales_num": "contract-25",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 17.58,
+      "sales_tax": 3.17,
+      "sales_total": 20.75,
+      "fiscal_final_total": 20.75,
+      "items": [
+        {
+          "si_sale_num": "contract-25",
+          "si_id": "Marnisi M'Xlokk::Antonin Blanc",
+          "si_name": "Antonin Blanc",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Blanc",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 17.58474576,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 17.58,
+          "si_tax": 3.17,
+          "si_total": 20.75,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-25"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-25",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 20.75
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-25",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-25",
+            "si_id": "Marnisi M'Xlokk::Antonin Blanc",
+            "si_name": "Antonin Blanc",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Blanc",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 17.58474576,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 17.58,
+            "si_tax": 3.17,
+            "si_total": 20.75,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-25"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-25",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 20.75
+          }
+        ],
+        "subtotal": 17.58,
+        "tax": 3.17,
+        "total": 20.75,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 17.58,
+            "tax": 3.17,
+            "gross": 20.75
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "ec0ff1bcd45cf30724ab347da607f0de3d3e8d6094edf35f01a4208f2126d481"
+  },
+  {
+    "catalogue_net": 17.585,
+    "payload": {
+      "sales_num": "contract-26",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 16.74,
+      "sales_tax": 3.01,
+      "sales_total": 19.75,
+      "fiscal_final_total": 19.75,
+      "items": [
+        {
+          "si_sale_num": "contract-26",
+          "si_id": "Marnisi M'Xlokk::Antonin Blanc",
+          "si_name": "Antonin Blanc",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Blanc",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 17.58474576,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 16.74,
+          "si_tax": 3.01,
+          "si_total": 19.75,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-26"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-26",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 19.75
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-26",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-26",
+            "si_id": "Marnisi M'Xlokk::Antonin Blanc",
+            "si_name": "Antonin Blanc",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Blanc",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 17.58474576,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 16.74,
+            "si_tax": 3.01,
+            "si_total": 19.75,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-26"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-26",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 19.75
+          }
+        ],
+        "subtotal": 16.74,
+        "tax": 3.01,
+        "total": 19.75,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 16.74,
+            "tax": 3.01,
+            "gross": 19.75
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "1d4840fd1509341e03c05d1e70251ae296ef9ae8a0d83ad633054f86c2f59a24"
+  },
+  {
+    "catalogue_net": 17.585,
+    "payload": {
+      "sales_num": "contract-27",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 35.17,
+      "sales_tax": 6.33,
+      "sales_total": 41.5,
+      "fiscal_final_total": 41.5,
+      "items": [
+        {
+          "si_sale_num": "contract-27",
+          "si_id": "Marnisi M'Xlokk::Antonin Blanc",
+          "si_name": "Antonin Blanc",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Blanc",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 2,
+          "si_price": 17.58474576,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 35.17,
+          "si_tax": 6.33,
+          "si_total": 41.5,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-27"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-27",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 41.5
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-27",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-27",
+            "si_id": "Marnisi M'Xlokk::Antonin Blanc",
+            "si_name": "Antonin Blanc",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Blanc",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 2,
+            "si_price": 17.58474576,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 35.17,
+            "si_tax": 6.33,
+            "si_total": 41.5,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-27"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-27",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 41.5
+          }
+        ],
+        "subtotal": 35.17,
+        "tax": 6.33,
+        "total": 41.5,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 35.17,
+            "tax": 6.33,
+            "gross": 41.5
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "e953127163959b3a719909b4e24bc0e995ce5983c91945f08e6236256dc4a840"
+  },
+  {
+    "catalogue_net": 17.585,
+    "payload": {
+      "sales_num": "contract-28",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 34.32,
+      "sales_tax": 6.18,
+      "sales_total": 40.5,
+      "fiscal_final_total": 40.5,
+      "items": [
+        {
+          "si_sale_num": "contract-28",
+          "si_id": "Marnisi M'Xlokk::Antonin Blanc",
+          "si_name": "Antonin Blanc",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Blanc",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 2,
+          "si_price": 17.58474576,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 34.32,
+          "si_tax": 6.18,
+          "si_total": 40.5,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-28"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-28",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 40.5
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-28",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-28",
+            "si_id": "Marnisi M'Xlokk::Antonin Blanc",
+            "si_name": "Antonin Blanc",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Blanc",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 2,
+            "si_price": 17.58474576,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 34.32,
+            "si_tax": 6.18,
+            "si_total": 40.5,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-28"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-28",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 40.5
+          }
+        ],
+        "subtotal": 34.32,
+        "tax": 6.18,
+        "total": 40.5,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 34.32,
+            "tax": 6.18,
+            "gross": 40.5
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "e99073cca8a72444018b06b3f4806df08084d6f31513074bb3b9b6a2778437f0"
+  },
+  {
+    "catalogue_net": 17.585,
+    "payload": {
+      "sales_num": "contract-29",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 439.62,
+      "sales_tax": 79.13,
+      "sales_total": 518.75,
+      "fiscal_final_total": 518.75,
+      "items": [
+        {
+          "si_sale_num": "contract-29",
+          "si_id": "Marnisi M'Xlokk::Antonin Blanc",
+          "si_name": "Antonin Blanc",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Blanc",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 25,
+          "si_price": 17.58474576,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 439.62,
+          "si_tax": 79.13,
+          "si_total": 518.75,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-29"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-29",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 518.75
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-29",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-29",
+            "si_id": "Marnisi M'Xlokk::Antonin Blanc",
+            "si_name": "Antonin Blanc",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Blanc",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 25,
+            "si_price": 17.58474576,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 439.62,
+            "si_tax": 79.13,
+            "si_total": 518.75,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-29"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-29",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 518.75
+          }
+        ],
+        "subtotal": 439.62,
+        "tax": 79.13,
+        "total": 518.75,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 439.62,
+            "tax": 79.13,
+            "gross": 518.75
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "e7ecd65cde13d501a0c8ed5179c15a813da0c33d30567cdf3f7ae51dda9751ea"
+  },
+  {
+    "catalogue_net": 17.585,
+    "payload": {
+      "sales_num": "contract-30",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 438.77,
+      "sales_tax": 78.98,
+      "sales_total": 517.75,
+      "fiscal_final_total": 517.75,
+      "items": [
+        {
+          "si_sale_num": "contract-30",
+          "si_id": "Marnisi M'Xlokk::Antonin Blanc",
+          "si_name": "Antonin Blanc",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Blanc",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 25,
+          "si_price": 17.58474576,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 438.77,
+          "si_tax": 78.98,
+          "si_total": 517.75,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-30"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-30",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 517.75
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-30",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-30",
+            "si_id": "Marnisi M'Xlokk::Antonin Blanc",
+            "si_name": "Antonin Blanc",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Blanc",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 25,
+            "si_price": 17.58474576,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 438.77,
+            "si_tax": 78.98,
+            "si_total": 517.75,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-30"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-30",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 517.75
+          }
+        ],
+        "subtotal": 438.77,
+        "tax": 78.98,
+        "total": 517.75,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 438.77,
+            "tax": 78.98,
+            "gross": 517.75
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "76f5e526bd672c5c4cadeed93e0c38027313eb602732f337f0034f3a7f31fdc2"
+  },
+  {
+    "catalogue_net": 47.669,
+    "payload": {
+      "sales_num": "contract-31",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 47.67,
+      "sales_tax": 8.58,
+      "sales_total": 56.25,
+      "fiscal_final_total": 56.25,
+      "items": [
+        {
+          "si_sale_num": "contract-31",
+          "si_id": "Marnisi M'Xlokk::Antonin Blanc Rizerva",
+          "si_name": "Antonin Blanc Rizerva",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Blanc Rizerva",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 47.66949153,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 47.67,
+          "si_tax": 8.58,
+          "si_total": 56.25,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-31"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-31",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 56.25
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-31",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-31",
+            "si_id": "Marnisi M'Xlokk::Antonin Blanc Rizerva",
+            "si_name": "Antonin Blanc Rizerva",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Blanc Rizerva",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 47.66949153,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 47.67,
+            "si_tax": 8.58,
+            "si_total": 56.25,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-31"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-31",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 56.25
+          }
+        ],
+        "subtotal": 47.67,
+        "tax": 8.58,
+        "total": 56.25,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 47.67,
+            "tax": 8.58,
+            "gross": 56.25
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "289b661427da6ca1e6e83fda7a920fe861d8d9319e4ab4949bf40aaf3acd2c11"
+  },
+  {
+    "catalogue_net": 47.669,
+    "payload": {
+      "sales_num": "contract-32",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 46.82,
+      "sales_tax": 8.43,
+      "sales_total": 55.25,
+      "fiscal_final_total": 55.25,
+      "items": [
+        {
+          "si_sale_num": "contract-32",
+          "si_id": "Marnisi M'Xlokk::Antonin Blanc Rizerva",
+          "si_name": "Antonin Blanc Rizerva",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Blanc Rizerva",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 47.66949153,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 46.82,
+          "si_tax": 8.43,
+          "si_total": 55.25,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-32"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-32",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 55.25
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-32",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-32",
+            "si_id": "Marnisi M'Xlokk::Antonin Blanc Rizerva",
+            "si_name": "Antonin Blanc Rizerva",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Blanc Rizerva",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 47.66949153,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 46.82,
+            "si_tax": 8.43,
+            "si_total": 55.25,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-32"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-32",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 55.25
+          }
+        ],
+        "subtotal": 46.82,
+        "tax": 8.43,
+        "total": 55.25,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 46.82,
+            "tax": 8.43,
+            "gross": 55.25
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "4c9b54bb13366a0cca60dca2c9cf0d7e46354a2aaedd59f424d5ef85432ef8d6"
+  },
+  {
+    "catalogue_net": 47.669,
+    "payload": {
+      "sales_num": "contract-33",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 95.34,
+      "sales_tax": 17.16,
+      "sales_total": 112.5,
+      "fiscal_final_total": 112.5,
+      "items": [
+        {
+          "si_sale_num": "contract-33",
+          "si_id": "Marnisi M'Xlokk::Antonin Blanc Rizerva",
+          "si_name": "Antonin Blanc Rizerva",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Blanc Rizerva",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 2,
+          "si_price": 47.66949153,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 95.34,
+          "si_tax": 17.16,
+          "si_total": 112.5,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-33"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-33",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 112.5
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-33",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-33",
+            "si_id": "Marnisi M'Xlokk::Antonin Blanc Rizerva",
+            "si_name": "Antonin Blanc Rizerva",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Blanc Rizerva",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 2,
+            "si_price": 47.66949153,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 95.34,
+            "si_tax": 17.16,
+            "si_total": 112.5,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-33"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-33",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 112.5
+          }
+        ],
+        "subtotal": 95.34,
+        "tax": 17.16,
+        "total": 112.5,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 95.34,
+            "tax": 17.16,
+            "gross": 112.5
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "e2be80a6f7a7a778c19859c3e51986218617ae8f515be90795e44537cd3d702b"
+  },
+  {
+    "catalogue_net": 47.669,
+    "payload": {
+      "sales_num": "contract-34",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 94.49,
+      "sales_tax": 17.01,
+      "sales_total": 111.5,
+      "fiscal_final_total": 111.5,
+      "items": [
+        {
+          "si_sale_num": "contract-34",
+          "si_id": "Marnisi M'Xlokk::Antonin Blanc Rizerva",
+          "si_name": "Antonin Blanc Rizerva",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Blanc Rizerva",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 2,
+          "si_price": 47.66949153,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 94.49,
+          "si_tax": 17.01,
+          "si_total": 111.5,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-34"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-34",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 111.5
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-34",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-34",
+            "si_id": "Marnisi M'Xlokk::Antonin Blanc Rizerva",
+            "si_name": "Antonin Blanc Rizerva",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Blanc Rizerva",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 2,
+            "si_price": 47.66949153,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 94.49,
+            "si_tax": 17.01,
+            "si_total": 111.5,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-34"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-34",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 111.5
+          }
+        ],
+        "subtotal": 94.49,
+        "tax": 17.01,
+        "total": 111.5,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 94.49,
+            "tax": 17.01,
+            "gross": 111.5
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "b39b39703800acf2dd296433538a19b9ac7a8141b06d5ad4bcccc0c3bc989aa2"
+  },
+  {
+    "catalogue_net": 47.669,
+    "payload": {
+      "sales_num": "contract-35",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 1191.74,
+      "sales_tax": 214.51,
+      "sales_total": 1406.25,
+      "fiscal_final_total": 1406.25,
+      "items": [
+        {
+          "si_sale_num": "contract-35",
+          "si_id": "Marnisi M'Xlokk::Antonin Blanc Rizerva",
+          "si_name": "Antonin Blanc Rizerva",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Blanc Rizerva",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 25,
+          "si_price": 47.66949153,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 1191.74,
+          "si_tax": 214.51,
+          "si_total": 1406.25,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-35"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-35",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 1406.25
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-35",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-35",
+            "si_id": "Marnisi M'Xlokk::Antonin Blanc Rizerva",
+            "si_name": "Antonin Blanc Rizerva",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Blanc Rizerva",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 25,
+            "si_price": 47.66949153,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 1191.74,
+            "si_tax": 214.51,
+            "si_total": 1406.25,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-35"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-35",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 1406.25
+          }
+        ],
+        "subtotal": 1191.74,
+        "tax": 214.51,
+        "total": 1406.25,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 1191.74,
+            "tax": 214.51,
+            "gross": 1406.25
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "3335423b5be32ffc8b00622d03fbf7244d9a048943a3f003d5f7cfd50fa96ab1"
+  },
+  {
+    "catalogue_net": 47.669,
+    "payload": {
+      "sales_num": "contract-36",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 1190.89,
+      "sales_tax": 214.36,
+      "sales_total": 1405.25,
+      "fiscal_final_total": 1405.25,
+      "items": [
+        {
+          "si_sale_num": "contract-36",
+          "si_id": "Marnisi M'Xlokk::Antonin Blanc Rizerva",
+          "si_name": "Antonin Blanc Rizerva",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Blanc Rizerva",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 25,
+          "si_price": 47.66949153,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 1190.89,
+          "si_tax": 214.36,
+          "si_total": 1405.25,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-36"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-36",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 1405.25
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-36",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-36",
+            "si_id": "Marnisi M'Xlokk::Antonin Blanc Rizerva",
+            "si_name": "Antonin Blanc Rizerva",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Blanc Rizerva",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 25,
+            "si_price": 47.66949153,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 1190.89,
+            "si_tax": 214.36,
+            "si_total": 1405.25,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-36"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-36",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 1405.25
+          }
+        ],
+        "subtotal": 1190.89,
+        "tax": 214.36,
+        "total": 1405.25,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 1190.89,
+            "tax": 214.36,
+            "gross": 1405.25
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "f661d91a897d96f0c0c158e31f8d8336286556530d29053b0cdacdab430489ba"
+  },
+  {
+    "catalogue_net": 17.585,
+    "payload": {
+      "sales_num": "contract-37",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 17.58,
+      "sales_tax": 3.17,
+      "sales_total": 20.75,
+      "fiscal_final_total": 20.75,
+      "items": [
+        {
+          "si_sale_num": "contract-37",
+          "si_id": "Marnisi M'Xlokk::Antonin Noir",
+          "si_name": "Antonin Noir",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Noir",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 17.58474576,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 17.58,
+          "si_tax": 3.17,
+          "si_total": 20.75,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-37"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-37",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 20.75
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-37",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-37",
+            "si_id": "Marnisi M'Xlokk::Antonin Noir",
+            "si_name": "Antonin Noir",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Noir",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 17.58474576,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 17.58,
+            "si_tax": 3.17,
+            "si_total": 20.75,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-37"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-37",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 20.75
+          }
+        ],
+        "subtotal": 17.58,
+        "tax": 3.17,
+        "total": 20.75,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 17.58,
+            "tax": 3.17,
+            "gross": 20.75
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "98d1466718d414feb683553fe176f59568ec824f000e944eb102d1fca8847f7c"
+  },
+  {
+    "catalogue_net": 17.585,
+    "payload": {
+      "sales_num": "contract-38",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 16.74,
+      "sales_tax": 3.01,
+      "sales_total": 19.75,
+      "fiscal_final_total": 19.75,
+      "items": [
+        {
+          "si_sale_num": "contract-38",
+          "si_id": "Marnisi M'Xlokk::Antonin Noir",
+          "si_name": "Antonin Noir",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Noir",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 17.58474576,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 16.74,
+          "si_tax": 3.01,
+          "si_total": 19.75,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-38"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-38",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 19.75
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-38",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-38",
+            "si_id": "Marnisi M'Xlokk::Antonin Noir",
+            "si_name": "Antonin Noir",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Noir",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 17.58474576,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 16.74,
+            "si_tax": 3.01,
+            "si_total": 19.75,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-38"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-38",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 19.75
+          }
+        ],
+        "subtotal": 16.74,
+        "tax": 3.01,
+        "total": 19.75,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 16.74,
+            "tax": 3.01,
+            "gross": 19.75
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "d94ee688f1c5cdd8e22531905cb323cafb14b8dae4f7468b2044859b4ad0e129"
+  },
+  {
+    "catalogue_net": 17.585,
+    "payload": {
+      "sales_num": "contract-39",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 35.17,
+      "sales_tax": 6.33,
+      "sales_total": 41.5,
+      "fiscal_final_total": 41.5,
+      "items": [
+        {
+          "si_sale_num": "contract-39",
+          "si_id": "Marnisi M'Xlokk::Antonin Noir",
+          "si_name": "Antonin Noir",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Noir",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 2,
+          "si_price": 17.58474576,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 35.17,
+          "si_tax": 6.33,
+          "si_total": 41.5,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-39"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-39",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 41.5
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-39",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-39",
+            "si_id": "Marnisi M'Xlokk::Antonin Noir",
+            "si_name": "Antonin Noir",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Noir",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 2,
+            "si_price": 17.58474576,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 35.17,
+            "si_tax": 6.33,
+            "si_total": 41.5,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-39"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-39",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 41.5
+          }
+        ],
+        "subtotal": 35.17,
+        "tax": 6.33,
+        "total": 41.5,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 35.17,
+            "tax": 6.33,
+            "gross": 41.5
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "379ee2f9bce36648cb8232caa76f243aef4dd1f4f3337fa3587c1f45ae8da62e"
+  },
+  {
+    "catalogue_net": 17.585,
+    "payload": {
+      "sales_num": "contract-40",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 34.32,
+      "sales_tax": 6.18,
+      "sales_total": 40.5,
+      "fiscal_final_total": 40.5,
+      "items": [
+        {
+          "si_sale_num": "contract-40",
+          "si_id": "Marnisi M'Xlokk::Antonin Noir",
+          "si_name": "Antonin Noir",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Noir",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 2,
+          "si_price": 17.58474576,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 34.32,
+          "si_tax": 6.18,
+          "si_total": 40.5,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-40"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-40",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 40.5
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-40",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-40",
+            "si_id": "Marnisi M'Xlokk::Antonin Noir",
+            "si_name": "Antonin Noir",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Noir",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 2,
+            "si_price": 17.58474576,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 34.32,
+            "si_tax": 6.18,
+            "si_total": 40.5,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-40"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-40",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 40.5
+          }
+        ],
+        "subtotal": 34.32,
+        "tax": 6.18,
+        "total": 40.5,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 34.32,
+            "tax": 6.18,
+            "gross": 40.5
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "ccba549c9e93f61c8f98acac47f012fd562ff6a4970f1d5c8c104b10d14981c9"
+  },
+  {
+    "catalogue_net": 17.585,
+    "payload": {
+      "sales_num": "contract-41",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 439.62,
+      "sales_tax": 79.13,
+      "sales_total": 518.75,
+      "fiscal_final_total": 518.75,
+      "items": [
+        {
+          "si_sale_num": "contract-41",
+          "si_id": "Marnisi M'Xlokk::Antonin Noir",
+          "si_name": "Antonin Noir",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Noir",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 25,
+          "si_price": 17.58474576,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 439.62,
+          "si_tax": 79.13,
+          "si_total": 518.75,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-41"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-41",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 518.75
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-41",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-41",
+            "si_id": "Marnisi M'Xlokk::Antonin Noir",
+            "si_name": "Antonin Noir",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Noir",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 25,
+            "si_price": 17.58474576,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 439.62,
+            "si_tax": 79.13,
+            "si_total": 518.75,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-41"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-41",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 518.75
+          }
+        ],
+        "subtotal": 439.62,
+        "tax": 79.13,
+        "total": 518.75,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 439.62,
+            "tax": 79.13,
+            "gross": 518.75
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "b9be66cbfd7a4cd272b236320213c31f72e9221c72025ea49e53b7891d0b296c"
+  },
+  {
+    "catalogue_net": 17.585,
+    "payload": {
+      "sales_num": "contract-42",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 438.77,
+      "sales_tax": 78.98,
+      "sales_total": 517.75,
+      "fiscal_final_total": 517.75,
+      "items": [
+        {
+          "si_sale_num": "contract-42",
+          "si_id": "Marnisi M'Xlokk::Antonin Noir",
+          "si_name": "Antonin Noir",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Noir",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 25,
+          "si_price": 17.58474576,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 438.77,
+          "si_tax": 78.98,
+          "si_total": 517.75,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-42"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-42",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 517.75
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-42",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-42",
+            "si_id": "Marnisi M'Xlokk::Antonin Noir",
+            "si_name": "Antonin Noir",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Noir",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 25,
+            "si_price": 17.58474576,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 438.77,
+            "si_tax": 78.98,
+            "si_total": 517.75,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-42"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-42",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 517.75
+          }
+        ],
+        "subtotal": 438.77,
+        "tax": 78.98,
+        "total": 517.75,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 438.77,
+            "tax": 78.98,
+            "gross": 517.75
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "3352d7c65cfc2df075be7accda838f8b0a161bcaa583e05ba5b1e95db1e52fa7"
+  },
+  {
+    "catalogue_net": 47.669,
+    "payload": {
+      "sales_num": "contract-43",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 47.67,
+      "sales_tax": 8.58,
+      "sales_total": 56.25,
+      "fiscal_final_total": 56.25,
+      "items": [
+        {
+          "si_sale_num": "contract-43",
+          "si_id": "Marnisi M'Xlokk::Antonin Noir Rizerva",
+          "si_name": "Antonin Noir Rizerva",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Noir Rizerva",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 47.66949153,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 47.67,
+          "si_tax": 8.58,
+          "si_total": 56.25,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-43"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-43",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 56.25
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-43",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-43",
+            "si_id": "Marnisi M'Xlokk::Antonin Noir Rizerva",
+            "si_name": "Antonin Noir Rizerva",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Noir Rizerva",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 47.66949153,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 47.67,
+            "si_tax": 8.58,
+            "si_total": 56.25,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-43"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-43",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 56.25
+          }
+        ],
+        "subtotal": 47.67,
+        "tax": 8.58,
+        "total": 56.25,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 47.67,
+            "tax": 8.58,
+            "gross": 56.25
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "dbc6058451cc8affd070d54eff8d7410b685d8477567f8b8ebcd0a42f0e73f49"
+  },
+  {
+    "catalogue_net": 47.669,
+    "payload": {
+      "sales_num": "contract-44",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 46.82,
+      "sales_tax": 8.43,
+      "sales_total": 55.25,
+      "fiscal_final_total": 55.25,
+      "items": [
+        {
+          "si_sale_num": "contract-44",
+          "si_id": "Marnisi M'Xlokk::Antonin Noir Rizerva",
+          "si_name": "Antonin Noir Rizerva",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Noir Rizerva",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 47.66949153,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 46.82,
+          "si_tax": 8.43,
+          "si_total": 55.25,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-44"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-44",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 55.25
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-44",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-44",
+            "si_id": "Marnisi M'Xlokk::Antonin Noir Rizerva",
+            "si_name": "Antonin Noir Rizerva",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Noir Rizerva",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 47.66949153,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 46.82,
+            "si_tax": 8.43,
+            "si_total": 55.25,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-44"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-44",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 55.25
+          }
+        ],
+        "subtotal": 46.82,
+        "tax": 8.43,
+        "total": 55.25,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 46.82,
+            "tax": 8.43,
+            "gross": 55.25
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "5b065d685cb5680d90bce208dfa8e6ba568b9772623b05ced2c44bc5e69b7f69"
+  },
+  {
+    "catalogue_net": 47.669,
+    "payload": {
+      "sales_num": "contract-45",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 95.34,
+      "sales_tax": 17.16,
+      "sales_total": 112.5,
+      "fiscal_final_total": 112.5,
+      "items": [
+        {
+          "si_sale_num": "contract-45",
+          "si_id": "Marnisi M'Xlokk::Antonin Noir Rizerva",
+          "si_name": "Antonin Noir Rizerva",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Noir Rizerva",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 2,
+          "si_price": 47.66949153,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 95.34,
+          "si_tax": 17.16,
+          "si_total": 112.5,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-45"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-45",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 112.5
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-45",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-45",
+            "si_id": "Marnisi M'Xlokk::Antonin Noir Rizerva",
+            "si_name": "Antonin Noir Rizerva",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Noir Rizerva",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 2,
+            "si_price": 47.66949153,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 95.34,
+            "si_tax": 17.16,
+            "si_total": 112.5,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-45"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-45",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 112.5
+          }
+        ],
+        "subtotal": 95.34,
+        "tax": 17.16,
+        "total": 112.5,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 95.34,
+            "tax": 17.16,
+            "gross": 112.5
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "aa0611eca120ed3d6934b30ff653d7753e0a4b89984905221e4278705909c0a5"
+  },
+  {
+    "catalogue_net": 47.669,
+    "payload": {
+      "sales_num": "contract-46",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 94.49,
+      "sales_tax": 17.01,
+      "sales_total": 111.5,
+      "fiscal_final_total": 111.5,
+      "items": [
+        {
+          "si_sale_num": "contract-46",
+          "si_id": "Marnisi M'Xlokk::Antonin Noir Rizerva",
+          "si_name": "Antonin Noir Rizerva",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Noir Rizerva",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 2,
+          "si_price": 47.66949153,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 94.49,
+          "si_tax": 17.01,
+          "si_total": 111.5,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-46"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-46",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 111.5
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-46",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-46",
+            "si_id": "Marnisi M'Xlokk::Antonin Noir Rizerva",
+            "si_name": "Antonin Noir Rizerva",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Noir Rizerva",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 2,
+            "si_price": 47.66949153,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 94.49,
+            "si_tax": 17.01,
+            "si_total": 111.5,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-46"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-46",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 111.5
+          }
+        ],
+        "subtotal": 94.49,
+        "tax": 17.01,
+        "total": 111.5,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 94.49,
+            "tax": 17.01,
+            "gross": 111.5
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "2ceebf95a21929367b5a190aaa526f4fe2faa63198643e83e06dd525bcbc4f05"
+  },
+  {
+    "catalogue_net": 47.669,
+    "payload": {
+      "sales_num": "contract-47",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 1191.74,
+      "sales_tax": 214.51,
+      "sales_total": 1406.25,
+      "fiscal_final_total": 1406.25,
+      "items": [
+        {
+          "si_sale_num": "contract-47",
+          "si_id": "Marnisi M'Xlokk::Antonin Noir Rizerva",
+          "si_name": "Antonin Noir Rizerva",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Noir Rizerva",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 25,
+          "si_price": 47.66949153,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 1191.74,
+          "si_tax": 214.51,
+          "si_total": 1406.25,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-47"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-47",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 1406.25
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-47",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-47",
+            "si_id": "Marnisi M'Xlokk::Antonin Noir Rizerva",
+            "si_name": "Antonin Noir Rizerva",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Noir Rizerva",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 25,
+            "si_price": 47.66949153,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 1191.74,
+            "si_tax": 214.51,
+            "si_total": 1406.25,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-47"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-47",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 1406.25
+          }
+        ],
+        "subtotal": 1191.74,
+        "tax": 214.51,
+        "total": 1406.25,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 1191.74,
+            "tax": 214.51,
+            "gross": 1406.25
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "b23032ea3bf4898d5e1fe1ab632f6764924e9e3a3da0817b4e4f39084b444d9b"
+  },
+  {
+    "catalogue_net": 47.669,
+    "payload": {
+      "sales_num": "contract-48",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 1190.89,
+      "sales_tax": 214.36,
+      "sales_total": 1405.25,
+      "fiscal_final_total": 1405.25,
+      "items": [
+        {
+          "si_sale_num": "contract-48",
+          "si_id": "Marnisi M'Xlokk::Antonin Noir Rizerva",
+          "si_name": "Antonin Noir Rizerva",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Antonin Noir Rizerva",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 25,
+          "si_price": 47.66949153,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 1190.89,
+          "si_tax": 214.36,
+          "si_total": 1405.25,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-48"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-48",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 1405.25
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-48",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-48",
+            "si_id": "Marnisi M'Xlokk::Antonin Noir Rizerva",
+            "si_name": "Antonin Noir Rizerva",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Antonin Noir Rizerva",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 25,
+            "si_price": 47.66949153,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 1190.89,
+            "si_tax": 214.36,
+            "si_total": 1405.25,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-48"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-48",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 1405.25
+          }
+        ],
+        "subtotal": 1190.89,
+        "tax": 214.36,
+        "total": 1405.25,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 1190.89,
+            "tax": 214.36,
+            "gross": 1405.25
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "d85455bffebc963e958ca7852425e3a82dd3b4a15fa7ec35a859da4d4eab7b9a"
+  },
+  {
+    "catalogue_net": 25.932,
+    "payload": {
+      "sales_num": "contract-49",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 25.93,
+      "sales_tax": 4.67,
+      "sales_total": 30.6,
+      "fiscal_final_total": 30.6,
+      "items": [
+        {
+          "si_sale_num": "contract-49",
+          "si_id": "Marnisi M'Xlokk::Marsovin Brut Rose",
+          "si_name": "Marsovin Brut Rose",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Marsovin Brut Rose",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 25.93220339,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 25.93,
+          "si_tax": 4.67,
+          "si_total": 30.6,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-49"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-49",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 30.6
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-49",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-49",
+            "si_id": "Marnisi M'Xlokk::Marsovin Brut Rose",
+            "si_name": "Marsovin Brut Rose",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Marsovin Brut Rose",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 25.93220339,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 25.93,
+            "si_tax": 4.67,
+            "si_total": 30.6,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-49"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-49",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 30.6
+          }
+        ],
+        "subtotal": 25.93,
+        "tax": 4.67,
+        "total": 30.6,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 25.93,
+            "tax": 4.67,
+            "gross": 30.6
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "29f077d4c1b546b87fba736fb62fb5e74b9dd913e5f1203555321340094130f1"
+  },
+  {
+    "catalogue_net": 25.932,
+    "payload": {
+      "sales_num": "contract-50",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 25.08,
+      "sales_tax": 4.52,
+      "sales_total": 29.6,
+      "fiscal_final_total": 29.6,
+      "items": [
+        {
+          "si_sale_num": "contract-50",
+          "si_id": "Marnisi M'Xlokk::Marsovin Brut Rose",
+          "si_name": "Marsovin Brut Rose",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Marsovin Brut Rose",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 25.93220339,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 25.08,
+          "si_tax": 4.52,
+          "si_total": 29.6,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-50"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-50",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 29.6
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-50",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-50",
+            "si_id": "Marnisi M'Xlokk::Marsovin Brut Rose",
+            "si_name": "Marsovin Brut Rose",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Marsovin Brut Rose",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 25.93220339,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 25.08,
+            "si_tax": 4.52,
+            "si_total": 29.6,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-50"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-50",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 29.6
+          }
+        ],
+        "subtotal": 25.08,
+        "tax": 4.52,
+        "total": 29.6,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 25.08,
+            "tax": 4.52,
+            "gross": 29.6
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "9dd82440f06f4ce366d91c52b108e57cd87913bf2de30e71b77dbabb2dd9b54d"
+  },
+  {
+    "catalogue_net": 25.932,
+    "payload": {
+      "sales_num": "contract-51",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 51.86,
+      "sales_tax": 9.34,
+      "sales_total": 61.2,
+      "fiscal_final_total": 61.2,
+      "items": [
+        {
+          "si_sale_num": "contract-51",
+          "si_id": "Marnisi M'Xlokk::Marsovin Brut Rose",
+          "si_name": "Marsovin Brut Rose",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Marsovin Brut Rose",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 2,
+          "si_price": 25.93220339,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 51.86,
+          "si_tax": 9.34,
+          "si_total": 61.2,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-51"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-51",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 61.2
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-51",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-51",
+            "si_id": "Marnisi M'Xlokk::Marsovin Brut Rose",
+            "si_name": "Marsovin Brut Rose",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Marsovin Brut Rose",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 2,
+            "si_price": 25.93220339,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 51.86,
+            "si_tax": 9.34,
+            "si_total": 61.2,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-51"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-51",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 61.2
+          }
+        ],
+        "subtotal": 51.86,
+        "tax": 9.34,
+        "total": 61.2,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 51.86,
+            "tax": 9.34,
+            "gross": 61.2
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "23cb72f6b6f48bc7c23ba50bba40c61caaeeaccd5cab0336209b48141e400ac6"
+  },
+  {
+    "catalogue_net": 25.932,
+    "payload": {
+      "sales_num": "contract-52",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 51.02,
+      "sales_tax": 9.18,
+      "sales_total": 60.2,
+      "fiscal_final_total": 60.2,
+      "items": [
+        {
+          "si_sale_num": "contract-52",
+          "si_id": "Marnisi M'Xlokk::Marsovin Brut Rose",
+          "si_name": "Marsovin Brut Rose",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Marsovin Brut Rose",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 2,
+          "si_price": 25.93220339,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 51.02,
+          "si_tax": 9.18,
+          "si_total": 60.2,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-52"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-52",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 60.2
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-52",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-52",
+            "si_id": "Marnisi M'Xlokk::Marsovin Brut Rose",
+            "si_name": "Marsovin Brut Rose",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Marsovin Brut Rose",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 2,
+            "si_price": 25.93220339,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 51.02,
+            "si_tax": 9.18,
+            "si_total": 60.2,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-52"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-52",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 60.2
+          }
+        ],
+        "subtotal": 51.02,
+        "tax": 9.18,
+        "total": 60.2,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 51.02,
+            "tax": 9.18,
+            "gross": 60.2
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "526b4aa3e7e5a74e65d110681bc9c88307e94ca89ee27b8bff3c58eedf80fef5"
+  },
+  {
+    "catalogue_net": 25.932,
+    "payload": {
+      "sales_num": "contract-53",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 648.31,
+      "sales_tax": 116.69,
+      "sales_total": 765.0,
+      "fiscal_final_total": 765.0,
+      "items": [
+        {
+          "si_sale_num": "contract-53",
+          "si_id": "Marnisi M'Xlokk::Marsovin Brut Rose",
+          "si_name": "Marsovin Brut Rose",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Marsovin Brut Rose",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 25,
+          "si_price": 25.93220339,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 648.31,
+          "si_tax": 116.69,
+          "si_total": 765.0,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-53"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-53",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 765.0
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-53",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-53",
+            "si_id": "Marnisi M'Xlokk::Marsovin Brut Rose",
+            "si_name": "Marsovin Brut Rose",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Marsovin Brut Rose",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 25,
+            "si_price": 25.93220339,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 648.31,
+            "si_tax": 116.69,
+            "si_total": 765.0,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-53"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-53",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 765.0
+          }
+        ],
+        "subtotal": 648.31,
+        "tax": 116.69,
+        "total": 765.0,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 648.31,
+            "tax": 116.69,
+            "gross": 765.0
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "49aa149471e184876bda3579b596fdad1db2c8737333fc4db105a9e22e4730aa"
+  },
+  {
+    "catalogue_net": 25.932,
+    "payload": {
+      "sales_num": "contract-54",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 647.46,
+      "sales_tax": 116.54,
+      "sales_total": 764.0,
+      "fiscal_final_total": 764.0,
+      "items": [
+        {
+          "si_sale_num": "contract-54",
+          "si_id": "Marnisi M'Xlokk::Marsovin Brut Rose",
+          "si_name": "Marsovin Brut Rose",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Marsovin Brut Rose",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 25,
+          "si_price": 25.93220339,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 647.46,
+          "si_tax": 116.54,
+          "si_total": 764.0,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-54"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-54",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 764.0
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-54",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-54",
+            "si_id": "Marnisi M'Xlokk::Marsovin Brut Rose",
+            "si_name": "Marsovin Brut Rose",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Marsovin Brut Rose",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 25,
+            "si_price": 25.93220339,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 647.46,
+            "si_tax": 116.54,
+            "si_total": 764.0,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-54"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-54",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 764.0
+          }
+        ],
+        "subtotal": 647.46,
+        "tax": 116.54,
+        "total": 764.0,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 647.46,
+            "tax": 116.54,
+            "gross": 764.0
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "20994b29edcb4d48848002a2440b989cd28a6bfa655c4af09e6a1bb0ec9c7108"
+  },
+  {
+    "catalogue_net": 25.339,
+    "payload": {
+      "sales_num": "contract-55",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 25.34,
+      "sales_tax": 4.56,
+      "sales_total": 29.9,
+      "fiscal_final_total": 29.9,
+      "items": [
+        {
+          "si_sale_num": "contract-55",
+          "si_id": "Marnisi M'Xlokk::Cassar De Malte",
+          "si_name": "Cassar De Malte",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Cassar De Malte",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 25.33898305,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 25.34,
+          "si_tax": 4.56,
+          "si_total": 29.9,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-55"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-55",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 29.9
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-55",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-55",
+            "si_id": "Marnisi M'Xlokk::Cassar De Malte",
+            "si_name": "Cassar De Malte",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Cassar De Malte",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 25.33898305,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 25.34,
+            "si_tax": 4.56,
+            "si_total": 29.9,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-55"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-55",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 29.9
+          }
+        ],
+        "subtotal": 25.34,
+        "tax": 4.56,
+        "total": 29.9,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 25.34,
+            "tax": 4.56,
+            "gross": 29.9
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "4b1803e10fdf3003a34110a3b4cb940cd7a36c28605866f0017c4ad86bb03f57"
+  },
+  {
+    "catalogue_net": 25.339,
+    "payload": {
+      "sales_num": "contract-56",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 24.49,
+      "sales_tax": 4.41,
+      "sales_total": 28.9,
+      "fiscal_final_total": 28.9,
+      "items": [
+        {
+          "si_sale_num": "contract-56",
+          "si_id": "Marnisi M'Xlokk::Cassar De Malte",
+          "si_name": "Cassar De Malte",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Cassar De Malte",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 25.33898305,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 24.49,
+          "si_tax": 4.41,
+          "si_total": 28.9,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-56"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-56",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 28.9
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-56",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-56",
+            "si_id": "Marnisi M'Xlokk::Cassar De Malte",
+            "si_name": "Cassar De Malte",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Cassar De Malte",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 25.33898305,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 24.49,
+            "si_tax": 4.41,
+            "si_total": 28.9,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-56"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-56",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 28.9
+          }
+        ],
+        "subtotal": 24.49,
+        "tax": 4.41,
+        "total": 28.9,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 24.49,
+            "tax": 4.41,
+            "gross": 28.9
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "c25f3a919a31730ddf5b156eb97d78c4f599bb257c8ee5efb09a02fb562b6601"
+  },
+  {
+    "catalogue_net": 25.339,
+    "payload": {
+      "sales_num": "contract-57",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 50.68,
+      "sales_tax": 9.12,
+      "sales_total": 59.8,
+      "fiscal_final_total": 59.8,
+      "items": [
+        {
+          "si_sale_num": "contract-57",
+          "si_id": "Marnisi M'Xlokk::Cassar De Malte",
+          "si_name": "Cassar De Malte",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Cassar De Malte",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 2,
+          "si_price": 25.33898305,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 50.68,
+          "si_tax": 9.12,
+          "si_total": 59.8,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-57"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-57",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 59.8
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-57",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-57",
+            "si_id": "Marnisi M'Xlokk::Cassar De Malte",
+            "si_name": "Cassar De Malte",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Cassar De Malte",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 2,
+            "si_price": 25.33898305,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 50.68,
+            "si_tax": 9.12,
+            "si_total": 59.8,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-57"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-57",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 59.8
+          }
+        ],
+        "subtotal": 50.68,
+        "tax": 9.12,
+        "total": 59.8,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 50.68,
+            "tax": 9.12,
+            "gross": 59.8
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "c8fa83eee019eb7cd8dd65a6933adf9c8b0f38f044923bb73c605c429cb4801a"
+  },
+  {
+    "catalogue_net": 25.339,
+    "payload": {
+      "sales_num": "contract-58",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 49.83,
+      "sales_tax": 8.97,
+      "sales_total": 58.8,
+      "fiscal_final_total": 58.8,
+      "items": [
+        {
+          "si_sale_num": "contract-58",
+          "si_id": "Marnisi M'Xlokk::Cassar De Malte",
+          "si_name": "Cassar De Malte",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Cassar De Malte",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 2,
+          "si_price": 25.33898305,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 49.83,
+          "si_tax": 8.97,
+          "si_total": 58.8,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-58"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-58",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 58.8
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-58",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-58",
+            "si_id": "Marnisi M'Xlokk::Cassar De Malte",
+            "si_name": "Cassar De Malte",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Cassar De Malte",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 2,
+            "si_price": 25.33898305,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 49.83,
+            "si_tax": 8.97,
+            "si_total": 58.8,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-58"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-58",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 58.8
+          }
+        ],
+        "subtotal": 49.83,
+        "tax": 8.97,
+        "total": 58.8,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 49.83,
+            "tax": 8.97,
+            "gross": 58.8
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "93e01075f758d45a196ac3db007f0c89ab1d6541ec44a6a6109f9cd0f689af87"
+  },
+  {
+    "catalogue_net": 25.339,
+    "payload": {
+      "sales_num": "contract-59",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 0.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 633.47,
+      "sales_tax": 114.03,
+      "sales_total": 747.5,
+      "fiscal_final_total": 747.5,
+      "items": [
+        {
+          "si_sale_num": "contract-59",
+          "si_id": "Marnisi M'Xlokk::Cassar De Malte",
+          "si_name": "Cassar De Malte",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Cassar De Malte",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 25,
+          "si_price": 25.33898305,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 633.47,
+          "si_tax": 114.03,
+          "si_total": 747.5,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-59"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-59",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 747.5
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-59",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-59",
+            "si_id": "Marnisi M'Xlokk::Cassar De Malte",
+            "si_name": "Cassar De Malte",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Cassar De Malte",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 25,
+            "si_price": 25.33898305,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 633.47,
+            "si_tax": 114.03,
+            "si_total": 747.5,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-59"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-59",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 747.5
+          }
+        ],
+        "subtotal": 633.47,
+        "tax": 114.03,
+        "total": 747.5,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 633.47,
+            "tax": 114.03,
+            "gross": 747.5
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "10dcd19639db9f244dbee482c316905962d2a7998f3417bcd9cd161e5d6674e7"
+  },
+  {
+    "catalogue_net": 25.339,
+    "payload": {
+      "sales_num": "contract-60",
+      "sales_date": "2026-09-16",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "sales_discount_amount": 1.0,
+      "fiscal_protocol": 1,
+      "sales_subtotal": 632.63,
+      "sales_tax": 113.87,
+      "sales_total": 746.5,
+      "fiscal_final_total": 746.5,
+      "items": [
+        {
+          "si_sale_num": "contract-60",
+          "si_id": "Marnisi M'Xlokk::Cassar De Malte",
+          "si_name": "Cassar De Malte",
+          "si_unit": null,
+          "si_code": "Marnisi M'Xlokk::Cassar De Malte",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 25,
+          "si_price": 25.33898305,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 632.63,
+          "si_tax": 113.87,
+          "si_total": 746.5,
+          "si_discount_amount": 1.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "line-contract-60"
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "payment-contract-60",
+          "tender_type_id": "7",
+          "payment_name": "Card BOV",
+          "amount_tendered": 746.5
+        }
+      ],
+      "receipt_snapshot": {
+        "sale_number": "contract-60",
+        "date": "2026-09-16",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "contract-60",
+            "si_id": "Marnisi M'Xlokk::Cassar De Malte",
+            "si_name": "Cassar De Malte",
+            "si_unit": null,
+            "si_code": "Marnisi M'Xlokk::Cassar De Malte",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 25,
+            "si_price": 25.33898305,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 632.63,
+            "si_tax": 113.87,
+            "si_total": 746.5,
+            "si_discount_amount": 1.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "line-contract-60"
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "payment-contract-60",
+            "tender_type_id": "7",
+            "payment_name": "Card BOV",
+            "amount_tendered": 746.5
+          }
+        ],
+        "subtotal": 632.63,
+        "tax": 113.87,
+        "total": 746.5,
+        "discount": 1.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 632.63,
+            "tax": 113.87,
+            "gross": 746.5
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        }
+      }
+    },
+    "payload_hash": "c1d62a1d7ed953869cabcac237a631566fa5b130eb85670046d69d4f749e3307"
+  }
+]

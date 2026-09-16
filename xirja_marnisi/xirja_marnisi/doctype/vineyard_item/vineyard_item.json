@@ -18,7 +18,8 @@
   "stock_qty",
   "low_stock_threshold",
   "is_enabled",
-  "notes"
+  "notes",
+  "vat_rate"
  ],
  "fields": [
   {
@@ -109,6 +110,15 @@
    "fieldname": "notes",
    "fieldtype": "Small Text",
    "label": "Notes"
+  },
+  {
+   "fieldname": "vat_rate",
+   "fieldtype": "Float",
+   "label": "Vat Rate",
+   "default": "18",
+   "precision": "2",
+   "reqd": 1,
+   "description": "Server-owned VAT percentage. Catalogue approval required before Live; sell_price remains VAT-exclusive."
   }
  ],
  "hide_toolbar": 0,
