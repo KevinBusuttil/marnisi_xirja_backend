@@ -1,8 +1,14 @@
+# XIRJA Marnisi App Context Index
+
+## Paused-server validation — 8 October 2026
+- Backend code `5dff2fd` is deployed to `erp.marnisi.cassarcamilleri.com` on `146.190.236.171`. Frontend report `docs/fiscal/evidence/server-deployment-20261008/RESULTS.md` holds the 764-test inventory, actual emulator transactions, exact HTTP replay checks and restoration proof.
+- Original 82 sales and historical child rows are preserved; QA transactions are restored away from the post-migration snapshot. Receipt counter reset is limited to temporary Test evidence from the paused maintenance exercise; never use this procedure to remove genuine sales or Live receipts.
+- Final site is for Test-mode use, with Live approval gates unset. Existing personal IDs map to enabled existing users; passwords and roles are unchanged.
+
 ## Deployed-server compatibility fixes — 8 October 2026
 - `fiscal/migrations_v2.py` also normalizes legacy sale/child/counter collations to Frappe's `utf8mb4_unicode_ci`; pre-fiscal tables can inherit MariaDB uca1400 and otherwise break history/payout joins. Creation DDL now declares the same collation. Tests: `test_checkout_v2_catalogue.py`, `integration/test_migrations.py` (real alternate-collation upgrade, unchanged evidence and working joins).
-- Frontend `api_service.dart` explicitly decodes UTF-8 JSON for Unicode seller/catalogue/snapshot preservation; updated server APK is 1.1.1+11. Server-run evidence is in frontend `docs/fiscal/evidence/server-deployment-20261008/`.
+- Frontend `api_service.dart` explicitly decodes UTF-8 JSON for Unicode seller/catalogue/snapshot preservation; updated server APK is 1.1.1+12. Server-run evidence is in frontend `docs/fiscal/evidence/server-deployment-20261008/`.
 
-# XIRJA Marnisi App Context Index
 
 ## Server Delivery — 8 October 2026
 - `SERVER_DEPLOYMENT_20261008.md`: reviewed deployment commands, backup/cutover, user provisioning and Test-mode setup. Pre-fiscal app compatibility is not added; drain old queues before cutover or use a separate test bench.
