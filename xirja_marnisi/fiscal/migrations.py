@@ -11,7 +11,7 @@ def ensure_schema():
         mode VARCHAR(10) NOT NULL, sequence_year INT NOT NULL,
         last_number BIGINT NOT NULL DEFAULT 0,
         UNIQUE KEY vineyard_mode_year (vineyard,mode,sequence_year)
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4''')
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci''')
     # New nullable unique identity columns leave historical rows intact.
     for table, column in (('Marnisi POS Sale Item','line_uid'), ('Marnisi POS Sale Payment','payment_uid')):
         frappe.db.sql('UPDATE `tab' + table + '` SET `' + column + '`=NULL WHERE `' + column + "`=''")

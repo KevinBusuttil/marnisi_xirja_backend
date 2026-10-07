@@ -28,8 +28,11 @@ def ensure_schema():
         version INT PRIMARY KEY, installed_at DATETIME(6) NOT NULL
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci''')
     # Match Frappe-managed evidence tables, even on MariaDB installations whose
-    # server default is uca1400. Otherwise joins fail with mixed collations.
-    for table in ('Marnisi Checkout Authorization', 'Marnisi Cash Payout', 'Marnisi Cash Payout Event', 'Marnisi Checkout Schema'):
+    # server default is uca1400. Include pre-fiscal sale/child tables: their
+    # existing text values remain unchanged, but history/payout joins must agree.
+    for table in ('Marnisi POS Sale', 'Marnisi POS Sale Item', 'Marnisi POS Sale Payment',
+                  'Marnisi Fiscal Counter', 'Marnisi Checkout Authorization',
+                  'Marnisi Cash Payout', 'Marnisi Cash Payout Event', 'Marnisi Checkout Schema'):
         rows = frappe.db.sql('SELECT TABLE_COLLATION FROM information_schema.TABLES WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME=%s', ('tab' + table,))
         if rows and rows[0][0] != 'utf8mb4_unicode_ci':
             frappe.db.sql_ddl('ALTER TABLE `tab' + table + '` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci')

@@ -278,7 +278,7 @@ def _ensure_sales_tables() -> None:
             sales_total DECIMAL(18,6),
             loy_cust_card_num VARCHAR(140),
             sales_payload LONGTEXT
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
         """
     )
 
@@ -320,7 +320,7 @@ def _ensure_sales_tables() -> None:
             item_payload LONGTEXT,
             INDEX idx_parent (parent),
             INDEX idx_si_sale_num (si_sale_num)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
         """
     )
 
@@ -344,7 +344,7 @@ def _ensure_sales_tables() -> None:
             payment_payload LONGTEXT,
             INDEX idx_parent (parent),
             INDEX idx_pay_txn_sale_num (pay_txn_sale_num)
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
         """
     )
 
@@ -367,7 +367,7 @@ def _ensure_sales_tables() -> None:
             loy_cust_balance DECIMAL(18,6),
             loy_cust_points DECIMAL(18,6),
             loy_cust_frozen INT DEFAULT 0
-        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
         """
     )
 

@@ -65,4 +65,18 @@ def test_migration_uses_frappe_collation_and_repairs_prior_default_once(monkeypa
     monkeypatch.setattr(migrations_v2,'frappe',SimpleNamespace(db=SimpleNamespace(sql=sql,sql_ddl=sql_ddl,exists=lambda *args:False)))
     migrations_v2.ensure_schema();migrations_v2.ensure_schema()
     assert all('COLLATE=utf8mb4_unicode_ci' in query for query in ddl if query.startswith('CREATE TABLE'))
-    assert len([query for query in ddl if query.startswith('ALTER TABLE')])==4
+    assert len([query for query in ddl if query.startswith('ALTER TABLE')])==8
+    assert any('`tabMarnisi POS Sale`' in query for query in ddl if query.startswith('ALTER TABLE'))
+    assert any('`tabMarnisi Fiscal Counter`' in query for query in ddl if query.startswith('ALTER TABLE'))
+
+
+def test_collation_repair_skips_absent_tables_and_matching_defaults(monkeypatch):
+    ddl=[]
+    def sql(query,values=()):
+        if query.startswith('SELECT TABLE_COLLATION'):
+            return [('utf8mb4_unicode_ci',)] if values[0]=='tabMarnisi POS Sale' else []
+        if query.startswith('SELECT version'):return [(2,)]
+        return []
+    monkeypatch.setattr(migrations_v2,'frappe',SimpleNamespace(db=SimpleNamespace(sql=sql,sql_ddl=ddl.append,exists=lambda *args:False)))
+    migrations_v2.ensure_schema()
+    assert not any(query.startswith('ALTER TABLE') for query in ddl)

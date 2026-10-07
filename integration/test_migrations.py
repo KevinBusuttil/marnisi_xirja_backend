@@ -46,3 +46,25 @@ class MigrationAcceptance(unittest.TestCase):
             self.assertFalse(frappe.db.exists('Marnisi Fiscal Receipt',{'sale_number':marker}))
         finally:
             frappe.destroy()
+
+    def test_legacy_collation_repair_preserves_evidence_and_restores_joins(self):
+        from xirja_marnisi.fiscal.migrations_v2 import ensure_schema
+        from xirja_marnisi.api.bridge import get_sales_history
+        from xirja_marnisi.fiscal.service import reconciliation_rows
+        connect()
+        try:
+            def fingerprint():
+                return hashlib.sha256(json.dumps(frappe.db.sql(
+                    'SELECT * FROM `tabMarnisi POS Sale` ORDER BY name',as_dict=True),
+                    sort_keys=True,default=str).encode()).hexdigest()
+            before=fingerprint()
+            frappe.db.sql_ddl('ALTER TABLE `tabMarnisi POS Sale` CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci')
+            ensure_schema();frappe.db.commit()
+            self.assertEqual(fingerprint(),before)
+            self.assertEqual(frappe.db.sql('SELECT TABLE_COLLATION FROM information_schema.TABLES WHERE TABLE_SCHEMA=DATABASE() AND TABLE_NAME=%s',('tabMarnisi POS Sale',))[0][0],'utf8mb4_unicode_ci')
+            get_sales_history(json.dumps({'limit':1}))
+            reconciliation_rows({'from_date':'2020-01-01','to_date':'2099-12-31'})
+            ensure_schema();frappe.db.commit()
+            self.assertEqual(fingerprint(),before)
+        finally:
+            frappe.destroy()

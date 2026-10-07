@@ -1,3 +1,7 @@
+## Deployed-server compatibility fixes — 8 October 2026
+- `fiscal/migrations_v2.py` also normalizes legacy sale/child/counter collations to Frappe's `utf8mb4_unicode_ci`; pre-fiscal tables can inherit MariaDB uca1400 and otherwise break history/payout joins. Creation DDL now declares the same collation. Tests: `test_checkout_v2_catalogue.py`, `integration/test_migrations.py` (real alternate-collation upgrade, unchanged evidence and working joins).
+- Frontend `api_service.dart` explicitly decodes UTF-8 JSON for Unicode seller/catalogue/snapshot preservation; updated server APK is 1.1.1+11. Server-run evidence is in frontend `docs/fiscal/evidence/server-deployment-20261008/`.
+
 # XIRJA Marnisi App Context Index
 
 ## Server Delivery — 8 October 2026
