@@ -23,3 +23,6 @@ def ensure_schema():
              backup_restore_verified,physical_acceptance_confirmed,outage_procedure_confirmed,issuance_suspended)
             VALUES (%s,NOW(6),NOW(6),'Administrator','Administrator',0,0,%s,'Disabled','EUR',0,0,0,0,0,0,0,0)''',
             ('MARNISI-FISCAL', vineyard))
+
+    from xirja_marnisi.fiscal.migrations_v2 import ensure_schema as ensure_v2
+    ensure_v2()

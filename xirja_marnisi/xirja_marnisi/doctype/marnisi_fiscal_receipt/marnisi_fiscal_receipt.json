@@ -24,7 +24,8 @@
   "sequence_year",
   "sequence_number",
   "review_reason",
-  "snapshot"
+  "snapshot",
+  "record_kind"
  ],
  "fields": [
   {
@@ -144,6 +145,13 @@
    "fieldtype": "Long Text",
    "label": "Snapshot",
    "read_only": 1
+  },
+  {
+   "fieldname": "record_kind",
+   "fieldtype": "Data",
+   "label": "Record Kind",
+   "read_only": 1,
+   "default": "Payment"
   }
  ],
  "permissions": [

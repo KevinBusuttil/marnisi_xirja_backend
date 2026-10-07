@@ -5,7 +5,7 @@ from decimal import Decimal
 
 from xirja_marnisi.fiscal.core import amount, digest, identity, money, number
 
-TENDERS = {'1': 'Cash', '7': 'Card BOV'}
+from xirja_marnisi.fiscal.tenders import TENDERS
 LINE_KEYS = ('line_uid', 'si_id', 'si_name', 'si_qty', 'si_price', 'si_tax_pct',
              'si_subtotal', 'si_tax', 'si_total', 'si_discount_amount')
 PAYMENT_KEYS = ('payment_uid', 'tender_type_id', 'payment_name', 'amount_tendered')
@@ -27,6 +27,11 @@ def _project(row, keys):
 
 
 def validate_sale(payload, *, refund=False):
+    if isinstance(payload, dict) and payload.get('fiscal_protocol') == 2:
+        if refund:
+            raise ValueError('Protocol 2 direct returns use ordinary checkout')
+        from xirja_marnisi.fiscal.validation_v2 import validate_sale_v2
+        return validate_sale_v2(payload)
     if not isinstance(payload, dict) or type(payload.get('fiscal_protocol')) is not int or payload.get('fiscal_protocol') != 1:
         raise ValueError('Upgraded fiscal protocol 1 is required; retain legacy outbox for explicit recovery')
     sale_id = identity(payload.get('sales_num'), 'sale')

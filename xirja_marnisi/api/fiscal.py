@@ -40,3 +40,27 @@ def resume_issuance(args=''):
 def reserve_manual_receipt(args=''):
     payload = parse_args(args)
     return service.reserve_manual_receipt(payload.get('sale'), payload.get('manual_receipt_reference'), payload.get('reason'))
+
+
+@frappe.whitelist(methods=['POST'])
+def prepare_checkout(args=''):
+    from xirja_marnisi.fiscal.checkout_v2 import prepare_checkout as prepare
+    return prepare(parse_args(args).get('sale'))
+
+
+@frappe.whitelist(methods=['POST'])
+def begin_cash_payout(args=''):
+    from xirja_marnisi.fiscal.checkout_v2 import payout_action
+    return payout_action(parse_args(args), 'begin')
+
+
+@frappe.whitelist(methods=['POST'])
+def confirm_cash_payout(args=''):
+    from xirja_marnisi.fiscal.checkout_v2 import payout_action
+    return payout_action(parse_args(args), 'confirm')
+
+
+@frappe.whitelist()
+def get_cash_payout_status(args=''):
+    from xirja_marnisi.fiscal.checkout_v2 import payout_action
+    return payout_action(parse_args(args), 'status')

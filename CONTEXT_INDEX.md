@@ -1,5 +1,23 @@
 # XIRJA Marnisi App Context Index
 
+## Server Delivery — 8 October 2026
+- `SERVER_DEPLOYMENT_20261008.md`: reviewed deployment commands, backup/cutover, user provisioning and Test-mode setup. Pre-fiscal app compatibility is not added; drain old queues before cutover or use a separate test bench.
+- Latest complete verification: 754 cases (405 Flutter, 313 backend, 36 disposable integration) in frontend `docs/fiscal/evidence/server-build-20261008/`. Eleven existing manual transactions remain unchanged after the suite. The earlier 730/747 results below are historical milestones.
+
+## Local Android Emulator Acceptance — Latest Evidence
+- Frontend repository `XIRJA-frontend-marnisi/docs/fiscal/evidence/local-emulator/`: `RESULTS.md`, `MANUAL_MATRIX.md`, `FEATURE_SUMMARY.md`, screenshots, complete-suite inventories, and sanitized `manual/backend-*-proof.json` / `backend-manual-*.json` record actual emulator actions and their signed backend evidence. Use this evidence before the earlier checkout-v2 and September certification reports.
+- Local testing uses only the guarded `marnisi-fiscal-test.cashreturns.localhost` disposable site, private loopback MariaDB/Redis and a forced-site HTTP server. Synthetic staff and catalogue include the EUR 50 return examples, mixed VAT, nonreturnable items and Tailored Experience. Fixture credentials and temporary control scripts remain outside both repositories. See frontend `docs/fiscal/TESTING.md` for provisioning and guard requirements.
+- Before each integrated suite, preserve mutable catalogue/settings and the complete manual financial evidence; afterward restore only configuration and compare all financial records unchanged. Read-only bound SQL verifies canonical payload/snapshot/acknowledgement hashes, unique transaction receipts, stable payout identities, handover events and reconciliation. Local response-loss drills drop an acknowledgement after the backend commits; intentional Review evidence stays immutable and blocked from cash handover. A recorded pending Review obligation is reported separately from an accepted cash refund.
+
+## Checkout v2 — Discounts, Direct Returns and Open Prices
+- `xirja_marnisi/fiscal/validation_v2.py`: signed line/settlement validation, largest-remainder cent allocation, separate purchase/return VAT groups, cross-language preflight cart hash. `validation.py` dispatches versions without rewriting v1 outboxes.
+- `xirja_marnisi/fiscal/checkout_v2.py`: preflight authorization, transaction-level fiscal evidence, current catalogue eligibility before money, atomic cash refund obligation, idempotent cash handover begin/confirm/status. Server-owned raw SQL tables have no generic DocType write surface; event rows retain the handover audit.
+- `xirja_marnisi/fiscal/tenders.py`: Cash 1, Card BOV 7, Stripe 12, Bank Transfer 13; shared feed/validator registry. No provider API calls or store credit.
+- `xirja_marnisi/fiscal/migrations_v2.py` and `patches/v0_0_3/install_checkout_v2.py`: additive authorization/payout/event schema, one-time returnable defaults, repeatable Tailored Experience seed. `Vineyard Item.is_returnable` and `allow_variable_price` are configurable through Desk and item API.
+- `api.fiscal.prepare_checkout`, `begin_cash_payout`, `confirm_cash_payout`, `get_cash_payout_status`: authenticated v2 routes. Store/auth expose capabilities separately from v1 fiscal context. `bridge.get_sales_history` includes current payout proof; reconciliation distinguishes obligation/outstanding/confirmed cash.
+- `tests/test_checkout_v2.py`, `test_checkout_v2_catalogue.py`, `test_fiscal_v2_flutter_contract.py`; actual Dart fixture in `tests/fixtures/marnisi_fiscal_v2_contract.json`. New real DB/HTTP scenarios remain in `integration/test_fiscal_acceptance.py` so the same combined trigger discovers everything.
+- `CHECKOUT_V2_ROLLOUT.md`: migration/compatibility/receipt and cash-recovery acceptance notes. October complete suite: 381 Flutter, 313 backend unit and 36 real integration cases passed; current evidence is frontend `docs/fiscal/evidence/cash-returns/RESULTS.md`. September EXO evidence is historical; physical/EXO acceptance remains open.
+
 ## Fiscal Controls — First Search
 - `xirja_marnisi/fiscal/core.py`: exact decimal money, canonical payload hashing and cumulative refund rounding.
 - `xirja_marnisi/fiscal/validation.py`: independent protocol/snapshot/items/VAT/payments/headers validation and negative/pre-bill rejection.

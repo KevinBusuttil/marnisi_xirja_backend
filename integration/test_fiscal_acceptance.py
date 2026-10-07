@@ -743,3 +743,148 @@ class FiscalAcceptance(unittest.TestCase):
         self.assertNotEqual(first['fiscal_receipts'][0]['name'], second['fiscal_receipts'][0]['name'])
         self.assertEqual(frappe.db.sql('SELECT sequence_year,last_number FROM `tabMarnisi Fiscal Counter` WHERE vineyard=%s AND mode=%s AND sequence_year IN (2081,2082) ORDER BY sequence_year',
                                      (VINEYARD, 'Test')), ((2081, 1), (2082, 1)))
+
+    def v2_payload(self, example='v2-cash-refund', actor='Administrator'):
+        """Use actual Dart evidence; create isolated catalogue identities for its lines."""
+        from xirja_marnisi.fiscal.service import get_public_context
+        source=Path(__file__).resolve().parents[1]/'tests'/'fixtures'/'marnisi_fiscal_v2_contract.json'
+        rows=json.loads(source.read_text())
+        sale=deepcopy(next(row['payload'] for row in rows if row['payload']['sales_num']==example))
+        sale_num=uid()
+        sale.update(sales_num=sale_num,sales_cashier=actor,sales_date=date.today().isoformat())
+        if sale['settlement']['payout_uid']:
+            sale['settlement']['payout_uid']=uid()
+            sale['payout_uid']=sale['settlement']['payout_uid']
+        for line in sale['items']:
+            code='ACCEPTANCE-V2-'+uid()
+            frappe.get_doc({'doctype':'Vineyard Item','vineyard':VINEYARD,'item_code':code,
+                'item_name':line['si_name'],'sell_price':line['si_price'],'vat_rate':line['si_tax_pct'],
+                'is_enabled':1,'is_returnable':1,'allow_variable_price':int(line['price_mode']=='open')}).insert()
+            line.update(line_uid=uid(),si_id=VINEYARD+'::'+code,si_sale_num=sale_num)
+        for payment in sale['sale_pay_methods']:
+            payment.update(payment_uid=uid(),pay_txn_sale_num=sale_num)
+        sale['receipt_snapshot'].update(sale_number=sale_num,cashier=actor,date=sale['sales_date'],
+            items=deepcopy(sale['items']),payments=deepcopy(sale['sale_pay_methods']),
+            settlement=deepcopy(sale['settlement']),fiscal_context=get_public_context())
+        return sale
+
+    def authorize_v2(self, payload):
+        from xirja_marnisi.fiscal.checkout_v2 import prepare_checkout
+        authorization=prepare_checkout(payload)
+        payload['checkout_authorization']=authorization['authorization']
+        return authorization
+
+    def test_v2_required_customer_balances_and_transaction_receipts(self):
+        for example,amount in [('v2-return-only',-50),('v2-customer-pays',20),('v2-cash-refund',-20),('v2-even-exchange',0),('v2-zero-discount',0)]:
+            with self.subTest(example=example):
+                sale=self.v2_payload(example)
+                if any(line['line_kind']=='return' for line in sale['items']):self.authorize_v2(sale)
+                ack=self.ingest(sale)
+                self.assertEqual(ack['status'],'synchronized',ack)
+                self.assertEqual(len(ack['fiscal_receipts']),1)
+                self.assertEqual(ack['fiscal_receipts'][0]['record_kind'],'Transaction')
+                self.assertEqual(ack['fiscal_receipts'][0]['payment_amount'],amount)
+                self.assertEqual(self.ingest(sale),ack)
+                self.assertEqual(frappe.db.count('Marnisi POS Sale Payment',{'parent':'MPS-'+sale['sales_num']}),len(sale['sale_pay_methods']))
+                payout=frappe.db.sql('SELECT amount,state FROM `tabMarnisi Cash Payout` WHERE sale_num=%s',(sale['sales_num'],),as_dict=True)
+                self.assertEqual(len(payout),int(amount<0))
+                if payout:self.assertEqual(float(payout[0]['amount']),abs(amount))
+
+    def test_v2_preflight_cannot_change_cart_and_authorized_catalogue_survives_changes(self):
+        from xirja_marnisi.fiscal.checkout_v2 import prepare_checkout
+        sale=self.v2_payload('v2-customer-pays');first=self.authorize_v2(sale)
+        self.assertEqual(prepare_checkout(sale),first)
+        changed=deepcopy(sale);changed['receipt_snapshot']['fiscal_context']['address']='Changed'
+        self.assertEqual(self.ingest(changed)['status'],'error')
+        for line in sale['items']:
+            frappe.db.sql('UPDATE `tabVineyard Item` SET is_returnable=0,sell_price=999 WHERE vineyard=%s AND item_code=%s',(VINEYARD,line['si_id'].split('::')[1]))
+        self.assertEqual(self.ingest(sale)['fiscal_status'],'Test')
+
+    def test_v2_online_eligibility_and_staff_cash_handover_http(self):
+        user=self.credentials['staff'][0]
+        sale=self.v2_payload(actor=user);frappe.db.commit()
+        session,response=self.login();self.assertEqual(response.status_code,200)
+        headers={'X-Frappe-CSRF-Token':response.json()['message']['csrf_token']}
+        def post(route,args):
+            return session.post(self.base+'/api/method/xirja_marnisi.api.fiscal.'+route,json={'args':args},headers=headers,timeout=20)
+        prepared=post('prepare_checkout',{'sale':sale})
+        self.assertEqual(prepared.status_code,200,prepared.text)
+        sale['checkout_authorization']=prepared.json()['message']['authorization']
+        submitted=session.post(self.base+'/api/method/xirja_marnisi.api.bridge.post_all_sales',json={'args':{'sales':[sale]}},headers=headers,timeout=20)
+        ack=submitted.json()['message']['confirmations'][0]
+        self.assertEqual(ack['fiscal_status'],'Test',ack)
+        args={'sale_num':sale['sales_num'],'payout_uid':sale['settlement']['payout_uid'],'handover_uid':uid()}
+        early=post('confirm_cash_payout',args);self.assertNotEqual(early.status_code,200)
+        first=post('begin_cash_payout',args);self.assertEqual(first.status_code,200,first.text)
+        self.assertEqual(first.json()['message']['cash_payout']['state'],'started')
+        self.assertEqual(post('begin_cash_payout',args).json()['message'],first.json()['message'])
+        self.assertNotEqual(post('begin_cash_payout',{**args,'handover_uid':uid()}).status_code,200)
+        done=post('confirm_cash_payout',args);self.assertEqual(done.status_code,200,done.text)
+        self.assertEqual(done.json()['message']['cash_payout']['state'],'confirmed')
+        self.assertEqual(post('confirm_cash_payout',args).json()['message'],done.json()['message'])
+        current=post('get_cash_payout_status',args);self.assertEqual(current.json()['message'],done.json()['message'])
+        frappe.db.rollback()
+        self.assertEqual(frappe.db.sql('SELECT COUNT(*) FROM `tabMarnisi Cash Payout Event` WHERE payout_uid=%s',(args['payout_uid'],))[0][0],2)
+        stored=json.loads(frappe.db.get_value('Marnisi POS Sale','MPS-'+sale['sales_num'],'acknowledgement'))
+        self.assertEqual(stored['cash_payout']['state'],'pending')
+
+    def test_v2_concurrent_payout_begin_and_confirm_are_unique(self):
+        from xirja_marnisi.fiscal.checkout_v2 import payout_action
+        sale=self.v2_payload();self.authorize_v2(sale);self.assertEqual(self.ingest(sale)['status'],'synchronized')
+        frappe.db.commit();barrier=threading.Barrier(2)
+        args={'sale_num':sale['sales_num'],'payout_uid':sale['settlement']['payout_uid'],'handover_uid':uid()}
+        def mutate(action,arguments):
+            connect()
+            try:
+                barrier.wait(timeout=15)
+                result=payout_action(arguments,action);frappe.db.commit();return result
+            finally:frappe.destroy()
+        with ThreadPoolExecutor(max_workers=2) as pool:
+            results=[future.result() for future in [pool.submit(mutate,'begin',args),pool.submit(mutate,'begin',args)]]
+        self.assertEqual(results[0],results[1])
+        barrier=threading.Barrier(2)
+        with ThreadPoolExecutor(max_workers=2) as pool:
+            results=[future.result() for future in [pool.submit(mutate,'confirm',args),pool.submit(mutate,'confirm',args)]]
+        self.assertEqual(results[0],results[1])
+        frappe.db.rollback()
+        self.assertEqual(frappe.db.sql('SELECT COUNT(*) FROM `tabMarnisi Cash Payout Event` WHERE payout_uid=%s',(args['payout_uid'],))[0][0],2)
+
+    def test_v2_late_cash_payout_failure_rolls_back_fiscal_evidence(self):
+        sale=self.v2_payload();self.authorize_v2(sale)
+        original=frappe.db.sql
+        def fail(query,*args,**kwargs):
+            if str(query).startswith('INSERT INTO `tabMarnisi Cash Payout`'):
+                raise RuntimeError('Injected cash payout write failure')
+            return original(query,*args,**kwargs)
+        with patch.object(frappe.db,'sql',side_effect=fail):
+            self.assertEqual(self.ingest(sale)['status'],'error')
+        self.assertFalse(frappe.db.exists('Marnisi POS Sale',{'sale_num':sale['sales_num']}))
+        self.assertFalse(frappe.db.exists('Marnisi Fiscal Receipt',{'sale_number':sale['sales_num']}))
+        self.assertFalse(frappe.db.sql('SELECT payout_uid FROM `tabMarnisi Cash Payout` WHERE sale_num=%s',(sale['sales_num'],)))
+
+    def test_v2_reconciliation_separates_outstanding_and_confirmed_cash(self):
+        from xirja_marnisi.fiscal.checkout_v2 import payout_action
+        from xirja_marnisi.fiscal.service import reconciliation_rows
+        sale=self.v2_payload();self.authorize_v2(sale);self.ingest(sale)
+        def row():
+            return next(row for row in reconciliation_rows({'from_date':sale['sales_date'],'to_date':sale['sales_date']}) if row['sale_num']==sale['sales_num'])
+        self.assertEqual(float(row()['cash_refund_outstanding']),20)
+        self.assertIn('Cash refund outstanding',row()['reconciliation_status'])
+        args={'sale_num':sale['sales_num'],'payout_uid':sale['settlement']['payout_uid'],'handover_uid':uid()}
+        payout_action(args,'begin');payout_action(args,'confirm')
+        self.assertEqual(float(row()['cash_refunded']),20)
+        self.assertEqual(float(row()['cash_refund_outstanding']),0)
+        self.assertEqual(row()['reconciliation_status'],'Matched')
+
+    def test_v2_repeatable_migration_preserves_returnability_and_tailored_configuration(self):
+        from xirja_marnisi.fiscal.migrations_v2 import ensure_schema,TAILORED_CODE
+        ensure_schema()
+        rows=frappe.db.sql('SELECT name FROM `tabVineyard Item` WHERE vineyard=%s AND item_code=%s',(VINEYARD,TAILORED_CODE),as_dict=True)
+        self.assertEqual(len(rows),1)
+        name=rows[0]['name']
+        frappe.db.sql('UPDATE `tabVineyard Item` SET is_returnable=1,vat_rate=5,item_name=%s WHERE name=%s',('Tailored custom',name))
+        frappe.db.sql('UPDATE `tabVineyard Item` SET is_returnable=0 WHERE name=%s',(self.item,))
+        frappe.db.commit();ensure_schema();ensure_schema()
+        self.assertEqual(frappe.db.get_value('Vineyard Item',name,['is_returnable','vat_rate','item_name']), (1,5.0,'Tailored custom'))
+        self.assertEqual(frappe.db.get_value('Vineyard Item',self.item,'is_returnable'),0)
+        self.assertEqual(frappe.db.sql('SELECT COUNT(*) FROM `tabVineyard Item` WHERE vineyard=%s AND item_code=%s',(VINEYARD,TAILORED_CODE))[0][0],1)

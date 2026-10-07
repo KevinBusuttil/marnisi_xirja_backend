@@ -27,7 +27,9 @@ class MigrationAcceptance(unittest.TestCase):
             def fingerprint():
                 tables=['Marnisi POS Sale','Marnisi POS Sale Item','Marnisi POS Sale Payment','Marnisi Fiscal Receipt','Marnisi Manual Receipt Link','Marnisi Fiscal Counter']
                 state={table:frappe.db.sql('SELECT * FROM `tab'+table+'` ORDER BY name',as_dict=True) for table in tables}
-                state['catalogue']=frappe.db.sql('SELECT name,sell_price,vat_rate FROM `tabVineyard Item` ORDER BY name',as_dict=True)
+                for table, key in (('Marnisi Checkout Authorization','sale_num'),('Marnisi Cash Payout','payout_uid'),('Marnisi Cash Payout Event','name')):
+                    state[table]=frappe.db.sql('SELECT * FROM `tab'+table+'` ORDER BY `'+key+'`',as_dict=True)
+                state['catalogue']=frappe.db.sql('SELECT name,item_name,sell_price,vat_rate,is_returnable,allow_variable_price FROM `tabVineyard Item` ORDER BY name',as_dict=True)
                 return hashlib.sha256(json.dumps(state,sort_keys=True,default=str).encode()).hexdigest()
             before=fingerprint();frappe.db.rollback();frappe.destroy()
             for _ in range(2):

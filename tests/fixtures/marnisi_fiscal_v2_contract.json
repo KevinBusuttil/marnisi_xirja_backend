@@ -1,0 +1,2213 @@
+[
+  {
+    "name": "return-only",
+    "payload": {
+      "sales_num": "v2-return-only",
+      "sales_date": "2026-10-02",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "payout_uid": "v2-return-only-payout",
+      "fiscal_protocol": 2,
+      "sales_subtotal": -42.37,
+      "sales_tax": -7.63,
+      "sales_total": -50.0,
+      "sales_discount_amount": 0.0,
+      "fiscal_final_total": -50.0,
+      "items": [
+        {
+          "si_sale_num": "v2-return-only",
+          "si_id": "BOTTLE",
+          "si_name": "Bottle",
+          "si_unit": null,
+          "si_code": "BOTTLE",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": -1,
+          "si_price": 42.37288136,
+          "si_tax_pct": 18.0,
+          "si_subtotal": -42.37,
+          "si_tax": -7.63,
+          "si_total": -50.0,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "v2-return-only-line-0",
+          "line_kind": "return",
+          "price_mode": "fixed",
+          "description": "",
+          "unit_gross": 50.0,
+          "discount_type": "none",
+          "discount_value": 0
+        }
+      ],
+      "sale_pay_methods": [],
+      "discount_settings": {
+        "mode": "none",
+        "type": "amount",
+        "value": 0
+      },
+      "settlement": {
+        "direction": "cash_refund",
+        "amount": 50.0,
+        "payout_uid": "v2-return-only-payout"
+      },
+      "receipt_snapshot": {
+        "fiscal_protocol": 2,
+        "sale_number": "v2-return-only",
+        "date": "2026-10-02",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "v2-return-only",
+            "si_id": "BOTTLE",
+            "si_name": "Bottle",
+            "si_unit": null,
+            "si_code": "BOTTLE",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": -1,
+            "si_price": 42.37288136,
+            "si_tax_pct": 18.0,
+            "si_subtotal": -42.37,
+            "si_tax": -7.63,
+            "si_total": -50.0,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "v2-return-only-line-0",
+            "line_kind": "return",
+            "price_mode": "fixed",
+            "description": "",
+            "unit_gross": 50.0,
+            "discount_type": "none",
+            "discount_value": 0
+          }
+        ],
+        "payments": [],
+        "subtotal": -42.37,
+        "tax": -7.63,
+        "total": -50.0,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": -42.37,
+            "tax": -7.63,
+            "gross": -50.0,
+            "line_kind": "return"
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        },
+        "discount_settings": {
+          "mode": "none",
+          "type": "amount",
+          "value": 0
+        },
+        "settlement": {
+          "direction": "cash_refund",
+          "amount": 50.0,
+          "payout_uid": "v2-return-only-payout"
+        }
+      }
+    },
+    "payload_hash": "ffe8bdae91758c609803aa1dbcc689bcfaef2cefb8d3ecd912f273ff7c812de1",
+    "cart_hash": "c609cef6caf5b2c7525c3c73444fb70b3c761bc7c907f8f68ec4c8e6d48aeee6"
+  },
+  {
+    "name": "customer-pays",
+    "payload": {
+      "sales_num": "v2-customer-pays",
+      "sales_date": "2026-10-02",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "payout_uid": "",
+      "fiscal_protocol": 2,
+      "sales_subtotal": 16.95,
+      "sales_tax": 3.05,
+      "sales_total": 20.0,
+      "sales_discount_amount": 0.0,
+      "fiscal_final_total": 20.0,
+      "items": [
+        {
+          "si_sale_num": "v2-customer-pays",
+          "si_id": "BOTTLE",
+          "si_name": "Bottle",
+          "si_unit": null,
+          "si_code": "BOTTLE",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": -1,
+          "si_price": 42.37288136,
+          "si_tax_pct": 18.0,
+          "si_subtotal": -42.37,
+          "si_tax": -7.63,
+          "si_total": -50.0,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "v2-customer-pays-line-0",
+          "line_kind": "return",
+          "price_mode": "fixed",
+          "description": "",
+          "unit_gross": 50.0,
+          "discount_type": "none",
+          "discount_value": 0
+        },
+        {
+          "si_sale_num": "v2-customer-pays",
+          "si_id": "BOTTLE",
+          "si_name": "Bottle",
+          "si_unit": null,
+          "si_code": "BOTTLE",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 59.3220339,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 59.32,
+          "si_tax": 10.68,
+          "si_total": 70.0,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "v2-customer-pays-line-1",
+          "line_kind": "purchase",
+          "price_mode": "fixed",
+          "description": "",
+          "unit_gross": 70.0,
+          "discount_type": "none",
+          "discount_value": 0.0
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "v2-customer-pays-payment-cash",
+          "payment_name": "Cash",
+          "tender_type_id": "1",
+          "amount_tendered": 5
+        },
+        {
+          "payment_uid": "v2-customer-pays-payment-stripe",
+          "payment_name": "Stripe",
+          "tender_type_id": "12",
+          "amount_tendered": 15.0
+        }
+      ],
+      "discount_settings": {
+        "mode": "none",
+        "type": "amount",
+        "value": 0
+      },
+      "settlement": {
+        "direction": "payment",
+        "amount": 20.0,
+        "payout_uid": ""
+      },
+      "receipt_snapshot": {
+        "fiscal_protocol": 2,
+        "sale_number": "v2-customer-pays",
+        "date": "2026-10-02",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "v2-customer-pays",
+            "si_id": "BOTTLE",
+            "si_name": "Bottle",
+            "si_unit": null,
+            "si_code": "BOTTLE",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": -1,
+            "si_price": 42.37288136,
+            "si_tax_pct": 18.0,
+            "si_subtotal": -42.37,
+            "si_tax": -7.63,
+            "si_total": -50.0,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "v2-customer-pays-line-0",
+            "line_kind": "return",
+            "price_mode": "fixed",
+            "description": "",
+            "unit_gross": 50.0,
+            "discount_type": "none",
+            "discount_value": 0
+          },
+          {
+            "si_sale_num": "v2-customer-pays",
+            "si_id": "BOTTLE",
+            "si_name": "Bottle",
+            "si_unit": null,
+            "si_code": "BOTTLE",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 59.3220339,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 59.32,
+            "si_tax": 10.68,
+            "si_total": 70.0,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "v2-customer-pays-line-1",
+            "line_kind": "purchase",
+            "price_mode": "fixed",
+            "description": "",
+            "unit_gross": 70.0,
+            "discount_type": "none",
+            "discount_value": 0.0
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "v2-customer-pays-payment-cash",
+            "payment_name": "Cash",
+            "tender_type_id": "1",
+            "amount_tendered": 5
+          },
+          {
+            "payment_uid": "v2-customer-pays-payment-stripe",
+            "payment_name": "Stripe",
+            "tender_type_id": "12",
+            "amount_tendered": 15.0
+          }
+        ],
+        "subtotal": 16.95,
+        "tax": 3.05,
+        "total": 20.0,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 5.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 59.32,
+            "tax": 10.68,
+            "gross": 70.0,
+            "line_kind": "purchase"
+          },
+          {
+            "rate": 18.0,
+            "net": -42.37,
+            "tax": -7.63,
+            "gross": -50.0,
+            "line_kind": "return"
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        },
+        "discount_settings": {
+          "mode": "none",
+          "type": "amount",
+          "value": 0
+        },
+        "settlement": {
+          "direction": "payment",
+          "amount": 20.0,
+          "payout_uid": ""
+        }
+      }
+    },
+    "payload_hash": "b6a9d0f093a8d5af9444c202a3231db2c0f71de8df82f6c96d4bb43c14df4d81",
+    "cart_hash": "a10091a0d29b0a7f8715717337da2b7ce39a07663c753dfb666dc854aff9e404"
+  },
+  {
+    "name": "cash-refund",
+    "payload": {
+      "sales_num": "v2-cash-refund",
+      "sales_date": "2026-10-02",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "payout_uid": "v2-cash-refund-payout",
+      "fiscal_protocol": 2,
+      "sales_subtotal": -16.95,
+      "sales_tax": -3.05,
+      "sales_total": -20.0,
+      "sales_discount_amount": 0.0,
+      "fiscal_final_total": -20.0,
+      "items": [
+        {
+          "si_sale_num": "v2-cash-refund",
+          "si_id": "BOTTLE",
+          "si_name": "Bottle",
+          "si_unit": null,
+          "si_code": "BOTTLE",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": -1,
+          "si_price": 42.37288136,
+          "si_tax_pct": 18.0,
+          "si_subtotal": -42.37,
+          "si_tax": -7.63,
+          "si_total": -50.0,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "v2-cash-refund-line-0",
+          "line_kind": "return",
+          "price_mode": "fixed",
+          "description": "",
+          "unit_gross": 50.0,
+          "discount_type": "none",
+          "discount_value": 0
+        },
+        {
+          "si_sale_num": "v2-cash-refund",
+          "si_id": "BOTTLE",
+          "si_name": "Bottle",
+          "si_unit": null,
+          "si_code": "BOTTLE",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 25.42372881,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 25.42,
+          "si_tax": 4.58,
+          "si_total": 30.0,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "v2-cash-refund-line-1",
+          "line_kind": "purchase",
+          "price_mode": "fixed",
+          "description": "",
+          "unit_gross": 30.0,
+          "discount_type": "none",
+          "discount_value": 0.0
+        }
+      ],
+      "sale_pay_methods": [],
+      "discount_settings": {
+        "mode": "none",
+        "type": "amount",
+        "value": 0
+      },
+      "settlement": {
+        "direction": "cash_refund",
+        "amount": 20.0,
+        "payout_uid": "v2-cash-refund-payout"
+      },
+      "receipt_snapshot": {
+        "fiscal_protocol": 2,
+        "sale_number": "v2-cash-refund",
+        "date": "2026-10-02",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "v2-cash-refund",
+            "si_id": "BOTTLE",
+            "si_name": "Bottle",
+            "si_unit": null,
+            "si_code": "BOTTLE",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": -1,
+            "si_price": 42.37288136,
+            "si_tax_pct": 18.0,
+            "si_subtotal": -42.37,
+            "si_tax": -7.63,
+            "si_total": -50.0,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "v2-cash-refund-line-0",
+            "line_kind": "return",
+            "price_mode": "fixed",
+            "description": "",
+            "unit_gross": 50.0,
+            "discount_type": "none",
+            "discount_value": 0
+          },
+          {
+            "si_sale_num": "v2-cash-refund",
+            "si_id": "BOTTLE",
+            "si_name": "Bottle",
+            "si_unit": null,
+            "si_code": "BOTTLE",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 25.42372881,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 25.42,
+            "si_tax": 4.58,
+            "si_total": 30.0,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "v2-cash-refund-line-1",
+            "line_kind": "purchase",
+            "price_mode": "fixed",
+            "description": "",
+            "unit_gross": 30.0,
+            "discount_type": "none",
+            "discount_value": 0.0
+          }
+        ],
+        "payments": [],
+        "subtotal": -16.95,
+        "tax": -3.05,
+        "total": -20.0,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 25.42,
+            "tax": 4.58,
+            "gross": 30.0,
+            "line_kind": "purchase"
+          },
+          {
+            "rate": 18.0,
+            "net": -42.37,
+            "tax": -7.63,
+            "gross": -50.0,
+            "line_kind": "return"
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        },
+        "discount_settings": {
+          "mode": "none",
+          "type": "amount",
+          "value": 0
+        },
+        "settlement": {
+          "direction": "cash_refund",
+          "amount": 20.0,
+          "payout_uid": "v2-cash-refund-payout"
+        }
+      }
+    },
+    "payload_hash": "281eaad122d66f7a2fc930a32630bfd6aba0368b616563126b8e5a1a6d6a0420",
+    "cart_hash": "f821269b49546edef450bb3bcbe9922bf47c998bc1aba2844b8360e567b43f8c"
+  },
+  {
+    "name": "even-exchange",
+    "payload": {
+      "sales_num": "v2-even-exchange",
+      "sales_date": "2026-10-02",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "payout_uid": "",
+      "fiscal_protocol": 2,
+      "sales_subtotal": 0.0,
+      "sales_tax": 0.0,
+      "sales_total": 0.0,
+      "sales_discount_amount": 0.0,
+      "fiscal_final_total": 0.0,
+      "items": [
+        {
+          "si_sale_num": "v2-even-exchange",
+          "si_id": "BOTTLE",
+          "si_name": "Bottle",
+          "si_unit": null,
+          "si_code": "BOTTLE",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": -1,
+          "si_price": 42.37288136,
+          "si_tax_pct": 18.0,
+          "si_subtotal": -42.37,
+          "si_tax": -7.63,
+          "si_total": -50.0,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "v2-even-exchange-line-0",
+          "line_kind": "return",
+          "price_mode": "fixed",
+          "description": "",
+          "unit_gross": 50.0,
+          "discount_type": "none",
+          "discount_value": 0
+        },
+        {
+          "si_sale_num": "v2-even-exchange",
+          "si_id": "BOTTLE",
+          "si_name": "Bottle",
+          "si_unit": null,
+          "si_code": "BOTTLE",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 42.37288136,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 42.37,
+          "si_tax": 7.63,
+          "si_total": 50.0,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "v2-even-exchange-line-1",
+          "line_kind": "purchase",
+          "price_mode": "fixed",
+          "description": "",
+          "unit_gross": 50.0,
+          "discount_type": "none",
+          "discount_value": 0.0
+        }
+      ],
+      "sale_pay_methods": [],
+      "discount_settings": {
+        "mode": "none",
+        "type": "amount",
+        "value": 0
+      },
+      "settlement": {
+        "direction": "none",
+        "amount": 0.0,
+        "payout_uid": ""
+      },
+      "receipt_snapshot": {
+        "fiscal_protocol": 2,
+        "sale_number": "v2-even-exchange",
+        "date": "2026-10-02",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "v2-even-exchange",
+            "si_id": "BOTTLE",
+            "si_name": "Bottle",
+            "si_unit": null,
+            "si_code": "BOTTLE",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": -1,
+            "si_price": 42.37288136,
+            "si_tax_pct": 18.0,
+            "si_subtotal": -42.37,
+            "si_tax": -7.63,
+            "si_total": -50.0,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "v2-even-exchange-line-0",
+            "line_kind": "return",
+            "price_mode": "fixed",
+            "description": "",
+            "unit_gross": 50.0,
+            "discount_type": "none",
+            "discount_value": 0
+          },
+          {
+            "si_sale_num": "v2-even-exchange",
+            "si_id": "BOTTLE",
+            "si_name": "Bottle",
+            "si_unit": null,
+            "si_code": "BOTTLE",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 42.37288136,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 42.37,
+            "si_tax": 7.63,
+            "si_total": 50.0,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "v2-even-exchange-line-1",
+            "line_kind": "purchase",
+            "price_mode": "fixed",
+            "description": "",
+            "unit_gross": 50.0,
+            "discount_type": "none",
+            "discount_value": 0.0
+          }
+        ],
+        "payments": [],
+        "subtotal": 0.0,
+        "tax": 0.0,
+        "total": 0.0,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 42.37,
+            "tax": 7.63,
+            "gross": 50.0,
+            "line_kind": "purchase"
+          },
+          {
+            "rate": 18.0,
+            "net": -42.37,
+            "tax": -7.63,
+            "gross": -50.0,
+            "line_kind": "return"
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        },
+        "discount_settings": {
+          "mode": "none",
+          "type": "amount",
+          "value": 0
+        },
+        "settlement": {
+          "direction": "none",
+          "amount": 0.0,
+          "payout_uid": ""
+        }
+      }
+    },
+    "payload_hash": "afbb41e15898f03b62bf176dea15765afee1671f7856046978847372b8d43b95",
+    "cart_hash": "75a86e1a1a7c3242f8ea6b9fff448ab690ac4fa150a142012daebbed59b7da62"
+  },
+  {
+    "name": "zero-discount",
+    "payload": {
+      "sales_num": "v2-zero-discount",
+      "sales_date": "2026-10-02",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "payout_uid": "",
+      "fiscal_protocol": 2,
+      "sales_subtotal": 0.0,
+      "sales_tax": 0.0,
+      "sales_total": 0.0,
+      "sales_discount_amount": 50.0,
+      "fiscal_final_total": 0.0,
+      "items": [
+        {
+          "si_sale_num": "v2-zero-discount",
+          "si_id": "BOTTLE",
+          "si_name": "Bottle",
+          "si_unit": null,
+          "si_code": "BOTTLE",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 42.37288136,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 0.0,
+          "si_tax": 0.0,
+          "si_total": 0.0,
+          "si_discount_amount": 50.0,
+          "si_discount_percent": 100.0,
+          "line_uid": "v2-zero-discount-line-0",
+          "line_kind": "purchase",
+          "price_mode": "fixed",
+          "description": "",
+          "unit_gross": 50.0,
+          "discount_type": "none",
+          "discount_value": 0.0
+        }
+      ],
+      "sale_pay_methods": [],
+      "discount_settings": {
+        "mode": "cart",
+        "type": "percent",
+        "value": 100
+      },
+      "settlement": {
+        "direction": "none",
+        "amount": 0.0,
+        "payout_uid": ""
+      },
+      "receipt_snapshot": {
+        "fiscal_protocol": 2,
+        "sale_number": "v2-zero-discount",
+        "date": "2026-10-02",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "v2-zero-discount",
+            "si_id": "BOTTLE",
+            "si_name": "Bottle",
+            "si_unit": null,
+            "si_code": "BOTTLE",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 42.37288136,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 0.0,
+            "si_tax": 0.0,
+            "si_total": 0.0,
+            "si_discount_amount": 50.0,
+            "si_discount_percent": 100.0,
+            "line_uid": "v2-zero-discount-line-0",
+            "line_kind": "purchase",
+            "price_mode": "fixed",
+            "description": "",
+            "unit_gross": 50.0,
+            "discount_type": "none",
+            "discount_value": 0.0
+          }
+        ],
+        "payments": [],
+        "subtotal": 0.0,
+        "tax": 0.0,
+        "total": 0.0,
+        "discount": 50.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 0.0,
+            "tax": 0.0,
+            "gross": 0.0,
+            "line_kind": "purchase"
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        },
+        "discount_settings": {
+          "mode": "cart",
+          "type": "percent",
+          "value": 100
+        },
+        "settlement": {
+          "direction": "none",
+          "amount": 0.0,
+          "payout_uid": ""
+        }
+      }
+    },
+    "payload_hash": "79e3ca8c9caf13de0a6f58d5999ba89c5bda58685256b57932dec20562b89215",
+    "cart_hash": "8d10fa5754c447240aee7fad60dc2a8cf56dbd360c7cb6e4c546d60f402e8a78"
+  },
+  {
+    "name": "cart-cent-rounding",
+    "payload": {
+      "sales_num": "v2-cart-cent-rounding",
+      "sales_date": "2026-10-02",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "payout_uid": "",
+      "fiscal_protocol": 2,
+      "sales_subtotal": 0.12,
+      "sales_tax": 0.01,
+      "sales_total": 0.13,
+      "sales_discount_amount": 0.02,
+      "fiscal_final_total": 0.13,
+      "items": [
+        {
+          "si_sale_num": "v2-cart-cent-rounding",
+          "si_id": "BOTTLE",
+          "si_name": "Bottle",
+          "si_unit": null,
+          "si_code": "BOTTLE",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 0.05,
+          "si_tax_pct": 0.0,
+          "si_subtotal": 0.04,
+          "si_tax": 0.0,
+          "si_total": 0.04,
+          "si_discount_amount": 0.01,
+          "si_discount_percent": 20.0,
+          "line_uid": "v2-cart-cent-rounding-line-0",
+          "line_kind": "purchase",
+          "price_mode": "fixed",
+          "description": "",
+          "unit_gross": 0.05,
+          "discount_type": "none",
+          "discount_value": 0.0
+        },
+        {
+          "si_sale_num": "v2-cart-cent-rounding",
+          "si_id": "BOTTLE",
+          "si_name": "Bottle",
+          "si_unit": null,
+          "si_code": "BOTTLE",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 0.04761905,
+          "si_tax_pct": 5.0,
+          "si_subtotal": 0.04,
+          "si_tax": 0.0,
+          "si_total": 0.04,
+          "si_discount_amount": 0.01,
+          "si_discount_percent": 20.0,
+          "line_uid": "v2-cart-cent-rounding-line-1",
+          "line_kind": "purchase",
+          "price_mode": "fixed",
+          "description": "",
+          "unit_gross": 0.05,
+          "discount_type": "none",
+          "discount_value": 0.0
+        },
+        {
+          "si_sale_num": "v2-cart-cent-rounding",
+          "si_id": "BOTTLE",
+          "si_name": "Bottle",
+          "si_unit": null,
+          "si_code": "BOTTLE",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 0.04237288,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 0.04,
+          "si_tax": 0.01,
+          "si_total": 0.05,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "v2-cart-cent-rounding-line-2",
+          "line_kind": "purchase",
+          "price_mode": "fixed",
+          "description": "",
+          "unit_gross": 0.05,
+          "discount_type": "none",
+          "discount_value": 0.0
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "v2-cart-cent-rounding-payment",
+          "payment_name": "Bank Transfer",
+          "tender_type_id": "13",
+          "amount_tendered": 0.13
+        }
+      ],
+      "discount_settings": {
+        "mode": "cart",
+        "type": "amount",
+        "value": 0.02
+      },
+      "settlement": {
+        "direction": "payment",
+        "amount": 0.13,
+        "payout_uid": ""
+      },
+      "receipt_snapshot": {
+        "fiscal_protocol": 2,
+        "sale_number": "v2-cart-cent-rounding",
+        "date": "2026-10-02",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "v2-cart-cent-rounding",
+            "si_id": "BOTTLE",
+            "si_name": "Bottle",
+            "si_unit": null,
+            "si_code": "BOTTLE",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 0.05,
+            "si_tax_pct": 0.0,
+            "si_subtotal": 0.04,
+            "si_tax": 0.0,
+            "si_total": 0.04,
+            "si_discount_amount": 0.01,
+            "si_discount_percent": 20.0,
+            "line_uid": "v2-cart-cent-rounding-line-0",
+            "line_kind": "purchase",
+            "price_mode": "fixed",
+            "description": "",
+            "unit_gross": 0.05,
+            "discount_type": "none",
+            "discount_value": 0.0
+          },
+          {
+            "si_sale_num": "v2-cart-cent-rounding",
+            "si_id": "BOTTLE",
+            "si_name": "Bottle",
+            "si_unit": null,
+            "si_code": "BOTTLE",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 0.04761905,
+            "si_tax_pct": 5.0,
+            "si_subtotal": 0.04,
+            "si_tax": 0.0,
+            "si_total": 0.04,
+            "si_discount_amount": 0.01,
+            "si_discount_percent": 20.0,
+            "line_uid": "v2-cart-cent-rounding-line-1",
+            "line_kind": "purchase",
+            "price_mode": "fixed",
+            "description": "",
+            "unit_gross": 0.05,
+            "discount_type": "none",
+            "discount_value": 0.0
+          },
+          {
+            "si_sale_num": "v2-cart-cent-rounding",
+            "si_id": "BOTTLE",
+            "si_name": "Bottle",
+            "si_unit": null,
+            "si_code": "BOTTLE",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 0.04237288,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 0.04,
+            "si_tax": 0.01,
+            "si_total": 0.05,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "v2-cart-cent-rounding-line-2",
+            "line_kind": "purchase",
+            "price_mode": "fixed",
+            "description": "",
+            "unit_gross": 0.05,
+            "discount_type": "none",
+            "discount_value": 0.0
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "v2-cart-cent-rounding-payment",
+            "payment_name": "Bank Transfer",
+            "tender_type_id": "13",
+            "amount_tendered": 0.13
+          }
+        ],
+        "subtotal": 0.12,
+        "tax": 0.01,
+        "total": 0.13,
+        "discount": 0.02,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 0.0,
+            "net": 0.04,
+            "tax": 0.0,
+            "gross": 0.04,
+            "line_kind": "purchase"
+          },
+          {
+            "rate": 5.0,
+            "net": 0.04,
+            "tax": 0.0,
+            "gross": 0.04,
+            "line_kind": "purchase"
+          },
+          {
+            "rate": 18.0,
+            "net": 0.04,
+            "tax": 0.01,
+            "gross": 0.05,
+            "line_kind": "purchase"
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        },
+        "discount_settings": {
+          "mode": "cart",
+          "type": "amount",
+          "value": 0.02
+        },
+        "settlement": {
+          "direction": "payment",
+          "amount": 0.13,
+          "payout_uid": ""
+        }
+      }
+    },
+    "payload_hash": "15c19d10085bf7ecbc719bafb893c9d379c5d958fa03851bad224d8cf6c76df1",
+    "cart_hash": "78b11ea73baa35604e17af0644aed4d29ef3a91dde49045f5718117d5e39aacf"
+  },
+  {
+    "name": "item-discounts",
+    "payload": {
+      "sales_num": "v2-item-discounts",
+      "sales_date": "2026-10-02",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "payout_uid": "",
+      "fiscal_protocol": 2,
+      "sales_subtotal": 112.71,
+      "sales_tax": 20.29,
+      "sales_total": 133.0,
+      "sales_discount_amount": 17.0,
+      "fiscal_final_total": 133.0,
+      "items": [
+        {
+          "si_sale_num": "v2-item-discounts",
+          "si_id": "BOTTLE",
+          "si_name": "Bottle",
+          "si_unit": null,
+          "si_code": "BOTTLE",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 42.37288136,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 33.9,
+          "si_tax": 6.1,
+          "si_total": 40.0,
+          "si_discount_amount": 10.0,
+          "si_discount_percent": 20.0,
+          "line_uid": "v2-item-discounts-line-0",
+          "line_kind": "purchase",
+          "price_mode": "fixed",
+          "description": "",
+          "unit_gross": 50.0,
+          "discount_type": "percent",
+          "discount_value": 20.0
+        },
+        {
+          "si_sale_num": "v2-item-discounts",
+          "si_id": "BOTTLE",
+          "si_name": "Bottle",
+          "si_unit": null,
+          "si_code": "BOTTLE",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 2,
+          "si_price": 42.37288136,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 78.81,
+          "si_tax": 14.19,
+          "si_total": 93.0,
+          "si_discount_amount": 7.0,
+          "si_discount_percent": 7.0,
+          "line_uid": "v2-item-discounts-line-1",
+          "line_kind": "purchase",
+          "price_mode": "fixed",
+          "description": "",
+          "unit_gross": 50.0,
+          "discount_type": "amount",
+          "discount_value": 7.0
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "v2-item-discounts-payment",
+          "payment_name": "Bank Transfer",
+          "tender_type_id": "13",
+          "amount_tendered": 133.0
+        }
+      ],
+      "discount_settings": {
+        "mode": "items",
+        "type": "amount",
+        "value": 0
+      },
+      "settlement": {
+        "direction": "payment",
+        "amount": 133.0,
+        "payout_uid": ""
+      },
+      "receipt_snapshot": {
+        "fiscal_protocol": 2,
+        "sale_number": "v2-item-discounts",
+        "date": "2026-10-02",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "v2-item-discounts",
+            "si_id": "BOTTLE",
+            "si_name": "Bottle",
+            "si_unit": null,
+            "si_code": "BOTTLE",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 42.37288136,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 33.9,
+            "si_tax": 6.1,
+            "si_total": 40.0,
+            "si_discount_amount": 10.0,
+            "si_discount_percent": 20.0,
+            "line_uid": "v2-item-discounts-line-0",
+            "line_kind": "purchase",
+            "price_mode": "fixed",
+            "description": "",
+            "unit_gross": 50.0,
+            "discount_type": "percent",
+            "discount_value": 20.0
+          },
+          {
+            "si_sale_num": "v2-item-discounts",
+            "si_id": "BOTTLE",
+            "si_name": "Bottle",
+            "si_unit": null,
+            "si_code": "BOTTLE",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 2,
+            "si_price": 42.37288136,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 78.81,
+            "si_tax": 14.19,
+            "si_total": 93.0,
+            "si_discount_amount": 7.0,
+            "si_discount_percent": 7.0,
+            "line_uid": "v2-item-discounts-line-1",
+            "line_kind": "purchase",
+            "price_mode": "fixed",
+            "description": "",
+            "unit_gross": 50.0,
+            "discount_type": "amount",
+            "discount_value": 7.0
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "v2-item-discounts-payment",
+            "payment_name": "Bank Transfer",
+            "tender_type_id": "13",
+            "amount_tendered": 133.0
+          }
+        ],
+        "subtotal": 112.71,
+        "tax": 20.29,
+        "total": 133.0,
+        "discount": 17.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 112.71,
+            "tax": 20.29,
+            "gross": 133.0,
+            "line_kind": "purchase"
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        },
+        "discount_settings": {
+          "mode": "items",
+          "type": "amount",
+          "value": 0
+        },
+        "settlement": {
+          "direction": "payment",
+          "amount": 133.0,
+          "payout_uid": ""
+        }
+      }
+    },
+    "payload_hash": "561541fcfd3f1c103b635002eac1aa83d888ec77e7c5b46b05b9bd96f0079b6f",
+    "cart_hash": "c45be0ab8f3e343eac585710593887431899e7c644530ec40ad322c93d00c189"
+  },
+  {
+    "name": "mixed-cart-discount",
+    "payload": {
+      "sales_num": "v2-mixed-cart-discount",
+      "sales_date": "2026-10-02",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "payout_uid": "",
+      "fiscal_protocol": 2,
+      "sales_subtotal": 59.3,
+      "sales_tax": -4.3,
+      "sales_total": 55.0,
+      "sales_discount_amount": 15.0,
+      "fiscal_final_total": 55.0,
+      "items": [
+        {
+          "si_sale_num": "v2-mixed-cart-discount",
+          "si_id": "BOTTLE",
+          "si_name": "Bottle",
+          "si_unit": null,
+          "si_code": "BOTTLE",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": -1,
+          "si_price": 42.37288136,
+          "si_tax_pct": 18.0,
+          "si_subtotal": -42.37,
+          "si_tax": -7.63,
+          "si_total": -50.0,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "v2-mixed-cart-discount-line-0",
+          "line_kind": "return",
+          "price_mode": "fixed",
+          "description": "",
+          "unit_gross": 50.0,
+          "discount_type": "none",
+          "discount_value": 0
+        },
+        {
+          "si_sale_num": "v2-mixed-cart-discount",
+          "si_id": "BOTTLE",
+          "si_name": "Bottle",
+          "si_unit": null,
+          "si_code": "BOTTLE",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 76.19047619,
+          "si_tax_pct": 5.0,
+          "si_subtotal": 66.67,
+          "si_tax": 3.33,
+          "si_total": 70.0,
+          "si_discount_amount": 10.0,
+          "si_discount_percent": 12.5,
+          "line_uid": "v2-mixed-cart-discount-line-1",
+          "line_kind": "purchase",
+          "price_mode": "fixed",
+          "description": "",
+          "unit_gross": 80.0,
+          "discount_type": "none",
+          "discount_value": 0.0
+        },
+        {
+          "si_sale_num": "v2-mixed-cart-discount",
+          "si_id": "BOTTLE",
+          "si_name": "Bottle",
+          "si_unit": null,
+          "si_code": "BOTTLE",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 40.0,
+          "si_tax_pct": 0.0,
+          "si_subtotal": 35.0,
+          "si_tax": 0.0,
+          "si_total": 35.0,
+          "si_discount_amount": 5.0,
+          "si_discount_percent": 12.5,
+          "line_uid": "v2-mixed-cart-discount-line-2",
+          "line_kind": "purchase",
+          "price_mode": "fixed",
+          "description": "",
+          "unit_gross": 40.0,
+          "discount_type": "none",
+          "discount_value": 0.0
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "v2-mixed-cart-discount-payment",
+          "payment_name": "Bank Transfer",
+          "tender_type_id": "13",
+          "amount_tendered": 55.0
+        }
+      ],
+      "discount_settings": {
+        "mode": "cart",
+        "type": "percent",
+        "value": 12.5
+      },
+      "settlement": {
+        "direction": "payment",
+        "amount": 55.0,
+        "payout_uid": ""
+      },
+      "receipt_snapshot": {
+        "fiscal_protocol": 2,
+        "sale_number": "v2-mixed-cart-discount",
+        "date": "2026-10-02",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "v2-mixed-cart-discount",
+            "si_id": "BOTTLE",
+            "si_name": "Bottle",
+            "si_unit": null,
+            "si_code": "BOTTLE",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": -1,
+            "si_price": 42.37288136,
+            "si_tax_pct": 18.0,
+            "si_subtotal": -42.37,
+            "si_tax": -7.63,
+            "si_total": -50.0,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "v2-mixed-cart-discount-line-0",
+            "line_kind": "return",
+            "price_mode": "fixed",
+            "description": "",
+            "unit_gross": 50.0,
+            "discount_type": "none",
+            "discount_value": 0
+          },
+          {
+            "si_sale_num": "v2-mixed-cart-discount",
+            "si_id": "BOTTLE",
+            "si_name": "Bottle",
+            "si_unit": null,
+            "si_code": "BOTTLE",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 76.19047619,
+            "si_tax_pct": 5.0,
+            "si_subtotal": 66.67,
+            "si_tax": 3.33,
+            "si_total": 70.0,
+            "si_discount_amount": 10.0,
+            "si_discount_percent": 12.5,
+            "line_uid": "v2-mixed-cart-discount-line-1",
+            "line_kind": "purchase",
+            "price_mode": "fixed",
+            "description": "",
+            "unit_gross": 80.0,
+            "discount_type": "none",
+            "discount_value": 0.0
+          },
+          {
+            "si_sale_num": "v2-mixed-cart-discount",
+            "si_id": "BOTTLE",
+            "si_name": "Bottle",
+            "si_unit": null,
+            "si_code": "BOTTLE",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 40.0,
+            "si_tax_pct": 0.0,
+            "si_subtotal": 35.0,
+            "si_tax": 0.0,
+            "si_total": 35.0,
+            "si_discount_amount": 5.0,
+            "si_discount_percent": 12.5,
+            "line_uid": "v2-mixed-cart-discount-line-2",
+            "line_kind": "purchase",
+            "price_mode": "fixed",
+            "description": "",
+            "unit_gross": 40.0,
+            "discount_type": "none",
+            "discount_value": 0.0
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "v2-mixed-cart-discount-payment",
+            "payment_name": "Bank Transfer",
+            "tender_type_id": "13",
+            "amount_tendered": 55.0
+          }
+        ],
+        "subtotal": 59.3,
+        "tax": -4.3,
+        "total": 55.0,
+        "discount": 15.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 0.0,
+            "net": 35.0,
+            "tax": 0.0,
+            "gross": 35.0,
+            "line_kind": "purchase"
+          },
+          {
+            "rate": 5.0,
+            "net": 66.67,
+            "tax": 3.33,
+            "gross": 70.0,
+            "line_kind": "purchase"
+          },
+          {
+            "rate": 18.0,
+            "net": -42.37,
+            "tax": -7.63,
+            "gross": -50.0,
+            "line_kind": "return"
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        },
+        "discount_settings": {
+          "mode": "cart",
+          "type": "percent",
+          "value": 12.5
+        },
+        "settlement": {
+          "direction": "payment",
+          "amount": 55.0,
+          "payout_uid": ""
+        }
+      }
+    },
+    "payload_hash": "1526bc0cce8cc8c87f63f326141c1e3a44f28f4d6a04ba66db0bc40016dd6e3f",
+    "cart_hash": "18481fcf1775ae3640fe233ebdb3d29f1091bb865465070fb4f2dbe4833309d8"
+  },
+  {
+    "name": "vat-half-cent-purchase",
+    "payload": {
+      "sales_num": "v2-vat-half-cent-purchase",
+      "sales_date": "2026-10-02",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "payout_uid": "",
+      "fiscal_protocol": 2,
+      "sales_subtotal": 0.56,
+      "sales_tax": 0.1,
+      "sales_total": 0.66,
+      "sales_discount_amount": 0.0,
+      "fiscal_final_total": 0.66,
+      "items": [
+        {
+          "si_sale_num": "v2-vat-half-cent-purchase",
+          "si_id": "BOTTLE",
+          "si_name": "Bottle",
+          "si_unit": null,
+          "si_code": "BOTTLE",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 0.025,
+          "si_tax_pct": 20.0,
+          "si_subtotal": 0.03,
+          "si_tax": 0.0,
+          "si_total": 0.03,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "v2-vat-half-cent-purchase-line-0",
+          "line_kind": "purchase",
+          "price_mode": "fixed",
+          "description": "",
+          "unit_gross": 0.03,
+          "discount_type": "none",
+          "discount_value": 0.0
+        },
+        {
+          "si_sale_num": "v2-vat-half-cent-purchase",
+          "si_id": "BOTTLE",
+          "si_name": "Bottle",
+          "si_unit": null,
+          "si_code": "BOTTLE",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 0.525,
+          "si_tax_pct": 20.0,
+          "si_subtotal": 0.53,
+          "si_tax": 0.1,
+          "si_total": 0.63,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "v2-vat-half-cent-purchase-line-1",
+          "line_kind": "purchase",
+          "price_mode": "fixed",
+          "description": "",
+          "unit_gross": 0.63,
+          "discount_type": "none",
+          "discount_value": 0.0
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "v2-vat-half-cent-purchase-payment",
+          "payment_name": "Bank Transfer",
+          "tender_type_id": "13",
+          "amount_tendered": 0.66
+        }
+      ],
+      "discount_settings": {
+        "mode": "none",
+        "type": "amount",
+        "value": 0
+      },
+      "settlement": {
+        "direction": "payment",
+        "amount": 0.66,
+        "payout_uid": ""
+      },
+      "receipt_snapshot": {
+        "fiscal_protocol": 2,
+        "sale_number": "v2-vat-half-cent-purchase",
+        "date": "2026-10-02",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "v2-vat-half-cent-purchase",
+            "si_id": "BOTTLE",
+            "si_name": "Bottle",
+            "si_unit": null,
+            "si_code": "BOTTLE",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 0.025,
+            "si_tax_pct": 20.0,
+            "si_subtotal": 0.03,
+            "si_tax": 0.0,
+            "si_total": 0.03,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "v2-vat-half-cent-purchase-line-0",
+            "line_kind": "purchase",
+            "price_mode": "fixed",
+            "description": "",
+            "unit_gross": 0.03,
+            "discount_type": "none",
+            "discount_value": 0.0
+          },
+          {
+            "si_sale_num": "v2-vat-half-cent-purchase",
+            "si_id": "BOTTLE",
+            "si_name": "Bottle",
+            "si_unit": null,
+            "si_code": "BOTTLE",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 0.525,
+            "si_tax_pct": 20.0,
+            "si_subtotal": 0.53,
+            "si_tax": 0.1,
+            "si_total": 0.63,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "v2-vat-half-cent-purchase-line-1",
+            "line_kind": "purchase",
+            "price_mode": "fixed",
+            "description": "",
+            "unit_gross": 0.63,
+            "discount_type": "none",
+            "discount_value": 0.0
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "v2-vat-half-cent-purchase-payment",
+            "payment_name": "Bank Transfer",
+            "tender_type_id": "13",
+            "amount_tendered": 0.66
+          }
+        ],
+        "subtotal": 0.56,
+        "tax": 0.1,
+        "total": 0.66,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 20.0,
+            "net": 0.56,
+            "tax": 0.1,
+            "gross": 0.66,
+            "line_kind": "purchase"
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        },
+        "discount_settings": {
+          "mode": "none",
+          "type": "amount",
+          "value": 0
+        },
+        "settlement": {
+          "direction": "payment",
+          "amount": 0.66,
+          "payout_uid": ""
+        }
+      }
+    },
+    "payload_hash": "6d93104b158b37e4523d2b4b45f159e48bec738c97f3867fc92d610caa47f1a7",
+    "cart_hash": "2a2b035a95285b8d9c5de2f745ff0c80c4ac5c221c5f588ffa70a27fd1fc20ba"
+  },
+  {
+    "name": "vat-half-cent-return",
+    "payload": {
+      "sales_num": "v2-vat-half-cent-return",
+      "sales_date": "2026-10-02",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "payout_uid": "v2-vat-half-cent-return-payout",
+      "fiscal_protocol": 2,
+      "sales_subtotal": -0.56,
+      "sales_tax": -0.1,
+      "sales_total": -0.66,
+      "sales_discount_amount": 0.0,
+      "fiscal_final_total": -0.66,
+      "items": [
+        {
+          "si_sale_num": "v2-vat-half-cent-return",
+          "si_id": "BOTTLE",
+          "si_name": "Bottle",
+          "si_unit": null,
+          "si_code": "BOTTLE",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": -1,
+          "si_price": 0.025,
+          "si_tax_pct": 20.0,
+          "si_subtotal": -0.03,
+          "si_tax": 0.0,
+          "si_total": -0.03,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "v2-vat-half-cent-return-line-0",
+          "line_kind": "return",
+          "price_mode": "fixed",
+          "description": "",
+          "unit_gross": 0.03,
+          "discount_type": "none",
+          "discount_value": 0
+        },
+        {
+          "si_sale_num": "v2-vat-half-cent-return",
+          "si_id": "BOTTLE",
+          "si_name": "Bottle",
+          "si_unit": null,
+          "si_code": "BOTTLE",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": -1,
+          "si_price": 0.525,
+          "si_tax_pct": 20.0,
+          "si_subtotal": -0.53,
+          "si_tax": -0.1,
+          "si_total": -0.63,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "v2-vat-half-cent-return-line-1",
+          "line_kind": "return",
+          "price_mode": "fixed",
+          "description": "",
+          "unit_gross": 0.63,
+          "discount_type": "none",
+          "discount_value": 0
+        }
+      ],
+      "sale_pay_methods": [],
+      "discount_settings": {
+        "mode": "none",
+        "type": "amount",
+        "value": 0
+      },
+      "settlement": {
+        "direction": "cash_refund",
+        "amount": 0.66,
+        "payout_uid": "v2-vat-half-cent-return-payout"
+      },
+      "receipt_snapshot": {
+        "fiscal_protocol": 2,
+        "sale_number": "v2-vat-half-cent-return",
+        "date": "2026-10-02",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "v2-vat-half-cent-return",
+            "si_id": "BOTTLE",
+            "si_name": "Bottle",
+            "si_unit": null,
+            "si_code": "BOTTLE",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": -1,
+            "si_price": 0.025,
+            "si_tax_pct": 20.0,
+            "si_subtotal": -0.03,
+            "si_tax": 0.0,
+            "si_total": -0.03,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "v2-vat-half-cent-return-line-0",
+            "line_kind": "return",
+            "price_mode": "fixed",
+            "description": "",
+            "unit_gross": 0.03,
+            "discount_type": "none",
+            "discount_value": 0
+          },
+          {
+            "si_sale_num": "v2-vat-half-cent-return",
+            "si_id": "BOTTLE",
+            "si_name": "Bottle",
+            "si_unit": null,
+            "si_code": "BOTTLE",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": -1,
+            "si_price": 0.525,
+            "si_tax_pct": 20.0,
+            "si_subtotal": -0.53,
+            "si_tax": -0.1,
+            "si_total": -0.63,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "v2-vat-half-cent-return-line-1",
+            "line_kind": "return",
+            "price_mode": "fixed",
+            "description": "",
+            "unit_gross": 0.63,
+            "discount_type": "none",
+            "discount_value": 0
+          }
+        ],
+        "payments": [],
+        "subtotal": -0.56,
+        "tax": -0.1,
+        "total": -0.66,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 20.0,
+            "net": -0.56,
+            "tax": -0.1,
+            "gross": -0.66,
+            "line_kind": "return"
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        },
+        "discount_settings": {
+          "mode": "none",
+          "type": "amount",
+          "value": 0
+        },
+        "settlement": {
+          "direction": "cash_refund",
+          "amount": 0.66,
+          "payout_uid": "v2-vat-half-cent-return-payout"
+        }
+      }
+    },
+    "payload_hash": "eae077503a19217755d295073ea3ec0894217a5e39f8890735b6d14af274434b",
+    "cart_hash": "41843d748b288d84e6163363536bf1a87cb254940ba608d18b4740147d07ab89"
+  },
+  {
+    "name": "percent-half-cent",
+    "payload": {
+      "sales_num": "v2-percent-half-cent",
+      "sales_date": "2026-10-02",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "payout_uid": "",
+      "fiscal_protocol": 2,
+      "sales_subtotal": 0.11,
+      "sales_tax": 0.02,
+      "sales_total": 0.13,
+      "sales_discount_amount": 0.02,
+      "fiscal_final_total": 0.13,
+      "items": [
+        {
+          "si_sale_num": "v2-percent-half-cent",
+          "si_id": "BOTTLE",
+          "si_name": "Bottle",
+          "si_unit": null,
+          "si_code": "BOTTLE",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 0.125,
+          "si_tax_pct": 20.0,
+          "si_subtotal": 0.11,
+          "si_tax": 0.02,
+          "si_total": 0.13,
+          "si_discount_amount": 0.02,
+          "si_discount_percent": 13.33,
+          "line_uid": "v2-percent-half-cent-line-0",
+          "line_kind": "purchase",
+          "price_mode": "fixed",
+          "description": "",
+          "unit_gross": 0.15,
+          "discount_type": "none",
+          "discount_value": 0.0
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "v2-percent-half-cent-payment",
+          "payment_name": "Bank Transfer",
+          "tender_type_id": "13",
+          "amount_tendered": 0.13
+        }
+      ],
+      "discount_settings": {
+        "mode": "cart",
+        "type": "percent",
+        "value": 10
+      },
+      "settlement": {
+        "direction": "payment",
+        "amount": 0.13,
+        "payout_uid": ""
+      },
+      "receipt_snapshot": {
+        "fiscal_protocol": 2,
+        "sale_number": "v2-percent-half-cent",
+        "date": "2026-10-02",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "v2-percent-half-cent",
+            "si_id": "BOTTLE",
+            "si_name": "Bottle",
+            "si_unit": null,
+            "si_code": "BOTTLE",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 0.125,
+            "si_tax_pct": 20.0,
+            "si_subtotal": 0.11,
+            "si_tax": 0.02,
+            "si_total": 0.13,
+            "si_discount_amount": 0.02,
+            "si_discount_percent": 13.33,
+            "line_uid": "v2-percent-half-cent-line-0",
+            "line_kind": "purchase",
+            "price_mode": "fixed",
+            "description": "",
+            "unit_gross": 0.15,
+            "discount_type": "none",
+            "discount_value": 0.0
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "v2-percent-half-cent-payment",
+            "payment_name": "Bank Transfer",
+            "tender_type_id": "13",
+            "amount_tendered": 0.13
+          }
+        ],
+        "subtotal": 0.11,
+        "tax": 0.02,
+        "total": 0.13,
+        "discount": 0.02,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 20.0,
+            "net": 0.11,
+            "tax": 0.02,
+            "gross": 0.13,
+            "line_kind": "purchase"
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        },
+        "discount_settings": {
+          "mode": "cart",
+          "type": "percent",
+          "value": 10
+        },
+        "settlement": {
+          "direction": "payment",
+          "amount": 0.13,
+          "payout_uid": ""
+        }
+      }
+    },
+    "payload_hash": "d452e68af7d938a2b23b8ad8d8f7d6eb7625be1e160a35b3349226d457aae88e",
+    "cart_hash": "73764b7b28d9a8b849ffc5f6cdf5a71b49a34a3c24d8d2e7075cc098a8462dc7"
+  },
+  {
+    "name": "tailored-separate",
+    "payload": {
+      "sales_num": "v2-tailored-separate",
+      "sales_date": "2026-10-02",
+      "sales_time": "12:00:00",
+      "sales_cashier": "staff@example.test",
+      "sales_store": "Marnisi M'Xlokk",
+      "sales_registerId": "Marnisi M'Xlokk-MAIN",
+      "payout_uid": "",
+      "fiscal_protocol": 2,
+      "sales_subtotal": 45.0,
+      "sales_tax": 8.1,
+      "sales_total": 53.1,
+      "sales_discount_amount": 0.0,
+      "fiscal_final_total": 53.1,
+      "items": [
+        {
+          "si_sale_num": "v2-tailored-separate",
+          "si_id": "TAILORED-EXPERIENCE",
+          "si_name": "Tailored Experience",
+          "si_unit": null,
+          "si_code": "TAILORED-EXPERIENCE",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 30.0,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 30.0,
+          "si_tax": 5.4,
+          "si_total": 35.4,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "v2-tailored-separate-line-0",
+          "line_kind": "purchase",
+          "price_mode": "open",
+          "description": "Meal - grapes",
+          "unit_gross": 35.4,
+          "discount_type": "none",
+          "discount_value": 0.0
+        },
+        {
+          "si_sale_num": "v2-tailored-separate",
+          "si_id": "TAILORED-EXPERIENCE",
+          "si_name": "Tailored Experience",
+          "si_unit": null,
+          "si_code": "TAILORED-EXPERIENCE",
+          "si_barcode": null,
+          "si_category": null,
+          "si_qty": 1,
+          "si_price": 15.0,
+          "si_tax_pct": 18.0,
+          "si_subtotal": 15.0,
+          "si_tax": 2.7,
+          "si_total": 17.7,
+          "si_discount_amount": 0.0,
+          "si_discount_percent": 0.0,
+          "line_uid": "v2-tailored-separate-line-1",
+          "line_kind": "purchase",
+          "price_mode": "open",
+          "description": "A second customer",
+          "unit_gross": 17.7,
+          "discount_type": "none",
+          "discount_value": 0.0
+        }
+      ],
+      "sale_pay_methods": [
+        {
+          "payment_uid": "v2-tailored-separate-payment",
+          "payment_name": "Bank Transfer",
+          "tender_type_id": "13",
+          "amount_tendered": 53.1
+        }
+      ],
+      "discount_settings": {
+        "mode": "none",
+        "type": "amount",
+        "value": 0
+      },
+      "settlement": {
+        "direction": "payment",
+        "amount": 53.1,
+        "payout_uid": ""
+      },
+      "receipt_snapshot": {
+        "fiscal_protocol": 2,
+        "sale_number": "v2-tailored-separate",
+        "date": "2026-10-02",
+        "time": "12:00:00",
+        "cashier": "staff@example.test",
+        "items": [
+          {
+            "si_sale_num": "v2-tailored-separate",
+            "si_id": "TAILORED-EXPERIENCE",
+            "si_name": "Tailored Experience",
+            "si_unit": null,
+            "si_code": "TAILORED-EXPERIENCE",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 30.0,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 30.0,
+            "si_tax": 5.4,
+            "si_total": 35.4,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "v2-tailored-separate-line-0",
+            "line_kind": "purchase",
+            "price_mode": "open",
+            "description": "Meal - grapes",
+            "unit_gross": 35.4,
+            "discount_type": "none",
+            "discount_value": 0.0
+          },
+          {
+            "si_sale_num": "v2-tailored-separate",
+            "si_id": "TAILORED-EXPERIENCE",
+            "si_name": "Tailored Experience",
+            "si_unit": null,
+            "si_code": "TAILORED-EXPERIENCE",
+            "si_barcode": null,
+            "si_category": null,
+            "si_qty": 1,
+            "si_price": 15.0,
+            "si_tax_pct": 18.0,
+            "si_subtotal": 15.0,
+            "si_tax": 2.7,
+            "si_total": 17.7,
+            "si_discount_amount": 0.0,
+            "si_discount_percent": 0.0,
+            "line_uid": "v2-tailored-separate-line-1",
+            "line_kind": "purchase",
+            "price_mode": "open",
+            "description": "A second customer",
+            "unit_gross": 17.7,
+            "discount_type": "none",
+            "discount_value": 0.0
+          }
+        ],
+        "payments": [
+          {
+            "payment_uid": "v2-tailored-separate-payment",
+            "payment_name": "Bank Transfer",
+            "tender_type_id": "13",
+            "amount_tendered": 53.1
+          }
+        ],
+        "subtotal": 45.0,
+        "tax": 8.1,
+        "total": 53.1,
+        "discount": 0.0,
+        "change": 0.0,
+        "cash_tendered": 0.0,
+        "tax_rows": [
+          {
+            "rate": 18.0,
+            "net": 45.0,
+            "tax": 8.1,
+            "gross": 53.1,
+            "line_kind": "purchase"
+          }
+        ],
+        "fiscal_context": {
+          "enabled": true,
+          "mode": "Test",
+          "vineyard": "Marnisi M'Xlokk",
+          "legal_name": "Marnisi",
+          "vat_number": "TEST",
+          "address": "Test address",
+          "exo_number": "TEST",
+          "currency": "EUR",
+          "revision": "fixture"
+        },
+        "discount_settings": {
+          "mode": "none",
+          "type": "amount",
+          "value": 0
+        },
+        "settlement": {
+          "direction": "payment",
+          "amount": 53.1,
+          "payout_uid": ""
+        }
+      }
+    },
+    "payload_hash": "8452b67507c23404cfe814970b032857d181bb1330794fe6fb70da1a886b6479",
+    "cart_hash": "4fb58eeba8ea0aa96d348bb3f5862f3499a66a1e6313ada80c7e71fa3dfcb8c2"
+  }
+]

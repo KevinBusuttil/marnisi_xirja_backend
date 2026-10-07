@@ -19,7 +19,9 @@
   "low_stock_threshold",
   "is_enabled",
   "notes",
-  "vat_rate"
+  "vat_rate",
+  "is_returnable",
+  "allow_variable_price"
  ],
  "fields": [
   {
@@ -119,6 +121,20 @@
    "precision": "2",
    "reqd": 1,
    "description": "Server-owned VAT percentage. Catalogue approval required before Live; sell_price remains VAT-exclusive."
+  },
+  {
+   "fieldname": "is_returnable",
+   "fieldtype": "Check",
+   "label": "Allow POS Returns",
+   "default": "1",
+   "description": "Allow selling staff to return this product directly in the cart."
+  },
+  {
+   "fieldname": "allow_variable_price",
+   "fieldtype": "Check",
+   "label": "Allow Variable POS Price",
+   "default": "0",
+   "description": "Cashier enters a VAT-inclusive EUR unit price; VAT remains configured here."
   }
  ],
  "hide_toolbar": 0,

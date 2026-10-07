@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import Any
 
 import frappe
+from xirja_marnisi.fiscal.tenders import CAPABILITIES
 
 from xirja_marnisi.api.settings import _load_receipt_settings
 from xirja_marnisi.api.security import (
@@ -123,6 +124,8 @@ def get_context() -> dict[str, Any]:
         "receipt_settings": receipt_settings,
         "csrf_token": _csrf_token(),
         "fiscal_context": _public_fiscal_context(default_vineyard),
+        "fiscal_protocols": [1, 2],
+        "capabilities": CAPABILITIES,
     }
 
 

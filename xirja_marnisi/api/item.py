@@ -212,6 +212,7 @@ def list(args: str = "") -> dict[str, Any]:
                 IFNULL(stock_qty, 0) AS stock_qty,
                 IFNULL(low_stock_threshold, 0) AS low_stock_threshold,
                 IFNULL(is_enabled, 1) AS is_enabled,
+                vat_rate, is_returnable, allow_variable_price,
                 notes,
                 modified
             FROM `tabVineyard Item`
@@ -239,6 +240,7 @@ def list(args: str = "") -> dict[str, Any]:
                 IFNULL(stock_qty, 0) AS stock_qty,
                 IFNULL(low_stock_threshold, 0) AS low_stock_threshold,
                 IFNULL(is_enabled, 1) AS is_enabled,
+                vat_rate, is_returnable, allow_variable_price,
                 notes,
                 modified
             FROM `tabVineyard Item`
@@ -304,6 +306,9 @@ def create(args: str = "") -> dict[str, Any]:
         "stock_qty": initial_stock,
         "low_stock_threshold": float(payload.get("low_stock_threshold") or 0),
         "is_enabled": 1 if to_bool(payload.get("is_enabled", True)) else 0,
+        "is_returnable": int(to_bool(payload.get("is_returnable", True))),
+        "allow_variable_price": int(to_bool(payload.get("allow_variable_price", False))),
+        "vat_rate": float(payload.get("vat_rate", 18)),
         "notes": str(payload.get("notes") or "").strip(),
     }
     if _has_image_file_column():
@@ -398,6 +403,16 @@ def update(args: str = "") -> dict[str, Any]:
         updates["item_code"] = new_code
         updates["item_key"] = _item_key(vineyard, new_code)
 
+    for field in ("is_returnable", "allow_variable_price"):
+        if field in payload:
+            updates[field] = int(to_bool(payload[field]))
+    if "vat_rate" in payload:
+        from xirja_marnisi.fiscal.core import number
+        rate = number(payload["vat_rate"])
+        if not 0 <= rate <= 100:
+            frappe.throw("VAT rate must be between 0 and 100")
+        updates["vat_rate"] = float(rate)
+
     if not updates:
         return {"status": "success", "message": "Nothing to update"}
 
@@ -405,7 +420,7 @@ def update(args: str = "") -> dict[str, Any]:
     updates["modified_by"] = user
 
     set_clause = ", ".join([f"{field} = %s" for field in updates])
-    values = list(updates.values()) + [item_name]
+    values = [*updates.values(), item_name]
 
     frappe.db.sql(
         f"UPDATE `tabVineyard Item` SET {set_clause} WHERE name = %s",

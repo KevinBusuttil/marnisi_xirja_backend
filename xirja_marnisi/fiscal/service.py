@@ -101,7 +101,7 @@ def _base(name, actor, now):
 
 
 def receipts_for_sale(name):
-    return frappe.db.sql('SELECT name,source_sale,source_payment,payment_uid,payment_amount,record_status,review_reason,mode,sequence_year,sequence_number '
+    return frappe.db.sql('SELECT name,source_sale,source_payment,payment_uid,payment_amount,record_status,review_reason,mode,sequence_year,sequence_number,record_kind '
                         'FROM `tabMarnisi Fiscal Receipt` WHERE source_sale=%s ORDER BY sequence_number,name', (name,), as_dict=True)
 
 
@@ -217,6 +217,11 @@ def _create_manual_link(sale_name, reference, reason, actor, now, *, payload_has
 
 
 def ingest_one(payload, *, refund=False):
+    if isinstance(payload, dict) and payload.get('fiscal_protocol') == 2:
+        if refund:
+            raise ValueError('Protocol 2 direct returns use ordinary checkout')
+        from xirja_marnisi.fiscal.checkout_v2 import ingest_checkout
+        return ingest_checkout(payload)
     actor = require_authenticated_user()
     if not isinstance(payload, dict):
         raise ValueError('Sale must be an object')
@@ -390,12 +395,16 @@ def reconciliation_rows(filters):
     rows = frappe.db.sql('''SELECT s.sale_num,s.sales_date,s.fiscal_status,s.sales_total,s.fiscal_protocol,
         s.return_source_sale_num,COALESCE(m.manual_reference,s.manual_receipt_reference) AS manual_receipt_reference,
         COALESCE(i.total,0) AS item_total,COALESCE(p.total,0) AS payment_total,COALESCE(p.cnt,0) AS payment_count,
-        COALESCE(r.total,0) AS receipt_total,COALESCE(r.cnt,0) AS receipt_count,COALESCE(r.reviews,0) AS review_count
+        COALESCE(r.total,0) AS receipt_total,COALESCE(r.cnt,0) AS receipt_count,COALESCE(r.reviews,0) AS review_count,
+        cp.payout_uid,cp.state AS cash_payout_state,COALESCE(cp.amount,0) AS cash_refund_due,
+        IF(cp.state='confirmed',cp.amount,0) AS cash_refunded,
+        IF(cp.state<>'confirmed',cp.amount,0) AS cash_refund_outstanding
         FROM `tabMarnisi POS Sale` s
         LEFT JOIN (SELECT parent,SUM(si_total) total FROM `tabMarnisi POS Sale Item` GROUP BY parent) i ON i.parent=s.name
         LEFT JOIN (SELECT parent,SUM(amount_tendered) total,COUNT(*) cnt FROM `tabMarnisi POS Sale Payment` GROUP BY parent) p ON p.parent=s.name
         LEFT JOIN (SELECT source_sale,SUM(payment_amount) total,COUNT(*) cnt,SUM(record_status='Review') reviews FROM `tabMarnisi Fiscal Receipt` GROUP BY source_sale) r ON r.source_sale=s.name
         LEFT JOIN `tabMarnisi Manual Receipt Link` m ON m.source_sale=s.name
+        LEFT JOIN `tabMarnisi Cash Payout` cp ON cp.sale_num=s.sale_num
         WHERE s.sales_store=%s AND s.sales_date BETWEEN %s AND %s ORDER BY s.sales_date,s.sale_num''',
         (VINEYARD, from_date, to_date), as_dict=True)
     for row in rows:
@@ -403,11 +412,21 @@ def reconciliation_rows(filters):
         if not row.get('fiscal_protocol'):
             issues.append('Historical non-certified evidence')
         for field in ('item_total', 'payment_total'):
-            if money(row[field]) != money(row['sales_total']):
+            expected_total = max(money(row['sales_total']), money(0)) if row.get('fiscal_protocol') == 2 and field == 'payment_total' else money(row['sales_total'])
+            if money(row[field]) != expected_total:
                 issues.append(field + ' mismatch')
         expected = row['fiscal_status'] in ('Test', 'Recorded', 'Review') and not row['manual_receipt_reference']
-        if expected and (money(row['receipt_total']) != money(row['payment_total']) or row['receipt_count'] != row['payment_count']):
-            issues.append('Fiscal payment evidence mismatch')
+        if expected:
+            if row.get('fiscal_protocol') == 2:
+                if money(row['receipt_total']) != money(row['sales_total']) or row['receipt_count'] != 1:
+                    issues.append('Fiscal transaction evidence mismatch')
+            elif money(row['receipt_total']) != money(row['payment_total']) or row['receipt_count'] != row['payment_count']:
+                issues.append('Fiscal payment evidence mismatch')
+        if row.get('fiscal_protocol') == 2 and money(row['sales_total']) < 0:
+            if money(row.get('cash_refund_due', 0)) != -money(row['sales_total']):
+                issues.append('Cash payout evidence mismatch')
+            if row.get('cash_payout_state') != 'confirmed':
+                issues.append('Cash refund outstanding')
         if row['review_count']:
             issues.append('Review required')
         row['reconciliation_status'] = '; '.join(issues) or ('Manual reference' if row['manual_receipt_reference'] else 'Matched')
@@ -489,6 +508,8 @@ def reserve_manual_receipt(payload, reference, reason):
     actor = require_pos_access(mutate=True)['user']
     if not isinstance(payload, dict):
         raise ValueError('The original frozen sale payload is required')
+    if type(payload.get('fiscal_protocol')) is not int or payload['fiscal_protocol'] != 1:
+        raise ValueError('Manual paper recovery is supported only for protocol-1 sales')
     require_pos_access(payload.get('sales_store'), payload.get('sales_registerId'), mutate=True)
     if payload.get('sales_store') != VINEYARD or payload.get('sales_registerId') != REGISTER:
         raise ValueError('The locked vineyard and register are required')

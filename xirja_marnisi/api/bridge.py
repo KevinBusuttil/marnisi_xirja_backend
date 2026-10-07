@@ -12,10 +12,7 @@ from xirja_marnisi.api.security import (
     require_pos_access,
 )
 
-_PAYMENT_METHODS = [
-    {"payment_type_id": "1", "payment_type_name": "Cash"},
-    {"payment_type_id": "7", "payment_type_name": "Card BOV"},
-]
+from xirja_marnisi.fiscal.tenders import PAYMENT_METHODS as _PAYMENT_METHODS, CAPABILITIES
 
 _SALE_TABLE = "tabMarnisi POS Sale"
 _SALE_ITEM_TABLE = "tabMarnisi POS Sale Item"
@@ -417,6 +414,8 @@ def get_all_stores() -> dict[str, Any]:
                 "store_loyalty_show_receipt_details": 0,
                 "store_py_mthds_ava": [row["payment_type_id"] for row in _PAYMENT_METHODS],
                 "fiscal_context": _public_fiscal_context(vineyard),
+                "fiscal_protocols": [1, 2],
+                "capabilities": CAPABILITIES,
             }
         )
 
@@ -488,6 +487,8 @@ def get_all_products() -> dict[str, Any]:
                 unit,
                 sell_price,
                 vat_rate,
+                is_returnable,
+                allow_variable_price,
                 stock_qty
             FROM `tabVineyard Item`
             WHERE {where_clause}
@@ -511,6 +512,8 @@ def get_all_products() -> dict[str, Any]:
                 unit,
                 sell_price,
                 vat_rate,
+                is_returnable,
+                allow_variable_price,
                 stock_qty
             FROM `tabVineyard Item`
             WHERE {where_clause}
@@ -548,6 +551,8 @@ def get_all_products() -> dict[str, Any]:
                 "item_unit": row.get("unit") or "Bottle",
                 "item_tax_group": "VAT",
                 "item_tax_pct": float(row.get("vat_rate") if row.get("vat_rate") is not None else 18),
+                "item_is_returnable": int(row.get("is_returnable", 1)),
+                "item_variable_price_enabled": int(row.get("allow_variable_price", 0)),
                 "item_suppItems": [],
             }
         )
@@ -618,6 +623,9 @@ def get_sales_history(args: str = "") -> dict[str, Any]:
         SELECT
             sale_num,
             sales_payload, acknowledgement, fiscal_status, receipt_snapshot,
+            (SELECT JSON_OBJECT('payout_uid',cp.payout_uid,'sale_num',cp.sale_num,'amount',cp.amount,
+                'state',cp.state,'handover_uid',cp.handover_uid)
+                FROM `tabMarnisi Cash Payout` cp WHERE cp.sale_num=`tabMarnisi POS Sale`.sale_num) AS cash_payout,
             (SELECT manual_reference FROM `tabMarnisi Manual Receipt Link` m WHERE m.source_sale=`tabMarnisi POS Sale`.name) AS linked_manual_reference
         FROM `tabMarnisi POS Sale`
         {where_clause}
@@ -653,6 +661,9 @@ def get_sales_history(args: str = "") -> dict[str, Any]:
         acknowledgement = json.loads(row.get("acknowledgement") or "{}")
         parsed["fiscal_status"] = row.get("fiscal_status") or "Legacy"
         parsed["fiscal_receipts"] = acknowledgement.get("fiscal_receipts", [])
+        if row.get("cash_payout"):
+            proof = row["cash_payout"]
+            parsed["cash_payout"] = json.loads(proof) if isinstance(proof, str) else proof
         if row.get("receipt_snapshot"):
             parsed["receipt_snapshot"] = json.loads(row["receipt_snapshot"])
         if row.get("linked_manual_reference"):
