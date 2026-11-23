@@ -231,3 +231,47 @@ def test_reconciliation_exposes_manual_reservations_before_cashier_upload(databa
     assert rows[0]['fiscal_status']=='Manual reserved'
     assert rows[0]['receipt_count']==0
     assert rows[0]['reconciliation_status']=='Manual reservation awaiting original cashier upload'
+
+
+def test_rejection_logging_keeps_validation_reason_without_payload_or_secrets(database, monkeypatch):
+    logged = []
+    monkeypatch.setattr(service.frappe, 'logger',
+        lambda name, **kwargs: SimpleNamespace(error=logged.append), raising=False)
+    sale = payload(database)
+    sale['sales_cashier'] = 'wrong-cashier@example.invalid'
+    sale['sid'] = 'private-session-cookie'
+    sale['items'][0]['si_name'] = 'private-cart-description'
+    result = ingest(sale)
+    assert result['status'] == 'error'
+    import json
+    diagnostic = json.loads(logged[0])
+    assert diagnostic['sale_num'] == sale['sales_num']
+    assert diagnostic['reason'] == result['message']
+    assert 'original cashier' in diagnostic['reason']
+    assert 'private-session-cookie' not in logged[0]
+    assert 'private-cart-description' not in logged[0]
+    assert all(not rows for rows in database.tables.values())
+
+
+def test_rejection_logger_failure_does_not_change_batch_or_financial_state(database, monkeypatch):
+    def unavailable(*args, **kwargs):
+        raise OSError('logger unavailable')
+    monkeypatch.setattr(service.frappe, 'logger', unavailable, raising=False)
+    database.failed_table = 'Marnisi POS Sale Payment'
+    result = ingest(payload(database))
+    assert result['status'] == 'error'
+    assert result['message'] == 'Sale was not stored; integrity validation failed'
+    assert 'secret' not in result['message']
+    assert all(not rows for rows in database.tables.values())
+    assert not database.sequence
+
+
+def test_valid_upload_and_idempotent_retry_do_not_log_rejections(database, monkeypatch):
+    logged = []
+    monkeypatch.setattr(service.frappe, 'logger',
+        lambda name, **kwargs: SimpleNamespace(error=logged.append), raising=False)
+    sale = payload(database)
+    accepted = ingest(sale)
+    assert accepted['status'] == 'synchronized'
+    assert ingest(deepcopy(sale)) == accepted
+    assert logged == []

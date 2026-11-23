@@ -313,6 +313,27 @@ def ingest_one(payload, *, refund=False):
     return acknowledgement
 
 
+def _log_rejected_upload(row, message):
+    """Retain bounded diagnostics without logging carts, sessions or SQL details.
+
+    File logging must never write/commit financial rows or change the response.
+    A logging outage must not turn a safely rejected sale into a request failure.
+    """
+    row = row if isinstance(row, dict) else {}
+    try:
+        diagnostic = {
+            'event': 'sale_upload_rejected',
+            'sale_num': str(row.get('sales_num', ''))[:160],
+            'cashier': str(row.get('sales_cashier', ''))[:160],
+            'reason': str(message)[:1000],
+        }
+        frappe.logger('marnisi_fiscal_sync', allow_site=True).error(
+            json.dumps(diagnostic, ensure_ascii=True, sort_keys=True))
+    except Exception:
+        # Logging is best effort and independent from the financial transaction.
+        pass
+
+
 def ingest_batch(payload, *, refund=False):
     rows = payload.get('sales')
     if not isinstance(rows, list) or len(rows) > 100:
@@ -336,6 +357,7 @@ def ingest_batch(payload, *, refund=False):
                     frappe.db.rollback(save_point=savepoint)
                     # Database errors can expose internal SQL; do not return them.
                     safe = str(exc) if isinstance(exc, (ValueError, frappe.PermissionError, frappe.AuthenticationError)) else 'Sale was not stored; integrity validation failed'
+                    _log_rejected_upload(row, safe)
                     confirmation = {'sale_num': row.get('sales_num', '') if isinstance(row, dict) else '', 'status': 'error', 'message': safe}
                 confirmations.append(confirmation)
             return {'confirmations': confirmations}
