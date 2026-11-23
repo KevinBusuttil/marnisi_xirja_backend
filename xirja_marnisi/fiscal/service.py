@@ -327,6 +327,12 @@ def _log_rejected_upload(row, message):
             'cashier': str(row.get('sales_cashier', ''))[:160],
             'reason': str(message)[:1000],
         }
+        if message == 'Item does not belong to the locked vineyard catalogue':
+            items = row.get('items')
+            if isinstance(items, list):
+                diagnostic['item_ids'] = list(dict.fromkeys(
+                    str(item.get('si_id', ''))[:160]
+                    for item in items[:100] if isinstance(item, dict)))
         frappe.logger('marnisi_fiscal_sync', allow_site=True).error(
             json.dumps(diagnostic, ensure_ascii=True, sort_keys=True))
     except Exception:

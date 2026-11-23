@@ -275,3 +275,46 @@ def test_valid_upload_and_idempotent_retry_do_not_log_rejections(database, monke
     assert accepted['status'] == 'synchronized'
     assert ingest(deepcopy(sale)) == accepted
     assert logged == []
+
+
+def test_catalogue_rejection_logs_saved_item_ids_without_changing_evidence(database, monkeypatch):
+    import json
+    logged = []
+    monkeypatch.setattr(service.frappe, 'logger',
+        lambda name, **kwargs: SimpleNamespace(error=logged.append), raising=False)
+    sale = payload(database)
+    before = deepcopy(sale)
+    def missing_catalogue(_):
+        raise ValueError('Item does not belong to the locked vineyard catalogue')
+    monkeypatch.setattr(service, '_catalogue_reasons', missing_catalogue)
+    result = ingest(sale)
+    assert result['status'] == 'error'
+    diagnostic = json.loads(logged[0])
+    assert diagnostic['item_ids'] == [sale['items'][0]['si_id']]
+    assert sale == before
+    assert 'si_price' not in logged[0] and 'receipt_snapshot' not in logged[0]
+    assert all(not rows for rows in database.tables.values())
+
+
+def test_catalogue_diagnostic_bounds_and_deduplicates_untrusted_identifiers(database, monkeypatch):
+    import json
+    logged = []
+    monkeypatch.setattr(service.frappe, 'logger',
+        lambda name, **kwargs: SimpleNamespace(error=logged.append), raising=False)
+    rows = [{'si_id': 'x' * 200}, {'si_id': 'x' * 200}, None]
+    rows += [{'si_id': str(i)} for i in range(200)]
+    service._log_rejected_upload({'items': rows}, 'Item does not belong to the locked vineyard catalogue')
+    ids = json.loads(logged[0])['item_ids']
+    assert ids[0] == 'x' * 160
+    assert len(ids) <= 100 and len(ids) == len(set(ids))
+    assert all(len(value) <= 160 for value in ids)
+
+
+def test_non_catalogue_rejection_does_not_copy_item_identifiers(database, monkeypatch):
+    import json
+    logged = []
+    monkeypatch.setattr(service.frappe, 'logger',
+        lambda name, **kwargs: SimpleNamespace(error=logged.append), raising=False)
+    service._log_rejected_upload({'items': [{'si_id': 'private-item'}]}, 'Invalid payment rows')
+    assert 'item_ids' not in json.loads(logged[0])
+    assert 'private-item' not in logged[0]
