@@ -5,6 +5,7 @@ are append-only; sale snapshots/acknowledgements are never changed after issuanc
 The settings lock serializes checkout identities and handovers across terminals.
 """
 import secrets
+from xirja_marnisi.fiscal import diagnostics as diag
 from xirja_marnisi.fiscal import service as s
 from xirja_marnisi.fiscal.core import amount, digest, encode, identity, money, number
 from xirja_marnisi.fiscal.validation_v2 import cart_hash, validate_sale_v2
@@ -13,7 +14,10 @@ from xirja_marnisi.fiscal.validation_v2 import cart_hash, validate_sale_v2
 def _actor(payload=None):
     if payload is not None and not isinstance(payload, dict):
         raise ValueError('A frozen checkout object is required')
+    diag.stage('original_cashier')
     actor = s.require_authenticated_user()
+    diag.stage('original_cashier', authenticated_user=actor)
+    diag.stage('pos_authorization')
     s.require_pos_access(s.VINEYARD, s.REGISTER, mutate=True, staff_allowed=True)
     if payload is not None:
         if payload.get('sales_store') != s.VINEYARD or payload.get('sales_registerId') != s.REGISTER:
@@ -24,9 +28,12 @@ def _actor(payload=None):
 
 
 def _settings():
+    diag.stage('fiscal_settings')
     settings = s.settings_for(lock=True)
     if not settings:
         raise ValueError('Fiscal migration/settings installation is required')
+    diag.stage('fiscal_settings', mode=settings.get('mode'), suspended=bool(settings.get('issuance_suspended')))
+    diag.settings_facts(settings)
     s.validate_settings(settings)
     if settings.get('issuance_suspended'):
         raise ValueError('Fiscal issuance is suspended pending recovery reconciliation')
@@ -38,10 +45,12 @@ def _catalogue(payload):
     rows = s.frappe.db.sql('SELECT item_code,item_name,sell_price,vat_rate,is_enabled,is_returnable,allow_variable_price '
         'FROM `tabVineyard Item` WHERE vineyard=%s AND item_code IN (' + ','.join(['%s'] * len(ids)) + ') FOR UPDATE',
         (s.VINEYARD, *(key.split('::', 1)[-1] for key in ids)), as_dict=True)
+    diag.catalogue(payload, rows, s.VINEYARD)
     catalogue = {s.VINEYARD + '::' + row['item_code']: row for row in rows}
     reasons = []
     for line in payload['items']:
         item = catalogue.get(line['si_id'])
+        diag.stage('catalogue_item', item_id=line['si_id'], line_uid=line.get('line_uid'), matched=item is not None)
         if not item:
             raise ValueError('Item does not belong to the locked vineyard catalogue')
         if line['line_kind'] == 'return' and not item.get('is_returnable'):
@@ -110,14 +119,18 @@ def ingest_checkout(payload):
     settings = s.settings_for(lock=True)
     existing = s._existing(sale_num)
     payload_hash = digest(payload)
+    diag.stage('existing_sale', present=bool(existing), received_hash=payload_hash,
+               stored_hash=existing.get('fiscal_payload_hash') if existing else None)
     if existing:
         if existing.get('fiscal_payload_hash') != payload_hash or not existing.get('acknowledgement'):
             raise ValueError('Conflicting retry; existing financial evidence was not changed')
         return s._load(existing['acknowledgement'])
+    diag.stage('financial_validation')
     values = validate_sale_v2(payload)
     settings = _settings()
     authorization = _authorization(sale_num)
     token = payload.get('checkout_authorization')
+    diag.authorization(payload, authorization, token, cart_hash)
     if values['has_returns'] and not token:
         raise ValueError('Return-containing carts require online checkout authorization before settlement')
     if token:
@@ -128,10 +141,13 @@ def ingest_checkout(payload):
     else:
         reasons = _catalogue(payload)
     context = payload['receipt_snapshot']['fiscal_context']
+    diag.stage('fiscal_context', matches=context == s.public_context(settings),
+               saved_revision=context.get('revision'), current_revision=s.public_context(settings).get('revision'))
     if context != s.public_context(settings):
         reasons.append('Frozen seller/fiscal settings differ from current settings; review required')
     mode = settings['mode']
     status = 'Review' if reasons else 'Recorded' if mode == 'Live' else mode
+    diag.stage('persistence', fiscal_status=status)
     now = s.frappe.utils.now()
     parent = 'MPS-' + sale_num
     s._insert('Marnisi POS Sale', {**s._base(parent, actor, now), 'sale_num': sale_num, 'sales_store': s.VINEYARD,

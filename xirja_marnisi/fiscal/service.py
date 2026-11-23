@@ -14,6 +14,7 @@ from frappe.exceptions import QueryDeadlockError, QueryTimeoutError
 
 from xirja_marnisi.api.security import require_pos_access, require_authenticated_user
 from xirja_marnisi.fiscal.core import amount, digest, encode, identity, money, number, refund_allocation
+from xirja_marnisi.fiscal import diagnostics as diag
 from xirja_marnisi.fiscal.validation import validate_sale
 
 VINEYARD = "Marnisi M'Xlokk"
@@ -70,10 +71,12 @@ def _catalogue_reasons(payload):
     rows = frappe.db.sql('SELECT name,vineyard,item_code,item_name,sell_price,vat_rate,is_enabled '
                         'FROM `tabVineyard Item` WHERE vineyard=%s AND item_code IN (' + ','.join(['%s'] * len(ids)) + ') FOR UPDATE',
                         (VINEYARD, *(identifier.split('::', 1)[-1] for identifier in ids)), as_dict=True)
+    diag.catalogue(payload, rows, VINEYARD)
     catalogue = {VINEYARD + '::' + row['item_code']: row for row in rows}
     reasons = []
     for line in lines:
         item = catalogue.get(line['si_id'])
+        diag.stage('catalogue_item', item_id=line['si_id'], line_uid=line.get('line_uid'), matched=item is not None)
         if not line['si_id'].startswith(VINEYARD + '::') or not item:
             raise ValueError('Item does not belong to the locked vineyard catalogue')
         if not item.get('is_enabled'):
@@ -217,12 +220,15 @@ def _create_manual_link(sale_name, reference, reason, actor, now, *, payload_has
 
 
 def ingest_one(payload, *, refund=False):
+    diag.stage('protocol_dispatch', protocol=payload.get('fiscal_protocol') if isinstance(payload, dict) else None)
     if isinstance(payload, dict) and payload.get('fiscal_protocol') == 2:
         if refund:
             raise ValueError('Protocol 2 direct returns use ordinary checkout')
         from xirja_marnisi.fiscal.checkout_v2 import ingest_checkout
         return ingest_checkout(payload)
+    diag.stage('original_cashier')
     actor = require_authenticated_user()
+    diag.stage('original_cashier', authenticated_user=actor)
     if not isinstance(payload, dict):
         raise ValueError('Sale must be an object')
     require_pos_access(payload.get('sales_store'), payload.get('sales_registerId'), mutate=True, staff_allowed=not refund)
@@ -237,6 +243,8 @@ def ingest_one(payload, *, refund=False):
     # This vineyard lock prevents concurrent missing-row races and over-refunds.
     existing = _existing(sale_num)
     payload_hash = digest(payload)
+    diag.stage('existing_sale', present=bool(existing), received_hash=payload_hash,
+               stored_hash=existing.get('fiscal_payload_hash') if existing else None)
     if existing:
         if existing.get('fiscal_payload_hash') != payload_hash or not existing.get('acknowledgement'):
             raise ValueError('Conflicting retry or historical sale identity; existing financial evidence was not changed')
@@ -246,7 +254,10 @@ def ingest_one(payload, *, refund=False):
     reservation = reservations[0] if reservations else None
     if reservation and reservation['payload_hash'] != payload_hash:
         raise ValueError('Frozen payload differs from the manager-approved manual reservation')
+    diag.stage('financial_validation')
     validate_sale(payload, refund=refund)
+    diag.stage('fiscal_settings', mode=settings.get('mode'), suspended=bool(settings.get('issuance_suspended')))
+    diag.settings_facts(settings)
     validate_settings(settings)
     manual = reservation['manual_reference'] if reservation else payload.get('manual_receipt_reference')
     if settings.get('issuance_suspended') and not manual:
@@ -262,12 +273,15 @@ def ingest_one(payload, *, refund=False):
     else:
         reasons = _catalogue_reasons(payload)
     context = payload['receipt_snapshot']['fiscal_context']
+    diag.stage('fiscal_context', matches=context == public_context(settings),
+               saved_revision=context.get('revision'), current_revision=public_context(settings).get('revision'))
     if context != public_context(settings):
         reasons.append('Frozen seller/fiscal settings differ from current settings; review stale/offline context')
     if payload['receipt_snapshot'].get('return_source_sale_num', '') != payload.get('return_source_sale_num', ''):
         raise ValueError('Printed original sale reference differs from refund linkage')
     mode = settings['mode']
     status = 'Manual' if manual else 'Review' if reasons else 'Recorded' if mode == 'Live' else mode
+    diag.stage('persistence', fiscal_status=status)
     now = frappe.utils.now()
     parent = 'MPS-' + sale_num
     _insert('Marnisi POS Sale', {**_base(parent, actor, now), 'sale_num': sale_num, 'sales_store': VINEYARD,
@@ -313,7 +327,7 @@ def ingest_one(payload, *, refund=False):
     return acknowledgement
 
 
-def _log_rejected_upload(row, message):
+def _log_rejected_upload(row, message, *, error=None, details=None):
     """Retain bounded diagnostics without logging carts, sessions or SQL details.
 
     File logging must never write/commit financial rows or change the response.
@@ -333,8 +347,9 @@ def _log_rejected_upload(row, message):
                 diagnostic['item_ids'] = list(dict.fromkeys(
                     str(item.get('si_id', ''))[:160]
                     for item in items[:100] if isinstance(item, dict)))
-        frappe.logger('marnisi_fiscal_sync', allow_site=True).error(
-            json.dumps(diagnostic, ensure_ascii=True, sort_keys=True))
+        if details is not None:
+            diagnostic.update(diag.details_for_log(details, row, error))
+        diag.emit(frappe, 'sale_upload_rejected', diagnostic, rejected=True)
     except Exception:
         # Logging is best effort and independent from the financial transaction.
         pass
@@ -343,27 +358,37 @@ def _log_rejected_upload(row, message):
 def ingest_batch(payload, *, refund=False):
     rows = payload.get('sales')
     if not isinstance(rows, list) or len(rows) > 100:
+        _log_rejected_upload({}, 'sales must be an array of at most 100 frozen sales', details={'stage': 'batch_shape'})
         raise ValueError('sales must be an array of at most 100 frozen sales')
     # MariaDB/Frappe 16 may abort the *entire* transaction on a concurrent
     # snapshot conflict (1020), deadlock or lock timeout. Never return earlier
     # confirmations from that abandoned transaction or roll back a gone savepoint.
     # Replay the complete immutable batch and recompute every acknowledgement.
     for attempt in range(4):
-        require_pos_access(mutate=True, staff_allowed=not refund)
+        try:
+            require_pos_access(mutate=True, staff_allowed=not refund)
+        except (frappe.PermissionError, frappe.AuthenticationError) as exc:
+            for row in rows:
+                _log_rejected_upload(row, str(exc), error=exc, details={'stage': 'batch_authorization'})
+            raise
         confirmations = []
         try:
             for index, row in enumerate(rows):
                 savepoint = f'marnisi_sale_{index}'
                 frappe.db.savepoint(savepoint)
+                details = None
                 try:
-                    confirmation = ingest_one(row, refund=refund)
-                except (QueryDeadlockError, QueryTimeoutError):
+                    with diag.capture(attempt + 1) as details:
+                        confirmation = ingest_one(row, refund=refund)
+                    diag.outcome(frappe, row, confirmation, details)
+                except (QueryDeadlockError, QueryTimeoutError) as exc:
+                    _log_rejected_upload(row, 'Database conflict; immutable batch will be retried', error=exc, details=details)
                     raise
                 except Exception as exc:
                     frappe.db.rollback(save_point=savepoint)
                     # Database errors can expose internal SQL; do not return them.
                     safe = str(exc) if isinstance(exc, (ValueError, frappe.PermissionError, frappe.AuthenticationError)) else 'Sale was not stored; integrity validation failed'
-                    _log_rejected_upload(row, safe)
+                    _log_rejected_upload(row, safe, error=exc, details=details)
                     confirmation = {'sale_num': row.get('sales_num', '') if isinstance(row, dict) else '', 'status': 'error', 'message': safe}
                 confirmations.append(confirmation)
             return {'confirmations': confirmations}

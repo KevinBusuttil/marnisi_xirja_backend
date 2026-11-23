@@ -292,7 +292,9 @@ def test_catalogue_rejection_logs_saved_item_ids_without_changing_evidence(datab
     diagnostic = json.loads(logged[0])
     assert diagnostic['item_ids'] == [sale['items'][0]['si_id']]
     assert sale == before
-    assert 'si_price' not in logged[0] and 'receipt_snapshot' not in logged[0]
+    assert diagnostic['saved_sale']['items']['rows'][0]['si_price'] == sale['items'][0]['si_price']
+    assert sale['items'][0]['si_name'] not in logged[0]
+    assert 'checkout_authorization' not in diagnostic['saved_sale']
     assert all(not rows for rows in database.tables.values())
 
 
