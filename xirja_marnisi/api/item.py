@@ -16,6 +16,20 @@ _DEFAULT_ITEM_IMAGE = "assets/items/1.png"
 _IMAGE_FILE_COLUMN_EXISTS: bool | None = None
 
 
+def _protect_legacy_image_update(payload: dict[str, Any]) -> dict[str, Any]:
+    """Old tablets send their display placeholder on unrelated item edits.
+
+    Only an explicit replace_image intent may replace a photo with that asset.
+    Missing image keys already have PATCH semantics in update().
+    """
+    result = dict(payload)
+    if (str(result.get("image_path") or "").strip() == _DEFAULT_ITEM_IMAGE
+            and not to_bool(result.get("replace_image"))):
+        result.pop("image_path", None)
+        result.pop("image_file", None)
+    return result
+
+
 def _item_key(vineyard: str, item_code: str) -> str:
     return f"{vineyard.strip().lower()}::{item_code.strip().lower()}"
 
@@ -347,6 +361,7 @@ def create(args: str = "") -> dict[str, Any]:
 def update(args: str = "") -> dict[str, Any]:
     payload = parse_args(args)
     user = require_authenticated_user()
+    payload = _protect_legacy_image_update(payload)
 
     item_name = str(payload.get("item_id") or payload.get("name") or "").strip()
     if not item_name:

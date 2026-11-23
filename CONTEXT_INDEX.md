@@ -1,5 +1,13 @@
 # XIRJA Marnisi App Context Index
 
+## Server updates, image safety and upload diagnostics
+- `api/item.py:_protect_legacy_image_update` preserves existing item photos when older clients incidentally send the generic asset during price edits; explicit replacements require replace_image.
+- `api/app_update.py` serves private APK metadata/downloads using existing POS authorization. Infrastructure manages backend network reachability. No external file hosting or public File attachment.
+- `fiscal/service.py:_log_rejected_upload` records bounded rejection reason and sale identity to the private rotating marnisi_fiscal_sync log. Logging is best effort, does not alter fiscal validation or transaction outcomes, and omits cart/session/SQL payloads. Existing tablets need no update for this diagnostic change.
+- Regression coverage: tests/test_item_image_resolution.py, tests/test_app_update.py, tests/test_fiscal_service.py. Run all suites from the sibling frontend via ./run_all_tests.sh (793 passing tests in the latest combined run).
+- Diagnostic logging is not a repair for pending sales. Inspect the actual rejected upload before changing behavior; preserve immutable sale evidence and original operator checks.
+
+
 ## Paused-server validation — 8 October 2026
 - Backend code `5dff2fd` is deployed to `erp.marnisi.cassarcamilleri.com` on `146.190.236.171`. Frontend report `docs/fiscal/evidence/server-deployment-20261008/RESULTS.md` holds the 764-test inventory, actual emulator transactions, exact HTTP replay checks and restoration proof.
 - Original 82 sales and historical child rows are preserved; QA transactions are restored away from the post-migration snapshot. Receipt counter reset is limited to temporary Test evidence from the paused maintenance exercise; never use this procedure to remove genuine sales or Live receipts.
